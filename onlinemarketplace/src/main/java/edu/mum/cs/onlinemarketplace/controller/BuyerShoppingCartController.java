@@ -86,7 +86,7 @@ public class BuyerShoppingCartController {
         User user = userService.getUserById(id);
 
         Cart cart = cartService.getCartById(cid);
-
+        //Divide products by sellers
         HashMap<Long, List<Product>> mapProducts = new HashMap<>();
         cart.getProductList().stream().map(prod -> prod.getSeller()).distinct().forEach(seller ->{
             List<Product> prodList = new ArrayList<>();
@@ -95,7 +95,7 @@ public class BuyerShoppingCartController {
                     .forEach(prod -> prodList.add(prod));
             mapProducts.put(seller.getId(), prodList);
         });
-
+        //Create Orders by product sellers
         for (Map.Entry me : mapProducts.entrySet()) {
             List<Product> pds= (List<Product>) me.getValue();
             UserOrder order = new UserOrder();
@@ -107,18 +107,17 @@ public class BuyerShoppingCartController {
             order.setBuyer(user);
             orderService.saveOrder(order);
         }
-
+        //Disable current cart and create a new one
         cart.setActive(false);
         cartService.saveCart(cart);
         Cart newCart = cartService.newCart();
-
+        //Update buyer cart
         user.setCart(newCart);
         System.out.println(newCart);
         userService.saveUser(user);
 
-        redirect.addFlashAttribute("result", true);
-
-        return "redirect:/buyer/cart";
+        redirect.addFlashAttribute("added", true);
+        return "redirect:/buyer/orders";
     }
 
 }
