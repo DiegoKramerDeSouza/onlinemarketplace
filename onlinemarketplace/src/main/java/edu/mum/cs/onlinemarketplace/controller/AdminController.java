@@ -1,6 +1,8 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
+import edu.mum.cs.onlinemarketplace.domain.Review;
 import edu.mum.cs.onlinemarketplace.domain.User;
+import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ public class AdminController {
 
     @Autowired
     private SellerService sellerService;
+    @Autowired
+    private ReviewService reviewService;
 
 
 
@@ -40,6 +44,24 @@ public class AdminController {
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         return "redirect:/users/manageSellers";
+    }
+
+    @GetMapping("/users/manageReviews")
+    public String manageReviewForm(Model model){
+        model.addAttribute("reviewList",reviewService.getAllReview());
+        return "manageReview";
+    }
+    @PostMapping("/users/manageReview/{rid}/accept")
+    public String acceptReview(@PathVariable("rid") Long rid,Model model){
+        Review updateReview = reviewService.findReviewById(rid);
+        updateReview.setStatus("approved");
+        reviewService.save(updateReview);
+        return "redirect:/users/manageReviews";
+    }
+    @PostMapping("/users/manageReview/{rid}/delete")
+    public String deleteReview(@PathVariable("rid") Long rid){
+        reviewService.delete(rid);
+        return "redirect:/users/manageReviews";
     }
 
 }

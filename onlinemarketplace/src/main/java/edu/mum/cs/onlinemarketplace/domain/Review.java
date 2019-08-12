@@ -16,8 +16,8 @@ public class Review {
     private String description;
     private String status;
     private LocalDate createDate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Product product;
 }

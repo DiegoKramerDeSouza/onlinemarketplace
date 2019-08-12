@@ -20,6 +20,6 @@ public class CreditCard {
 
     private Long number;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "creditCard")
+    @OneToOne(cascade ={CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "creditCard")
     private User user;
 }

@@ -32,7 +32,7 @@ public class User {
     private Address shippingAddress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seller")
     private List<UserOrder> userOrderList;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "buyer")
     private Cart cart;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
