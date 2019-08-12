@@ -20,8 +20,7 @@ public class Cart {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Product>productList;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "cart")
     private User buyer;
     public void calculateTotalPrice(){
         this.totalPrice = productList.stream().mapToDouble(Product::getPrice).sum();
