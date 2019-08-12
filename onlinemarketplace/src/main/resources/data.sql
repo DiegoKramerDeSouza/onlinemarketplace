@@ -79,6 +79,6 @@ INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id)
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (3,'I loved it', 'approved','2019-05-02',1,1 );
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (7,'Not Good', 'approved','2019-05-11',1,1 );
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (4,'Good I m happy', 'approved','2019-06-11',1,1 );
-INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (2,'Not so Good Please', 'approved','2019-07-11',1,1 );
+INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (9,'Not so Good Please', 'approved','2019-07-11',1,1 );
 
 
