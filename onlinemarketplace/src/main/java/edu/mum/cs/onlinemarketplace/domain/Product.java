@@ -29,14 +29,13 @@ public class Product {
     private  String description;
     private double price;
     private int quantiy;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private User seller;
     private Integer points;
     private LocalDate createDate;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "product")
     private List<Review>reviewList;
     private String productImage;
-
     @Override
     public String toString() {
         return "Product{" +

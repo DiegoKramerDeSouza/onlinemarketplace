@@ -17,10 +17,9 @@ public class Cart {
 
     private boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL)
-
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Product>productList;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User buyer;
 
     public void calculateTotalPrice(){

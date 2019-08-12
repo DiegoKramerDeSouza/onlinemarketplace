@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Review</title>
+</head>
+<body>
+    <div th:each="review: ${reviewList}">
+        <p>
+            Image:
+        </p>
+        <p th:text="${review.status}"> Status</p>
+        <p th:text="${review.product.name}"> Product Name</p>
+        <p th:text="${review.product.seller.name}">Seller Name</p>
+        <p th:text="${review.description}">Product Description</p>
+        <p th:text="${review.user.name}">Buyer Name</p>
+
+        <form th:action="@{/users/manageReview/{rid}/accept(rid=${review.id})}" method="post">
+            <input type="submit" value="Accept Review"/>
+        </form>
+
+        <form th:action="@{/users/manageReview/{rid}/delete(rid=${review.id})}" method="post">
+            <input type="submit" value="Deny Review"/>
+        </form>
+
+
+    </div>
+
+
+</body>
+</html>
