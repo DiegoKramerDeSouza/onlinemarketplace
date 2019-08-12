@@ -42,12 +42,18 @@ public class BuyerShoppingCartController {
     public String shoppingCart(Model model, HttpSession session){
         //Long id = (Long) session.getAttribute("userid");
         Long id = 2L;
-        Long cartId = 1L;
         User user = userService.getUserById(id);
         CreditCard creditCard = user.getCreditCard();
-        user.setCart(cartService.getCartById(cartId));
-
         Cart cart = user.getCart();
+        if(cart == null){
+//            cart = cartService.newCart();
+//            user.setCart(cart);
+            Long cartId = 1L;
+            user.setCart(cartService.getCartById(cartId));
+            cart = user.getCart();
+        }
+//        user.setCart(cartService.getCartByBuyerId(user.getId()));
+//        Cart cart = cartService.getCartByBuyerId(user.getId());
         cart.calculateTotalPrice();
         model.addAttribute("cart", cart);
         model.addAttribute("user", user);
@@ -74,8 +80,11 @@ public class BuyerShoppingCartController {
 
     @PostMapping("/cart/setorder/{cid}")
     public String setOrder(@PathVariable("cid") Long cid, HttpSession session, RedirectAttributes redirect){
+
         //Long id = (Long) session.getAttribute("userid");
         Long id = 2L;
+        User user = userService.getUserById(id);
+
         Cart cart = cartService.getCartById(cid);
 
         HashMap<Long, List<Product>> mapProducts = new HashMap<>();
@@ -95,15 +104,20 @@ public class BuyerShoppingCartController {
             order.setTotal(pds.stream().mapToDouble(p -> p.getPrice()).sum());
             order.setCreateDate(LocalDate.now());
             order.setSeller(userService.getUserById((Long) me.getKey()));
+            order.setBuyer(user);
             orderService.saveOrder(order);
         }
-        cart.setActive(false);
 
-        User user = cart.getBuyer();
-        user.setCart(new Cart());
-        user.getCart().setActive(true);
+        cart.setActive(false);
+        cartService.saveCart(cart);
+        Cart newCart = cartService.newCart();
+
+        user.setCart(newCart);
+        System.out.println(newCart);
+        userService.saveUser(user);
 
         redirect.addFlashAttribute("result", true);
+
         return "redirect:/buyer/cart";
     }
 
