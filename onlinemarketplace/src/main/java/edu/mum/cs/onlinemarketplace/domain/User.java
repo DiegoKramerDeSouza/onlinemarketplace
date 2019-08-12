@@ -34,9 +34,7 @@ public class User {
     private  Integer points;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Review> reviewList;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<User> userList;
+    
     @Valid
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "follower")

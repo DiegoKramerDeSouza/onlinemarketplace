@@ -39,11 +39,10 @@ public class SignupController {
                     + StringUtils.addStringToArray(suppressedFields, ", "));
         }
 
-
         user.setCreateDate(LocalDate.now());
         user.setPoints(0);
         UserServiceImpl usi = new UserServiceImpl();
-        usi.save(user);
+        usi.saveUser(user);
 
         model.addAttribute("user", user);
         ra.addFlashAttribute("confirmationMessage", "You are successfully registered " + user.getName() + ".");
