@@ -5,15 +5,22 @@ import edu.mum.cs.onlinemarketplace.repository.ReviewRepository;
 import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 public class ReviewServiceImpl implements ReviewService {
    @Autowired
    private ReviewRepository reviewRepository;
+      
+    @Override
+    public List<Review> getReviewsByProduct(Long id) { return reviewRepository.findReviewsById(id); }
+
+    @Override
+    public void addReview(Review review) { reviewRepository.save(review);}
+    
     @Override
     public List<Review> getAllReview() {
         return reviewRepository.findAll();
@@ -35,4 +42,5 @@ public class ReviewServiceImpl implements ReviewService {
     public Review findReviewById(Long id) {
         return reviewRepository.findById(id).get();
     }
+
 }

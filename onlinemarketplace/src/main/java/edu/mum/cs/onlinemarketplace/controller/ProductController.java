@@ -1,7 +1,9 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
 import edu.mum.cs.onlinemarketplace.domain.Product;
+import edu.mum.cs.onlinemarketplace.domain.Review;
 import edu.mum.cs.onlinemarketplace.service.ProductService;
+import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/")
     public String getAllProducts(Model model, HttpSession session){
@@ -110,6 +115,33 @@ public class ProductController {
     public String errorMsg(Model model){
         model.addAttribute("message","This is unavailable");
         return "errorMsg";
+    }
+
+    @GetMapping("/product/{pid}")
+    public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
+
+        model.addAttribute("product",productService.findById(id));
+        model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
+        return "productview";
+
+    }
+
+    @PostMapping("/product/{pid}/newReview")
+    public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid, Model model){
+        review.setCreateDate(LocalDate.now());
+        review.setProduct(productService.findById(pid));
+        review.setUser(userService.findUserById(1l));
+
+//        if(result.hasErrors())
+//            return "/product/{pid}";
+//        else {
+
+            reviewService.addReview(review);
+            return "redirect:/product/{pid}";
+
+//        }
+
+
     }
 
 

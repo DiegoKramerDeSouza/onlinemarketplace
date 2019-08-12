@@ -14,16 +14,16 @@
 
 
     <label for="city">City</label>
-    <input type="text" field:th="${city}" id="city">
+    <input type="text" th:field="*{city}" id="city">
 
      <label for="state">State</label>
-    <input type="text" field:th="${state}" id="state">
+    <input type="text" th:field="*{state}" id="state">
 
     <label for="street">Street</label>
-    <input type="text" field:th:="${street}" id="street">
+    <input type="text" th:field="*{street}" id="street">
 
     <label for="zipCode">Zip Code</label>
-    <input type="text" field:th:="${zipCode}" id="zipCode">
+    <input type="text" th:field="*{zipCode}" id="zipCode">
 
     <input type="submit" value="Update Profile">
 
