@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>View Product</title>
@@ -10,6 +10,19 @@
         <p>Product Price: <span th:text="${product.price}"></span></p>
         <p>Description: <span th:text="${product.description}"></span></p>
         <p>Created Date: <span th:text="${product.createDate}"></span></p>
+    </div>
+<hr/>
+    <div>
+        <p th:text="${product.seller.name}"></p>
+        <p th:text="${product.seller.email}"></p>
+        <p th:text="${product.seller.id}"></p>
+        <form th:if="${follow}==1" th:action="@{/users/follow/{uid}(uid=${product.seller.id})}" method="post">
+            <input type="submit" value="Follow"/>
+        </form>
+
+        <form th:if="${follow}==0" th:action="@{/users/unfollow/{uid}(uid=${product.seller.id})}" method="post">
+            <input type="submit" value="Unfollow"/>
+        </form>
     </div>
 
 

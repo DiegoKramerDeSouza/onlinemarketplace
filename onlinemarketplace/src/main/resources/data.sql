@@ -4,7 +4,7 @@ INSERT INTO `ADDRESS` (id, city, state, status, street, zip_code) VALUES (2, 'Fa
 INSERT INTO `ADDRESS` (id, city, state, status, street, zip_code) VALUES (3, 'Fairfield', 'IA', 'Shipping', '1000 North 4th', '52557');
 
 INSERT INTO `USER` (id, name, email, billing_address_id, shipping_address_id, type) VALUES (1, 'First User', 'first.user@gmail.com', 1, 2, 'SELLER');
-INSERT INTO `USER` (id, name, email, billing_address_id, shipping_address_id, type) VALUES (2, 'Second User', 'second.user@gmail.com', 1, 2, 'SELLER');
+INSERT INTO `USER` (id, name, email, billing_address_id, shipping_address_id, type) VALUES (2, 'Second User', 'second.user@gmail.com', 1, 2, 'BUYER');
 INSERT INTO `USER` (id, name, email, billing_address_id, shipping_address_id, type) VALUES (3, 'Third User', 'third.user@gmail.com', 1, 2, 'SELLER');
 
 
@@ -80,6 +80,6 @@ INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id)
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (3,'I loved it', 'approved','2019-05-02',1,1 );
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (7,'Not Good', 'approved','2019-05-11',1,1 );
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (4,'Good I m happy', 'approved','2019-06-11',1,1 );
-INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (2,'Not so Good Please', 'approved','2019-07-11',1,1 );
+-- INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (2,'Not so Good Please', 'approved','2019-07-11',1,1 );
 
 
