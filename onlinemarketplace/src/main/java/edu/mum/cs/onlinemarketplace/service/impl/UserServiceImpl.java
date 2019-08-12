@@ -42,4 +42,11 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public List<User> findAllFollowers(Long sid) {
+        return userRepository.findFollowersById(sid);
+    }
+
+
+
 }

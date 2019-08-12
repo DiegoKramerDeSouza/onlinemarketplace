@@ -15,7 +15,7 @@
                 <form method="post"
                       th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
                     <p>
-                        <img th:href="@{{photo} (photo = ${product.productImage})}"
+                        <img th:src="@{/imgages/{photo} (photo = ${product.name} + ${product.id} + '.jpg')}"
                              th:title="${product.name}" /> &nbsp;
                         <span th:text="${product.name}"></span> &nbsp;
                         <br />
