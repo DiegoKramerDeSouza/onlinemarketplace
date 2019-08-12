@@ -8,8 +8,10 @@
 
 <h1>Manage Orders:</h1>
 
-<div class="result" th:if="${result} == 'canceled'" align="center" ><h2>Order Canceled!</h2></div>
-<div class="result" th:if="${result} == 'shipped'" align="center" ><h2>Order Shipped!</h2></div>
+<div id="result" th:if="${result}" align="center" >
+    <h2>Order Canceled!</h2>
+    <h3>Your payment will be returned to you.</h3>
+</div>
 <div th:each="userOrder: ${orders}" align="center">
     <h3 th:text="'Order Number:' + ${userOrder.id}" ></h3>
     <span th:text="${userOrder.buyer.name}" ></span> &nbsp;
@@ -35,11 +37,8 @@
     <span th:if="${userOrder.deliveryDate} != null" th:text="'Shipping date: ' + ${userOrder.deliveryDate}" ></span>
 
     <div th:if="${userOrder.status} == 'waiting'">
-        <form  method="post" th:action="@{/seller/order/change/{id}/canceled (id = ${userOrder.id})}" >
+        <form  method="post" th:action="@{/buyer/order/{id}/cancel (id = ${userOrder.id})}" >
             <input type="submit" value="Cancel Order" />
-        </form>
-        <form method="post" th:action="@{/seller/order/change/{id}/shipped (id = ${userOrder.id})}" >
-            <input type="submit" value="Ship Order" />
         </form>
     </div>
 

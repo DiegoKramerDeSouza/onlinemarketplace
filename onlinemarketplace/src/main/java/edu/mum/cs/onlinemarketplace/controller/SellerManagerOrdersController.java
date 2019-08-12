@@ -35,7 +35,7 @@ public class SellerManagerOrdersController {
         UserOrder userOrder = orderService.getOrderById(id);
         userOrder.setStatus(status);
         orderService.saveOrder(userOrder);
-        redirect.addFlashAttribute("result", true);
+        redirect.addFlashAttribute("result", status);
         return "redirect:/seller/orders";
     }
 

@@ -11,4 +11,5 @@ public interface OrderRepository extends JpaRepository<UserOrder, Long> {
 
     //@Query("SELECT o FROM UserOrder o WHERE o.seller = :id")
     List<UserOrder> findOrderBySellerId(@Param("id") Long id);
+    List<UserOrder> findOrderByBuyerId(@Param("id") Long id);
 }
