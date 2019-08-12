@@ -2,6 +2,7 @@ package edu.mum.cs.onlinemarketplace.controller;
 
 import edu.mum.cs.onlinemarketplace.domain.Product;
 import edu.mum.cs.onlinemarketplace.domain.Review;
+import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.service.ProductService;
 import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
@@ -20,6 +21,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SessionAttributes({"username","userId"})
 @Controller
@@ -120,8 +123,24 @@ public class ProductController {
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
 
-        model.addAttribute("product",productService.findById(id));
+        User user =userService.findUserById(2L);
+        Product product = productService.findById(id);
+
+        if(user.getType().equalsIgnoreCase("BUYER")){
+            List<User>follow = user.getUserList();
+            List<User>followList = follow.stream().filter(u->u.getId()==product.getSeller().getId()).collect(Collectors.toList());
+            if(followList.size()==0){
+                model.addAttribute("follow",1);
+            }
+            else {
+                model.addAttribute("follow",0);
+            }
+        }
+
+
+        model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
+
         return "productview";
 
     }
