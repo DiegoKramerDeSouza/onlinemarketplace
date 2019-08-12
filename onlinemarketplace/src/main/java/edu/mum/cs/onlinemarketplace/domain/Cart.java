@@ -17,13 +17,23 @@ public class Cart {
 
     private boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL)
-
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Product>productList;
-    @OneToOne(cascade = CascadeType.ALL)
-    private User buyer;
 
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "cart")
+    private User buyer;
     public void calculateTotalPrice(){
         this.totalPrice = productList.stream().mapToDouble(Product::getPrice).sum();
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", totalPrice=" + totalPrice +
+                ", active=" + active +
+                ", productList=" + productList +
+                ", buyer=" + buyer +
+                '}';
     }
 }

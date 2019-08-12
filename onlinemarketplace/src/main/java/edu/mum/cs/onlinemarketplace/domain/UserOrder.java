@@ -16,11 +16,13 @@ public class UserOrder {
     private Long id;
     private String status;
     private Double total;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Cart cart;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn
     private User seller;
+    @OneToOne
+    private User buyer;
     private LocalDate deliveryDate;
     private LocalDate createDate;
 

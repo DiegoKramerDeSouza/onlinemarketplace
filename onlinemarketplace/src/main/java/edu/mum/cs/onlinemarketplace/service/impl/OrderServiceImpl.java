@@ -24,6 +24,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<UserOrder> getOrdersByBuyerId(Long id) {
+        return orderRepository.findOrderByBuyerId(id);
+    }
+
+    @Override
     public UserOrder getOrderById(Long id) {
         return (orderRepository.findById(id)).get();
     }
@@ -42,4 +47,6 @@ public class OrderServiceImpl implements OrderService {
     public void removeOrderById(Long id) {
         orderRepository.deleteById(id);
     }
+
+
 }

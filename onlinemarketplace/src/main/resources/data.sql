@@ -19,8 +19,8 @@ INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy) VALUES 
 
 
 
-INSERT INTO `CART` (id, total_price, buyer_id, active) VALUES (1, 30, 2, true);
-INSERT INTO `CART` (id, total_price, buyer_id, active) VALUES (2, 30, null, false);
+INSERT INTO `CART` (id, total_price, active) VALUES (1, 30, true);
+INSERT INTO `CART` (id, total_price, active) VALUES (2, 30, false);
 
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (1, 1);
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (1, 2);
@@ -29,6 +29,9 @@ INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (1, 8);
 
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (2, 3);
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (2, 4);
+
+INSERT INTO `REVIEW` (id, create_date,description,status,product_id,user_id) VALUES (1,'2019-2-2','Very Good',null,1,1);
+INSERT INTO `REVIEW` (id, create_date,description,status,product_id,user_id) VALUES (2,'2019-3-7',' Good',null,2,1);
 
 
 -- INSERT INTO `USER_ORDER` (id, status, cart_id, seller_id, create_date, total) VALUES (1, 'waiting', 1, 1, '2019-08-10', 20);
