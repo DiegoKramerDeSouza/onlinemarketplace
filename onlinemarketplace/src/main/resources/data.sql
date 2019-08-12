@@ -31,7 +31,6 @@ INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (2, 3);
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (2, 4);
 
 INSERT INTO `REVIEW` (id, create_date,description,status,product_id,user_id) VALUES (1,'2019-2-2','Very Good',null,1,1);
-INSERT INTO `REVIEW` (id, create_date,description,status,product_id,user_id) VALUES (2,'2019-3-7',' Good',null,2,1);
 
 
 -- INSERT INTO `USER_ORDER` (id, status, cart_id, seller_id, create_date, total) VALUES (1, 'waiting', 1, 1, '2019-08-10', 20);
@@ -81,5 +80,8 @@ INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id)
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (7,'Not Good', 'approved','2019-05-11',1,1 );
 INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (4,'Good I m happy', 'approved','2019-06-11',1,1 );
 -- INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (2,'Not so Good Please', 'approved','2019-07-11',1,1 );
+
+INSERT INTO `REVIEW`(id, description, status, create_date,  product_id, user_id) VALUES (9,'Not so Good Please', 'approved','2019-07-11',1,1 );
+
 
 
