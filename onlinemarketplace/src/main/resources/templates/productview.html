@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>View Product</title>
 </head>
 <body>
-$END$
+    <div id="product">
+        <p>Product Name: <span th:text="${product.name}"></span></p>
+        <p>Product Price: <span th:text="${product.price}"></span></p>
+        <p>Description: <span th:text="${product.description}"></span></p>
+        <p>Created Date: <span th:text="${product.createDate}"></span></p>
+    </div>
+
+
+    <div id="review">
+
+        <h3>Reviews</h3>
+
+        <div th:each="r: ${reviews}">
+        <img src="">
+        <p>User Name: <span th:text="${r.user.name}"></span></p>
+        <p>Description: <span th:text="${r.description}"></span></p>
+
+        </hr>
+
+        </div>
+
+        <hr/>
+        <div id="postReview">
+
+<!--        Session USer-->
+            <p>User Name: <span></span></p>
+            <form th:action="@{/product/{pid}/newReview(pid=${product.id})}" th:object="${newReview}" method="post">
+
+
+            <textarea th:field="*{description}"></textarea>
+
+             <input type="hidden" value="${product.id}">
+
+             <input type="submit" value="Post Review">
+
+            </form>
+
+
+        </div>
+
+
+
+    </div>
+
 </body>
 </html>
