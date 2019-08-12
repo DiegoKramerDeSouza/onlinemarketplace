@@ -52,8 +52,6 @@ public class BuyerShoppingCartController {
             user.setCart(cartService.getCartById(cartId));
             cart = user.getCart();
         }
-//        user.setCart(cartService.getCartByBuyerId(user.getId()));
-//        Cart cart = cartService.getCartByBuyerId(user.getId());
         cart.calculateTotalPrice();
         model.addAttribute("cart", cart);
         model.addAttribute("user", user);
