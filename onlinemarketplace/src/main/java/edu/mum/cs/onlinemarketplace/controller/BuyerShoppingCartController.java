@@ -42,12 +42,16 @@ public class BuyerShoppingCartController {
     public String shoppingCart(Model model, HttpSession session){
         //Long id = (Long) session.getAttribute("userid");
         Long id = 2L;
-        Long cartId = 1L;
         User user = userService.getUserById(id);
         CreditCard creditCard = user.getCreditCard();
-        user.setCart(cartService.getCartById(cartId));
-
         Cart cart = user.getCart();
+        if(cart == null){
+//            cart = cartService.newCart();
+//            user.setCart(cart);
+            Long cartId = 1L;
+            user.setCart(cartService.getCartById(cartId));
+            cart = user.getCart();
+        }
         cart.calculateTotalPrice();
         model.addAttribute("cart", cart);
         model.addAttribute("user", user);
@@ -74,10 +78,13 @@ public class BuyerShoppingCartController {
 
     @PostMapping("/cart/setorder/{cid}")
     public String setOrder(@PathVariable("cid") Long cid, HttpSession session, RedirectAttributes redirect){
+
         //Long id = (Long) session.getAttribute("userid");
         Long id = 2L;
-        Cart cart = cartService.getCartById(cid);
+        User user = userService.getUserById(id);
 
+        Cart cart = cartService.getCartById(cid);
+        //Divide products by sellers
         HashMap<Long, List<Product>> mapProducts = new HashMap<>();
         cart.getProductList().stream().map(prod -> prod.getSeller()).distinct().forEach(seller ->{
             List<Product> prodList = new ArrayList<>();
@@ -86,7 +93,7 @@ public class BuyerShoppingCartController {
                     .forEach(prod -> prodList.add(prod));
             mapProducts.put(seller.getId(), prodList);
         });
-
+        //Create Orders by product sellers
         for (Map.Entry me : mapProducts.entrySet()) {
             List<Product> pds= (List<Product>) me.getValue();
             UserOrder order = new UserOrder();
@@ -95,16 +102,20 @@ public class BuyerShoppingCartController {
             order.setTotal(pds.stream().mapToDouble(p -> p.getPrice()).sum());
             order.setCreateDate(LocalDate.now());
             order.setSeller(userService.getUserById((Long) me.getKey()));
+            order.setBuyer(user);
             orderService.saveOrder(order);
         }
+        //Disable current cart and create a new one
         cart.setActive(false);
+        cartService.saveCart(cart);
+        Cart newCart = cartService.newCart();
+        //Update buyer cart
+        user.setCart(newCart);
+        System.out.println(newCart);
+        userService.saveUser(user);
 
-        User user = cart.getBuyer();
-        user.setCart(new Cart());
-        user.getCart().setActive(true);
-
-        redirect.addFlashAttribute("result", true);
-        return "redirect:/buyer/cart";
+        redirect.addFlashAttribute("added", true);
+        return "redirect:/buyer/orders";
     }
 
 }

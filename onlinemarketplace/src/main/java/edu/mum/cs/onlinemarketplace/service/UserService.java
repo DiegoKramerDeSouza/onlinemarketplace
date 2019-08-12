@@ -15,7 +15,14 @@ public interface UserService {
 
     User findUserById(Long id);
 
+
     public User save(User user);
+
+    User saveUser(User user);
+
+    List<User>findAllFollowers(Long sid);
+
+
 
 
 }

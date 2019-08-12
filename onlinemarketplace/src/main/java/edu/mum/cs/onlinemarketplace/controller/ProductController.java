@@ -1,7 +1,10 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
 import edu.mum.cs.onlinemarketplace.domain.Product;
+import edu.mum.cs.onlinemarketplace.domain.Review;
+import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.service.ProductService;
+import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SessionAttributes({"username","userId"})
 @Controller
@@ -27,6 +32,9 @@ public class ProductController {
     @Autowired
     private UserService userService;
     @LoggingAnnotation
+    @Autowired
+    private ReviewService reviewService;
+
     @GetMapping("/")
     public String getAllProducts(Model model, HttpSession session){
 //        session.setAttribute("userId",1L);
@@ -39,6 +47,7 @@ public class ProductController {
             System.out.println("products are ==Some Products");
         }
 
+        model.addAttribute("message","This is unavailable");
         return "home";
     }
 
@@ -108,8 +117,50 @@ public class ProductController {
 
     @GetMapping("/error")
     public String errorMsg(Model model){
-        model.addAttribute("message","This is unavailable");
         return "errorMsg";
+    }
+
+    @GetMapping("/product/{pid}")
+    public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
+
+        User user =userService.findUserById(2L);
+        Product product = productService.findById(id);
+
+        if(user.getType().equalsIgnoreCase("BUYER")){
+            List<User>follow = user.getUserList();
+            List<User>followList = follow.stream().filter(u->u.getId()==product.getSeller().getId()).collect(Collectors.toList());
+            if(followList.size()==0){
+                model.addAttribute("follow",1);
+            }
+            else {
+                model.addAttribute("follow",0);
+            }
+        }
+
+
+        model.addAttribute("product",product);
+        model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
+
+        return "productview";
+
+    }
+
+    @PostMapping("/product/{pid}/newReview")
+    public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid, Model model){
+        review.setCreateDate(LocalDate.now());
+        review.setProduct(productService.findById(pid));
+        review.setUser(userService.findUserById(1l));
+
+//        if(result.hasErrors())
+//            return "/product/{pid}";
+//        else {
+
+            reviewService.addReview(review);
+            return "redirect:/product/{pid}";
+
+//        }
+
+
     }
 
 

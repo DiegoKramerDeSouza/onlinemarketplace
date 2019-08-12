@@ -15,7 +15,7 @@
                 <form method="post"
                       th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
                     <p>
-                        <img th:href="@{{photo} (photo = ${product.productImage})}"
+                        <img th:src="@{/imgages/{photo} (photo = ${product.name} + ${product.id} + '.jpg')}"
                              th:title="${product.name}" /> &nbsp;
                         <span th:text="${product.name}"></span> &nbsp;
                         <br />
@@ -32,7 +32,7 @@
     </div>
     <hr />
 
-    <div align="center">
+    <div align="center" th:if="${cart.productList.size()} > 0">
         <h2>Please confirm your payment method and open your order</h2>
         <div th:each="product : ${cart.productList}">
             <p>
