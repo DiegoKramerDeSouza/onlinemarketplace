@@ -1,0 +1,31 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+/onlinemarketplace/.apt_generated
+/onlinemarketplace/.classpath
+/onlinemarketplace/.factorypath
+/onlinemarketplace/.project
+/onlinemarketplace/.settings
+/onlinemarketplace/.springBeans
+/onlinemarketplace/.sts4-cache
+
+### IntelliJ IDEA ###
+/onlinemarketplace/.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/onlinemarketplace/nbproject/private/
+/onlinemarketplace/nbbuild/
+/onlinemarketplace/dist/
+/onlinemarketplace/nbdist/
+/onlinemarketplace/.nb-gradle/
+/onlinemarketplace/build/
+
+### VS Code ###
+/onlinemarketplace/.vscode/
