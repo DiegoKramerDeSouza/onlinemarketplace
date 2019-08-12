@@ -30,9 +30,9 @@ public class User {
     private Address billingAddress;
     @OneToOne(cascade = CascadeType.ALL)
     private Address shippingAddress;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seller")
     private List<UserOrder> userOrderList;
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "buyer")
+    @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn

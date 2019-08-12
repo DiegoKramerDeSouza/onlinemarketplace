@@ -21,6 +21,8 @@ public class UserOrder {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private User seller;
+    @OneToOne
+    private User buyer;
     private LocalDate deliveryDate;
     private LocalDate createDate;
 

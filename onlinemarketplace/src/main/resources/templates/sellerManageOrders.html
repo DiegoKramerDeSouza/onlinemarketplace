@@ -11,15 +11,15 @@
 <div id="result" th:if="${result}" align="center" ><h2>Order Changed!</h2></div>
 <div th:each="userOrder: ${orders}" align="center">
     <h3 th:text="'Order Number:' + ${userOrder.id}" ></h3>
-    <span th:text="${userOrder.cart.buyer.name}" ></span> &nbsp;
+    <span th:text="${userOrder.buyer.name}" ></span> &nbsp;
     <span th:text="${userOrder.status}" ></span>
     <br />
-    <span th:text="${userOrder.cart.buyer.shippingAddress.street}" ></span>
+    <span th:text="${userOrder.buyer.shippingAddress.street}" ></span>
     <br />
-    <span th:text="${userOrder.cart.buyer.shippingAddress.city}" ></span> &nbsp;
-    <span th:text="${userOrder.cart.buyer.shippingAddress.state}" ></span>
+    <span th:text="${userOrder.buyer.shippingAddress.city}" ></span> &nbsp;
+    <span th:text="${userOrder.buyer.shippingAddress.state}" ></span>
     <br />
-    <span th:text="${userOrder.cart.buyer.shippingAddress.zipCode}" ></span>
+    <span th:text="${userOrder.buyer.shippingAddress.zipCode}" ></span>
     <br />
     <ul>
         <li th:each="prod: ${userOrder.cart.productList}">
