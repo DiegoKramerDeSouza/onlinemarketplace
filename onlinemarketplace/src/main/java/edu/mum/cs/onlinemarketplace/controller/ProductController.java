@@ -26,7 +26,7 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserService userService;
-
+    @LoggingAnnotation
     @GetMapping("/")
     public String getAllProducts(Model model, HttpSession session){
 //        session.setAttribute("userId",1L);
