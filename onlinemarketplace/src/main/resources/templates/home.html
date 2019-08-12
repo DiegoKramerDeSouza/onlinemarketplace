@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+
+        <div th:each="prod :${productList}">
+
+        <p th:text="${prod.name}">Product Name</p>
+        <p th:text="${prod.price}"> Product Price</p>
+         <p><img th:src="@{../static/imgages/${prod.productImage}}"></p>
+            <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
+               <input type="submit" value="delete">
+            </form>
+
+            <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
+                <input type="submit" value="update">
+            </form>
+
+        </div>
+
+
+</body>
+</html>

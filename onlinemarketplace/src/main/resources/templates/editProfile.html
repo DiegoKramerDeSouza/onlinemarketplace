@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:field="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/profile/{id}/update(id=${user.id})}" th:object="${user}" method="post">
+
+
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name">
+
+
+    <label for="city">City</label>
+    <input type="text" field:th="${city}" id="city">
+
+     <label for="state">State</label>
+    <input type="text" field:th="${state}" id="state">
+
+    <label for="street">Street</label>
+    <input type="text" field:th:="${street}" id="street">
+
+    <label for="zipCode">Zip Code</label>
+    <input type="text" field:th:="${zipCode}" id="zipCode">
+
+    <input type="submit" value="Update Profile">
+
+</form>
+
+</body>
+</html>

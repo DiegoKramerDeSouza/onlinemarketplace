@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Title</title>
+</head>Update Product
+<body>
+
+<form th:action="@{/product/update/{pid}(pid=${product.id})}" th:object="${updateProduct}" method="post" enctype="multipart/form-data">
+    Name:<input type="text" th:text="${product.name}" th:field="*{name}"/><br />
+    Description:<textarea th:text="${product.description}" th:field="*{description}"></textarea><br />
+    Price:<input type="text" th:text="${product.price}" th:field="*{price}"/><br />
+    Image:<input type="file"  name="file" /><br />
+    <input type="submit" value="Update Product"/><br />
+
+</form>
+
+</body>
+</html>

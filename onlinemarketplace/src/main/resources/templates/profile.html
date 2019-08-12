@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org" xmlns:src="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+    <h3>Profile</h3>
+    <div>
+
+        <img src:th="@{/img/userimg.png}">
+       <p> Name: <span th:text="${user.name}"></span></p>
+       <p>Email: <span th:text="${user.email}"></span></p>
+
+
+        <div th:each="a:${billingAddress}">
+            <h5>Billing Address</h5>
+            <p> City: <span th:text="${a.city}"></span></p>
+            <p>Street: <span th:text="${a.street}"></span></p>
+            <p>State: <span th:text="${a.state}"></span></p>
+            <p>ZipCode: <span th:text="${a.zipCode}"></span></p>
+        </div>
+
+        <div th:each="a:${shippingAddress}">
+            <h5>Shipping Address</h5>
+            <p> City: <span th:text="${a.city}"></span></p>
+            <p>Street: <span th:text="${a.street}"></span></p>
+            <p>State: <span th:text="${a.state}"></span></p>
+            <p>ZipCode: <span th:text="${a.zipCode}"></span></p>
+        </div>
+
+        <form th:action="@{/profile/{uid}/edit(uid=${user.id})}"  method="get">
+            <input type="submit" value="Edit Profile">
+        </form>
+
+
+
+
+
+    </div>
+
+
+
+</body>
+</html>

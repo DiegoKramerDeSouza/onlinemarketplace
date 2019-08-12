@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+</head>
+<body>
+
+    <h1>Shopping Cart</h1>
+    <h2 id="result" th:if="${result}">Thanks for buying!</h2>
+    <h2 id="result" th:if="${resultRemove}">Product removed!</h2>
+    <div align="center">
+        <div align="left" th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px;'">
+            <div th:each="product : ${cart.productList}">
+                <form method="post"
+                      th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
+                    <p>
+                        <img th:href="@{{photo} (photo = ${product.productImage})}"
+                             th:title="${product.name}" /> &nbsp;
+                        <span th:text="${product.name}"></span> &nbsp;
+                        <br />
+                        <span th:text="' Price: $' + ${product.price}"></span> &nbsp;
+                        <span th:text="' Seller: ' + ${product.seller.name}"></span>
+                        <input type="submit" value="Remove" />
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div align="right">
+        <h4 th:text="'Total: $' + ${cart.totalPrice}"></h4>
+    </div>
+    <hr />
+
+    <div align="center">
+        <h2>Please confirm your payment method and open your order</h2>
+        <div th:each="product : ${cart.productList}">
+            <p>
+                <img th:href="@{{photo} (photo = ${product.productImage})}"
+                     th:title="${product.name}" /> &nbsp; |
+                <span th:text="${product.name}"></span> &nbsp; |
+                <span th:text="${product.seller.name}"></span> &nbsp; |
+                <strong th:text="'$' + ${product.price}"></strong>
+            </p>
+        </div>
+        <h4 th:text="'Total: $' + ${cart.totalPrice}"></h4>
+
+        <h2>Payment method:</h2>
+        <div>
+            <!--<p>Credit Card number: <span th:text="${creditCard.number}"></span></p>-->
+            <!--<p>Name: <span th:text="${creditCard.name}"></span></p>-->
+            <!--<p>Valid Date: <span th:text="${creditCard.validDate}"></span></p>-->
+        </div>
+        <form th:action="@{/buyer/cart/setorder/1}" method="post">
+
+            <input type="submit" value="Confirm and pay!" />
+        </form>
+    </div>
+
+</body>
+</html>

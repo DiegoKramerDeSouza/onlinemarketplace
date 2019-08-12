@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Orders</title>
+</head>
+<body>
+
+<h1>Manage Orders:</h1>
+
+<div id="result" th:if="${result}" align="center" ><h2>Order Changed!</h2></div>
+<div th:each="userOrder: ${orders}" align="center">
+    <h3 th:text="'Order Number:' + ${userOrder.id}" ></h3>
+    <span th:text="${userOrder.cart.buyer.name}" ></span> &nbsp;
+    <span th:text="${userOrder.status}" ></span>
+    <br />
+    <span th:text="${userOrder.cart.buyer.shippingAddress.street}" ></span>
+    <br />
+    <span th:text="${userOrder.cart.buyer.shippingAddress.city}" ></span> &nbsp;
+    <span th:text="${userOrder.cart.buyer.shippingAddress.state}" ></span>
+    <br />
+    <span th:text="${userOrder.cart.buyer.shippingAddress.zipCode}" ></span>
+    <br />
+    <ul>
+        <li th:each="prod: ${userOrder.cart.productList}">
+            <span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.name}"></span> &nbsp;
+            <span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.seller.name}"></span> &nbsp;
+            <span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.price}"></span>
+        </li>
+    </ul>
+    <h4 th:text="${userOrder.total}" ></h4>
+
+    Created: <span th:text="${userOrder.createDate}" ></span><br />
+    <span th:if="${userOrder.deliveryDate} != null" th:text="'Shipping date: ' + ${userOrder.deliveryDate}" ></span>
+
+    <div th:if="${userOrder.status} == 'waiting'">
+        <form  method="post" th:action="@{/seller/order/change/{id}/canceled (id = ${userOrder.id})}" >
+            <input type="submit" value="Cancel Order" />
+        </form>
+        <form method="post" th:action="@{/seller/order/change/{id}/shipped (id = ${userOrder.id})}" >
+            <input type="submit" value="Ship Order" />
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

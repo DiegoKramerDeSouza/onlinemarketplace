@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+
+${userId}
+<form th:action="@{/product/?uid=1L}" th:object="${newProduct}" method="post" enctype="multipart/form-data">
+    Name:<input type="text" th:field="*{name}"/><br />
+    Description:<textarea th:field="*{description}"></textarea><br />
+    Price:<input type="text" th:field="*{price}"/><br />
+    Select Image:<input type="file"  name="file"/><br />
+    <input type="submit" value="Add Product"/><br />
+
+</form>
+
+<a th:href="@{/}">delete Product</a>
+
+
+</body>
+</html>
