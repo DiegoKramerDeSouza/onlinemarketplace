@@ -39,6 +39,7 @@ public class ProductController {
             System.out.println("products are ==Some Products");
         }
 
+        model.addAttribute("message","This is unavailable");
         return "home";
     }
 
@@ -108,7 +109,6 @@ public class ProductController {
 
     @GetMapping("/error")
     public String errorMsg(Model model){
-        model.addAttribute("message","This is unavailable");
         return "errorMsg";
     }
 
