@@ -160,6 +160,8 @@ public class ProductController {
 
     }
 
+
+
     @PostMapping("/product/{pid}/addToCart")
     public String addToCart(@PathVariable("pid") Long pid, Model model, HttpSession session, RedirectAttributes redirect){
 //        Long id = (Long) session.getAttribute("userid");
