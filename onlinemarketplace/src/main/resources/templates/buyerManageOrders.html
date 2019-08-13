@@ -13,7 +13,8 @@
     <h3>Your payment will be returned to you.</h3>
 </div>
 <div class="result" th:if="${added}" align="center" >
-    <h2>New order added!</h2>
+    <h2>Thank you for buying!</h2>
+    <h3>New order added!</h3>
 </div>
 <div th:each="userOrder: ${orders}" align="center">
     <h3 th:text="'Order Number:' + ${userOrder.id}" ></h3>
@@ -44,7 +45,8 @@
             <input type="submit" value="Cancel Order" />
         </form>
     </div>
-
+    <a th:if="${userOrder.status} != 'waiting'" th:href="@{/files/Order-{id}.pdf (id = ${userOrder.id})}" target="_blank">Download Order</a>
+    <br />
 </div>
 
 </body>

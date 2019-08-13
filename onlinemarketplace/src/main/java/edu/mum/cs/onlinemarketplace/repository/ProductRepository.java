@@ -13,6 +13,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select p from Product p where p.seller.id=:id")
     public List<Product>getProductsBySellerId(Long id);
 
+    @Query("SELECT p FROM Product p WHERE p.seller.id= :id")
+    public List<Product>geBySeller(Long id);
+
 //    @Query("delete from Product p where p.id=:id")
 //    public void deleteById(Long id);
 }

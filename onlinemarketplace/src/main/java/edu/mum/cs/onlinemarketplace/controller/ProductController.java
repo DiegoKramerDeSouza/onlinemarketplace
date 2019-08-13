@@ -31,7 +31,6 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserService userService;
-    @LoggingAnnotation
     @Autowired
     private ReviewService reviewService;
 
@@ -92,6 +91,7 @@ public class ProductController {
 //
     }
 
+    @LogAnnotation
     @PostMapping("/product/delete/{pid}")
     public String deleteProduct(@PathVariable Long pid){
          productService.delete(pid);
@@ -123,8 +123,18 @@ public class ProductController {
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
 
-        User user =userService.findUserById(2L);
         Product product = productService.findById(id);
+        model.addAttribute("product",product);
+        model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
+
+        Long sellerId = product.getSeller().getId();
+        model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
+//        return "productview";
+//        return "single";
+
+
+        User user =userService.findUserById(2L);
+//        Product product = productService.findById(id);
 
         if(user.getType().equalsIgnoreCase("BUYER")){
             List<User>follow = user.getUserList();
@@ -141,7 +151,8 @@ public class ProductController {
         model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
-        return "productview";
+        return "single";
+
 
     }
 

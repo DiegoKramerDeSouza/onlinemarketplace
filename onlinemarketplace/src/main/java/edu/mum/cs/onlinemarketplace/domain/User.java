@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     @NotBlank
@@ -34,12 +34,13 @@ public class User {
     private  Integer points;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Review> reviewList;
-    
+
     @Valid
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "follower")
     private List<User> userList;
     @OneToOne(cascade = CascadeType.ALL)
+    @Valid
     private Address billingAddress;
     @Valid
     @OneToOne(cascade = CascadeType.ALL)
@@ -55,12 +56,27 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
     private List<Product>productList;
 
+    private Boolean hasAds;
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
+                ", status='" + status + '\'' +
+                ", createDate=" + createDate +
+                ", points=" + points +
+                ", reviewList=" + reviewList +
+                ", userList=" + userList +
+                ", billingAddress=" + billingAddress +
+                ", shippingAddress=" + shippingAddress +
+                ", userOrderList=" + userOrderList +
+                ", cart=" + cart +
+                ", creditCard=" + creditCard +
+                ", productList=" + productList +
                 '}';
     }
-
 }

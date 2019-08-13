@@ -18,6 +18,7 @@ public interface SellerRepository extends JpaRepository<User,Long> {
     @Query("delete from User u where u.type='SELLER' and u.id=:id")
     public User deleteSellerById(Long id);
 
+
     @Query("select  s from User s where s.type='SELLER' and s.status is null")
     public List<User>getAllPendingSeller();
 }
