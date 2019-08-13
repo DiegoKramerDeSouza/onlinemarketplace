@@ -59,7 +59,7 @@ public class ProductController {
 //        }
         model.addAttribute("product",new Product());
 
-        return "addProductForm";
+        return "addProductFormNew";
     }
 
     @PostMapping(value = "/product/",params = "uid")
