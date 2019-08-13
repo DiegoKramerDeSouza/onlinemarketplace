@@ -2,6 +2,7 @@ package edu.mum.cs.onlinemarketplace.controller;
 
 import edu.mum.cs.onlinemarketplace.domain.Review;
 import edu.mum.cs.onlinemarketplace.domain.User;
+import edu.mum.cs.onlinemarketplace.email.EmailService;
 import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class AdminController {
     private SellerService sellerService;
     @Autowired
     private ReviewService reviewService;
-
+    @Autowired
+    private EmailService emailService;
 
 
     @GetMapping("users/manageSellers")
@@ -34,6 +36,7 @@ public class AdminController {
         newSeller.setStatus("Approved");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
+        emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller.");
         return "redirect:/users/manageSellers";
     }
 
@@ -43,6 +46,7 @@ public class AdminController {
         newSeller.setType("BUYER");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
+        emailService.sendSimpleMessage("sanjtrital@gmail.com","Rejected","Sorry! we can't approve you as Seller");
         return "redirect:/users/manageSellers";
     }
 

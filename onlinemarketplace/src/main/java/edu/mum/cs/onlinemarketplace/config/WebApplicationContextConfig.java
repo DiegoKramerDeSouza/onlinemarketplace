@@ -1,9 +1,12 @@
 package edu.mum.cs.onlinemarketplace.config;
 
 import edu.mum.cs.onlinemarketplace.domain.Product;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.View;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.view.xml.MarshallingView;
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableWebMvc
 @Configuration
 public class WebApplicationContextConfig implements WebMvcConfigurer {
     /**
@@ -26,14 +30,23 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
+
         if (!registry.hasMappingForPattern("/pdf/**")) {
             registry.addResourceHandler("/pdf/**").addResourceLocations(
                     "classpath:/static/pdf/");
         }
+
+        if (!registry.hasMappingForPattern("/files/**")) {
+            registry.addResourceHandler("/files/**").addResourceLocations(
+                    "classpath:/static/files/");
+        }
+
+
         if (!registry.hasMappingForPattern("/img/**")) {
             registry.addResourceHandler("/img/**").addResourceLocations(
                     "classpath:/static/imgages/");
         }
+
 
         if (!registry.hasMappingForPattern("/css/**")) {
             registry.addResourceHandler("/css/**").addResourceLocations(
@@ -44,6 +57,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
             registry.addResourceHandler("/js/**").addResourceLocations(
                     "classpath:/static/js/");
         }
+
 
     }
 
@@ -58,6 +72,21 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         resolver.setDefaultEncoding("utf-8");
         resolver.setMaxUploadSize(10240000);
         return resolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:errorMessages", "classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean validator() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource());
+        return bean;
     }
 
 //    @Bean
