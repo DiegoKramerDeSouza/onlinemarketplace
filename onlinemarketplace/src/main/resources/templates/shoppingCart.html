@@ -7,6 +7,10 @@
 <body>
 
     <h1>Shopping Cart</h1>
+
+
+    <h2 class="result" th:if="${added}">Product added successfuly!</h2>
+
     <h2 class="result" th:if="${result}">Thanks for buying!</h2>
     <h2 class="result" th:if="${resultRemove}">Product removed!</h2>
     <div align="center">
@@ -36,8 +40,6 @@
         <h2>Please confirm your payment method and open your order</h2>
         <div th:each="product : ${cart.productList}">
             <p>
-                <img th:href="@{{photo} (photo = ${product.productImage})}"
-                     th:title="${product.name}" /> &nbsp; |
                 <span th:text="${product.name}"></span> &nbsp; |
                 <span th:text="${product.seller.name}"></span> &nbsp; |
                 <strong th:text="'$' + ${product.price}"></strong>
