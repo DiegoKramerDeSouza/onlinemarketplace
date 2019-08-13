@@ -44,7 +44,7 @@
             <input type="submit" value="Cancel Order" />
         </form>
     </div>
-    <a th:href="@{/pdf/Order-{id}.pdf (id = ${userOrder.id})}" target="_blank">Download Order</a>
+    <a th:if="${userOrder.status} != 'waiting'" th:href="@{/files/Order-{id}.pdf (id = ${userOrder.id})}" target="_blank">Download Order</a>
     <br />
 </div>
 

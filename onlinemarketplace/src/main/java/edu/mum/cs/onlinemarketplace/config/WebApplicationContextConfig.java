@@ -21,6 +21,7 @@ import org.springframework.web.servlet.view.xml.MarshallingView;
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableWebMvc
 @Configuration
 public class WebApplicationContextConfig implements WebMvcConfigurer {
     /**
@@ -29,10 +30,11 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        if (!registry.hasMappingForPattern("/pdf/**")) {
-            registry.addResourceHandler("/pdf/**").addResourceLocations(
-                    "classpath:/static/pdf/");
+        if (!registry.hasMappingForPattern("/files/**")) {
+            registry.addResourceHandler("/files/**").addResourceLocations(
+                    "classpath:/static/files/");
         }
+
         if (!registry.hasMappingForPattern("/img/**")) {
             registry.addResourceHandler("/img/**").addResourceLocations(
                     "classpath:/static/imgages/");
