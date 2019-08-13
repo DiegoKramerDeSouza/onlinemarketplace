@@ -157,11 +157,10 @@ public class ProductController {
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
         return "single";
-<<<<<<< HEAD
 
-=======
     }
->>>>>>> a034ee743c30a548eda10c247d4e0cf9a781a6ba
+
+
 
     @PostMapping("/product/{pid}/addToCart")
     public String addToCart(@PathVariable("pid") Long pid, Model model, HttpSession session, RedirectAttributes redirect){
