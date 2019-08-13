@@ -1,13 +1,19 @@
-
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Produc View</title>
+	<title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | Contact Us :: w3layouts</title>
 	<!--/tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="" />
+	<meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -18,16 +24,14 @@
 		}
 	</script>
 	<!--//tags -->
-	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
-	<link th:href="@{/css/font-awesome.css}" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/font-awesome.css" rel="stylesheet">
 	<!--pop-up-box-->
-	<link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 	<!--//pop-up-box-->
 	<!-- price range -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
-	<!-- flexslider -->
-	<link rel="stylesheet" th:href="@{/css/flexslider.css}" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
 	<!-- fonts -->
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
@@ -44,10 +48,10 @@
 			<!-- header-bot-->
 			<div class="col-md-4 logo_agile">
 				<h1>
-					<a th:href="@{/mainpage}">
+					<a href="index.html">
 						<span>G</span>rocery
 						<span>S</span>hoppy
-						<img th:src="@{/img/logo2.png}" alt="Logo Mum Express ">
+						<img src="images/logo2.png" alt=" ">
 					</a>
 				</h1>
 			</div>
@@ -668,7 +672,7 @@
 												</ul>
 											</div>
 											<div class="col-sm-4 multi-gd-img">
-												<img th:src="@{/img/nav.png}" alt="">
+												<img src="images/nav.png" alt="">
 											</div>
 											<div class="clearfix"></div>
 										</div>
@@ -734,7 +738,7 @@
 										</div>
 									</ul>
 								</li>
-								<li>
+								<li class="">
 									<a class="nav-stylehead" href="faqs.html">Faqs</a>
 								</li>
 								<li class="dropdown">
@@ -750,7 +754,7 @@
 										</li>
 									</ul>
 								</li>
-								<li>
+								<li class="active">
 									<a class="" href="contact.html">Contact</a>
 								</li>
 							</ul>
@@ -775,17 +779,17 @@
 						<a href="index.html">Home</a>
 						<i>|</i>
 					</li>
-					<li>Single Page</li>
+					<li>contact Us</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //page -->
-	<!-- Single Page -->
-	<div class="banner-bootom-w3-agileits">
+	<!-- contact page -->
+	<div class="contact-w3l">
 		<div class="container">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Product View
+			<h3 class="tittle-w3l">Add a Product
 				<span class="heading-style">
 					<i></i>
 					<i></i>
@@ -793,209 +797,49 @@
 				</span>
 			</h3>
 			<!-- //tittle heading -->
-			<div class="col-md-5 single-right-left ">
-				<div class="grid images_3_of_2">
-					<div class="flexslider">
-						<ul class="slides">
-							<li th:attr="data-thumb=@{${'/img/'+product.getProductImage()}}">
-								<div class="thumb-image">
-									<img th:src="@{${'/img/'+product.getProductImage()}}" data-imagezoom="true" class="img-responsive" alt=""> </div>
-							</li>
-
-
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-7 single-right-left simpleCart_shelfItem">
-				<h3 th:text="${product.getName()}">Zeeba Premium Basmati Rice - 5 KG</h3>
-				<div class="rating1">
-					<span class="starRating">
-						<input id="rating5" type="radio" name="rating" value="5">
-						<label for="rating5">5</label>
-						<input id="rating4" type="radio" name="rating" value="4">
-						<label for="rating4">4</label>
-						<input id="rating3" type="radio" name="rating" value="3" checked="">
-						<label for="rating3">3</label>
-						<input id="rating2" type="radio" name="rating" value="2">
-						<label for="rating2">2</label>
-						<input id="rating1" type="radio" name="rating" value="1">
-						<label for="rating1">1</label>
-					</span>
-				</div>
-				<p>
-					<span th:text="${product.getPrice()}" class="item_price">$950.00</span>
-
-				</p>
-				<div class="single-infoagile">
-					<ul>
-						<li>
-							Cash on Delivery Eligible.
-						</li>
-						<li>
-							Shipping Speed to Delivery.
-						</li>
-						<li>
-							Sold and fulfilled by <span style="color:deepskyblue" th:text="${product.getSeller().getName()}"></span> .
-						</li>
-
-					</ul>
-				</div>
-				<div class="product-single-w3l">
-					<p>
-						<i class="fa fa-hand-o-right" aria-hidden="true"></i>This is a
-						<label>Vegetarian</label> product.</p>
-					<ul>
-						<li><p th:text="${product.description}"></p></li>
-					</ul>
-					<p>
-						<i class="fa fa-refresh" aria-hidden="true"></i>All food products are
-						<label>non-returnable.</label>
-					</p>
-				</div>
-				<div class="occasion-cart">
-					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-						<form action="#" method="post">
-							<fieldset>
-								<input type="hidden" name="cmd" value="_cart" />
-								<input type="hidden" name="add" value="1" />
-								<input type="hidden" name="business" value=" " />
-								<input type="hidden" name="item_name" value="Zeeba Premium Basmati Rice - 5 KG" />
-								<input type="hidden" name="amount" value="950.00" />
-								<input type="hidden" name="discount_amount" value="1.00" />
-								<input type="hidden" name="currency_code" value="USD" />
-								<input type="hidden" name="return" value=" " />
-								<input type="hidden" name="cancel_return" value=" " />
-								<input type="submit" name="submit" value="Add to cart" class="button" />
-							</fieldset>
+			<!-- contact -->
+			<div class="contact agileits">
+				<div class="contact-agileinfo">
+					<div class="contact-form wthree">
+						<form th:action="@{/product/?uid=1L}" th:object="${newProduct}" method="post" enctype="multipart/form-data">
+							<div class="">
+								<input type="text" th:field="*{name}" placeholder="Product Name" required=""/>
+							</div>
+							<div class="">
+								<textarea class="text" th:field="*{description}" placeholder="Product description" required=""></textarea>
+							</div>
+							<div class="">
+								<input type="text" th:field="*{price}" placeholder="Product price" required=""/>
+							</div>
+							<div class="">
+								<input type="file" name="file" required="">
+							</div>
+							<input type="submit" value="Submit Product">
 						</form>
 					</div>
 
 				</div>
-
 			</div>
-			<div class="clearfix"> </div>
+			<!-- //contact -->
 		</div>
 	</div>
-	<!-- //Single Page -->
-	<!-- special offers -->
-	<div class="featured-section" id="projects">
-		<div class="container">
-			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Add More From <span style="color:deepskyblue" th:text="${product.getSeller().getName()}"></span>
-				<span class="heading-style">
-					<i></i>
-					<i></i>
-					<i></i>
-				</span>
-			</h3>
-			<!-- //tittle heading -->
-			<div class="content-bottom-in">
-				<ul id="flexiselDemo1">
 
-
-					<li th:each="ps: ${productByseller}">
-						<div class="w3l-specilamk">
-							<div class="speioffer-agile">
-								<a th:href="@{/product/{pid}(pid=${ps.getId()})}">
-									<img th:src="@{${'/img/'+ps.getProductImage()}}" alt="">
-
-
-								</a>
-							</div>
-							<div class="product-name-w3l">
-								<h4>
-									<a th:href="@{/product/{pid}(pid=${ps.getId()})}" th:text="${ps.getName()}">Surf Excel Liquid, 1.02L</a>
-								</h4>
-								<div class="w3l-pricehkj">
-									<h6 th:text="${ps.getPrice()}">$187.00</h6>
-
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Surf Excel Liquid, 1.02L" />
-											<input type="hidden" name="amount" value="187.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-							</div>
-						</div>
-					</li>
-
-
-
-
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- //special offers -->
-
-	<!--Review Section-->
-
-
-
-	<div class="container">
-
-		<div class="grid_3 grid_5 agile">
-				<h3>Review</h3>
-
-				<div class="well"  th:each="r: ${reviews}">
-					<strong><h6 th:text="${r.getUser().getName()}" style="color:seagreen"></h6></strong>
-
-					<p th:text="${r.description}"></p>
-				</div>
-
-
-		</div>
-
-		<div style="margin-bottom: 10px">
-		<form th:action="@{/product/{pid}/newReview(pid=${product.id})}" th:object="${newReview}" method="post">
-			<div class="form-group">
-				  <label for="reviewbox">Your Review</label>
-					<textarea th:field="*{description}" class="form-control" id="reviewbox" rows="3"></textarea>
-
-
-
-  			</div>
-			<input type="hidden" value="${product.id}">
-
-			<input type="submit" class="btn btn-info btn-md" value="Add Review">
-		</form>
-		</div>
-</div>
-
-
-
-
-
-
-
-	<!-- copyright -->
 	<div class="copy-right">
 		<div class="container">
-			<p>© 2017 Grocery Shoppy. All rights reserved /p>
+			<p>© 2017 Grocery Shoppy. All rights reserved | Design by
+				<a href="http://w3layouts.com"> W3layouts.</a>
+			</p>
 		</div>
 	</div>
 	<!-- //copyright -->
 
 	<!-- js-files -->
 	<!-- jquery -->
-	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+	<script src="js/jquery-2.1.4.min.js"></script>
 	<!-- //jquery -->
 
 	<!-- popup modal (for signin & signup)-->
-	<script th:src="@{/js/jquery.magnific-popup.js}"></script>
+	<script src="js/jquery.magnific-popup.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -1019,7 +863,7 @@
 	<!-- //popup modal (for signin & signup)-->
 
 	<!-- cart-js -->
-	<script th:src="@{/js/minicart.js}"></script>
+	<script src="js/minicart.js"></script>
 	<script>
 		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
 
@@ -1062,12 +906,12 @@
 	<!-- //password-script -->
 
 	<!-- smoothscroll -->
-	<script th:src="@{/js/SmoothScroll.min.js}"></script>
+	<script src="js/SmoothScroll.min.js"></script>
 	<!-- //smoothscroll -->
 
 	<!-- start-smooth-scrolling -->
-	<script th:src="@{/js/move-top.js}"></script>
-	<script th:src="@{/js/easing.js}"></script>
+	<script src="js/move-top.js"></script>
+	<script src="js/easing.js"></script>
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -1089,19 +933,7 @@
 				containerID: 'toTop', // fading element id
 				containerHoverID: 'toTopHover', // fading element hover id
 				scrollSpeed: 1200,
-<<<<<<< HEAD
-<<<<<<< HEAD
 				easingType: 'linear' 
-=======
-				easingType: 'linear'
->>>>>>> a034ee743c30a548eda10c247d4e0cf9a781a6ba
-=======
-
-				easingType: 'linear' 
-
-				easingType: 'linear'
-
->>>>>>> 3bba541b878e0d594f75a0d5c8659e0ab8a139d3
 			};
 			*/
 			$().UItoTop({
@@ -1112,57 +944,8 @@
 	</script>
 	<!-- //smooth-scrolling-of-move-up -->
 
-	<!-- imagezoom -->
-	<script th:src="@{/js/imagezoom.js}"></script>
-	<!-- //imagezoom -->
-
-	<!-- FlexSlider -->
-	<script th:src="@{/js/jquery.flexslider.js}"></script>
-	<script>
-		// Can also be used with $(document).ready()
-		$(window).load(function () {
-			$('.flexslider').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
-			});
-		});
-	</script>
-	<!-- //FlexSlider-->
-
-	<!-- flexisel (for special offers) -->
-	<script th:src="@{/js/jquery.flexisel.js}"></script>
-	<script>
-		$(window).load(function () {
-			$("#flexiselDemo1").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
-
-		});
-	</script>
-	<!-- //flexisel (for special offers) -->
-
 	<!-- for bootstrap working -->
-	<script th:src="@{/js/bootstrap.js}"></script>
-
+	<script src="js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 

@@ -34,4 +34,9 @@ public class SellerServiceImpl implements SellerService {
     public User findUserBySellerId(Long id) {
         return sellerRepository.getUserBySellerId(id);
     }
+
+    @Override
+    public List<User> getAllPendingSeller() {
+        return sellerRepository.getAllPendingSeller();
+    }
 }
