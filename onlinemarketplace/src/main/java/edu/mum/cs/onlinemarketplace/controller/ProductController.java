@@ -130,11 +130,11 @@ public class ProductController {
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 //        return "productview";
-        return "single";
+//        return "single";
 
 
         User user =userService.findUserById(2L);
-        Product product = productService.findById(id);
+//        Product product = productService.findById(id);
 
         if(user.getType().equalsIgnoreCase("BUYER")){
             List<User>follow = user.getUserList();
@@ -151,7 +151,7 @@ public class ProductController {
         model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
-        return "productview";
+        return "single";
 
 
     }
