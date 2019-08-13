@@ -4875,4 +4875,8 @@ input[type="radio"], input[type="checkbox"] {
     
 }
 
+.error {
+    color:red;
+}
+
 /*--//responsive--*/
