@@ -128,14 +128,15 @@ public class ProductController {
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
 
-        Product product = productService.findById(id);
-        model.addAttribute("product",product);
+        Product product1 = productService.findById(id);
+        model.addAttribute("product",product1);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
-        Long sellerId = product.getSeller().getId();
+        Long sellerId = product1.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 //        return "productview";
-//        return "single";
+
+
 
 
         User user =userService.findUserById(2L);
@@ -158,7 +159,9 @@ public class ProductController {
 
         return "single";
 
+
     }
+
 
 
 

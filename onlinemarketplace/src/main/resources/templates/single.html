@@ -941,6 +941,43 @@
 	</div>
 	<!-- //special offers -->
 
+	<!--Review Section-->
+
+
+
+	<div class="container">
+
+		<div class="grid_3 grid_5 agile">
+				<h3>Review</h3>
+
+				<div class="well"  th:each="r: ${reviews}">
+					<strong><h6 th:text="${r.getUser().getName()}" style="color:seagreen"></h6></strong>
+
+					<p th:text="${r.description}"></p>
+				</div>
+
+
+		</div>
+
+		<div style="margin-bottom: 10px">
+		<form th:action="@{/product/{pid}/newReview(pid=${product.id})}" th:object="${newReview}" method="post">
+			<div class="form-group">
+				  <label for="reviewbox">Your Review</label>
+					<textarea th:field="*{description}" class="form-control" id="reviewbox" rows="3"></textarea>
+
+
+
+  			</div>
+			<input type="hidden" value="${product.id}">
+
+			<input type="submit" class="btn btn-info btn-md" value="Add Review">
+		</form>
+		</div>
+</div>
+
+
+
+
 
 
 
@@ -1125,6 +1162,7 @@
 
 	<!-- for bootstrap working -->
 	<script th:src="@{/js/bootstrap.js}"></script>
+
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
