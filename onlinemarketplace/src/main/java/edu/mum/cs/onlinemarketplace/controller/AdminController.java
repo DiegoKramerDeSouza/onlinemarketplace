@@ -20,7 +20,6 @@ public class AdminController {
     private ReviewService reviewService;
 
 
-
     @GetMapping("users/manageSellers")
     public String manageSellerForm(Model model){
         model.addAttribute("manageSeller",sellerService.getAllSeller());

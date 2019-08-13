@@ -31,7 +31,6 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserService userService;
-    @LoggingAnnotation
     @Autowired
     private ReviewService reviewService;
 
@@ -92,6 +91,7 @@ public class ProductController {
 //
     }
 
+    @LogAnnotation
     @PostMapping("/product/delete/{pid}")
     public String deleteProduct(@PathVariable Long pid){
          productService.delete(pid);
