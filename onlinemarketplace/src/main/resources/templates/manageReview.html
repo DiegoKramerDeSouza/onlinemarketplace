@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Admin Panel</title>
+    <title>Admin Panel-Manage Review</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="MUM Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -152,10 +152,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a> </div>
         <div class="menu">
             <ul id="menu">
-                <li><a th:href="@{/users/SellerList}"><i class="a fa-bars"></i><span>Home Page</span></a></li>
+                <li><a th:href="@{/users/SellerList}"><i class="a fa-home"></i><span>Home Page</span></a></li>
                 <li id="menu-home" ><a th:href="@{/users/manageSellers}"><i class="fa fa-user"></i><span>Manage Sellers</span></a></li>
                 <li class="menu-home" ><a th:href="@{/users/manageReviews}"><i class="fa fa-comment-o"></i><span>Manage Reviews</span></a></li>
-                <li class="menu-home" ><a href="#"><i class="fa fa-tachometer"></i><span>Post Ads</span></a></li>
+                <li class="menu-home" ><a th:href="@{/admin/manage/ads}"><i class="fa fa-tachometer"></i><span>Post Ads</span></a></li>
 
 
 
