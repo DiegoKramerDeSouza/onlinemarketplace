@@ -1,10 +1,9 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
+import com.itextpdf.text.DocumentException;
 import edu.mum.cs.onlinemarketplace.domain.*;
-import edu.mum.cs.onlinemarketplace.service.CartService;
-import edu.mum.cs.onlinemarketplace.service.OrderService;
-import edu.mum.cs.onlinemarketplace.service.ProductService;
-import edu.mum.cs.onlinemarketplace.service.UserService;
+import edu.mum.cs.onlinemarketplace.service.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +37,9 @@ public class BuyerShoppingCartController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PDFService pdfService;
 
     @GetMapping("/cart")
     public String shoppingCart(Model model, HttpSession session){
@@ -77,13 +80,29 @@ public class BuyerShoppingCartController {
     }
 
     @PostMapping("/cart/setorder/{cid}")
-    public String setOrder(@PathVariable("cid") Long cid, HttpSession session, RedirectAttributes redirect){
+    public String setOrder(@PathVariable("cid") Long cid, HttpSession session, RedirectAttributes redirect) throws FileNotFoundException, DocumentException {
 
         //Long id = (Long) session.getAttribute("userid");
         Long id = 2L;
         User user = userService.getUserById(id);
 
         Cart cart = cartService.getCartById(cid);
+        //Create orders by sellers
+        createOrders(cart, user);
+        //Disable current cart and create a new one
+        cart.setActive(false);
+        cartService.saveCart(cart);
+        Cart newCart = cartService.newCart();
+        //Update buyer cart
+        user.setCart(newCart);
+        System.out.println(newCart);
+        userService.saveUser(user);
+
+        redirect.addFlashAttribute("added", true);
+        return "redirect:/buyer/orders";
+    }
+
+    private void createOrders(Cart cart, User user) throws FileNotFoundException, DocumentException {
         //Divide products by sellers
         HashMap<Long, List<Product>> mapProducts = new HashMap<>();
         cart.getProductList().stream().map(prod -> prod.getSeller()).distinct().forEach(seller ->{
@@ -104,18 +123,8 @@ public class BuyerShoppingCartController {
             order.setSeller(userService.getUserById((Long) me.getKey()));
             order.setBuyer(user);
             orderService.saveOrder(order);
+            pdfService.createPDFFile(order, pds);
         }
-        //Disable current cart and create a new one
-        cart.setActive(false);
-        cartService.saveCart(cart);
-        Cart newCart = cartService.newCart();
-        //Update buyer cart
-        user.setCart(newCart);
-        System.out.println(newCart);
-        userService.saveUser(user);
-
-        redirect.addFlashAttribute("added", true);
-        return "redirect:/buyer/orders";
     }
 
 }
