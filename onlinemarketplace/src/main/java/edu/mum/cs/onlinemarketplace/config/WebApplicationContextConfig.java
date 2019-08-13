@@ -21,12 +21,13 @@ import org.springframework.web.servlet.view.xml.MarshallingView;
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableWebMvc
 @Configuration
 public class WebApplicationContextConfig implements WebMvcConfigurer {
     /**
      * Configure to display image
      */
-    @Override
+   @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**").addResourceLocations("/resources/static/images/");
 
@@ -36,6 +37,37 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         if(!registry.hasMappingForPattern("/admin/js/**")){
             registry.addResourceHandler("/admin/js/**").addResourceLocations("classpath:/static/admin/js/");
         }
+
+
+
+
+        if (!registry.hasMappingForPattern("/pdf/**")) {
+            registry.addResourceHandler("/pdf/**").addResourceLocations(
+                    "classpath:/static/pdf/");
+        }
+
+        if (!registry.hasMappingForPattern("/files/**")) {
+            registry.addResourceHandler("/files/**").addResourceLocations(
+                    "classpath:/static/files/");
+        }
+
+
+        if (!registry.hasMappingForPattern("/img/**")) {
+            registry.addResourceHandler("/img/**").addResourceLocations(
+                    "classpath:/static/imgages/");
+        }
+
+
+        if (!registry.hasMappingForPattern("/css/**")) {
+            registry.addResourceHandler("/css/**").addResourceLocations(
+                    "classpath:/static/css/");
+        }
+
+        if (!registry.hasMappingForPattern("/js/**")) {
+            registry.addResourceHandler("/js/**").addResourceLocations(
+                    "classpath:/static/js/");
+        }
+
 
     }
 

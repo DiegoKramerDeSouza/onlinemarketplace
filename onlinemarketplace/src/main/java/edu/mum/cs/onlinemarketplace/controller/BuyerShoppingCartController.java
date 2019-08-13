@@ -16,10 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -87,6 +84,7 @@ public class BuyerShoppingCartController {
         User user = userService.getUserById(id);
 
         Cart cart = cartService.getCartById(cid);
+
         //Create orders by sellers
         createOrders(cart, user);
         //Disable current cart and create a new one
@@ -95,7 +93,7 @@ public class BuyerShoppingCartController {
         Cart newCart = cartService.newCart();
         //Update buyer cart
         user.setCart(newCart);
-        System.out.println(newCart);
+        session.setAttribute("cartId", user.getCart().getId());
         userService.saveUser(user);
 
         redirect.addFlashAttribute("added", true);
@@ -105,12 +103,14 @@ public class BuyerShoppingCartController {
     private void createOrders(Cart cart, User user) throws FileNotFoundException, DocumentException {
         //Divide products by sellers
         HashMap<Long, List<Product>> mapProducts = new HashMap<>();
-        cart.getProductList().stream().map(prod -> prod.getSeller()).distinct().forEach(seller ->{
+        List<Long> seller = cart.getProductList().stream().map(prod -> prod.getSeller().getId()).collect(Collectors.toList());
+        Set<Long> sellersId = new HashSet<>(seller);
+        sellersId.stream().forEach(id ->{
             List<Product> prodList = new ArrayList<>();
             cart.getProductList().stream()
-                    .filter(prod -> prod.getSeller().getId() == seller.getId())
+                    .filter(prod -> prod.getSeller().getId() == id)
                     .forEach(prod -> prodList.add(prod));
-            mapProducts.put(seller.getId(), prodList);
+            mapProducts.put(id, prodList);
         });
         //Create Orders by product sellers
         for (Map.Entry me : mapProducts.entrySet()) {
@@ -123,7 +123,6 @@ public class BuyerShoppingCartController {
             order.setSeller(userService.getUserById((Long) me.getKey()));
             order.setBuyer(user);
             orderService.saveOrder(order);
-            pdfService.createPDFFile(order, pds);
         }
     }
 
