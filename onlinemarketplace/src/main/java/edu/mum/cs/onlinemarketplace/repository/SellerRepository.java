@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface SellerRepository extends JpaRepository<User,Long> {
-    @Query("select u from User u where u.type='SELLER'")
+    @Query("select u from User u where u.type='SELLER' and u.status='Approved'")
     public List<User>getAllSeller();
 
     @Query("select u from User u where u.type ='SELLER' and u.id=:id")
@@ -19,4 +19,6 @@ public interface SellerRepository extends JpaRepository<User,Long> {
     public User deleteSellerById(Long id);
 
 
+    @Query("select  s from User s where s.type='SELLER' and s.status is null")
+    public List<User>getAllPendingSeller();
 }

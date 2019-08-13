@@ -2,9 +2,11 @@ package edu.mum.cs.onlinemarketplace.controller;
 
 import com.itextpdf.text.DocumentException;
 import edu.mum.cs.onlinemarketplace.domain.Product;
+import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.domain.UserOrder;
 import edu.mum.cs.onlinemarketplace.service.OrderService;
 import edu.mum.cs.onlinemarketplace.service.PDFService;
+import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ public class SellerManagerOrdersController {
     @Autowired
     PDFService pdfService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/orders")
     public String managerOrders(Model model, HttpSession session){
 //        Long id = (Long) session.getAttribute("userid");
@@ -50,6 +55,14 @@ public class SellerManagerOrdersController {
                     .filter(prod -> prod.getSeller().getId() == userOrder.getSeller().getId())
                     .collect(Collectors.toList());
             pdfService.createPDFFile(userOrder, products);
+        }
+        //Update Buyer points
+        if(userOrder.getStatus().equals("shipped")){
+            Integer points = (int)(userOrder.getTotal()/100);
+            if(points <= 0) points = 1;
+            User user = userOrder.getBuyer();
+            user.setPoints(user.getPoints() + points);
+            userService.saveUser(user);
         }
         return "redirect:/seller/orders";
     }
