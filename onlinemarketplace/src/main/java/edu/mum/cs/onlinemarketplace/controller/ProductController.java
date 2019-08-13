@@ -157,6 +157,7 @@ public class ProductController {
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
         return "single";
+
     }
 
     @PostMapping("/product/{pid}/addToCart")
