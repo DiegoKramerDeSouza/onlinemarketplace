@@ -30,7 +30,6 @@ public class AdminAdsController {
 
     @PostMapping("/manage/ads/search")
     public String searchUser(Model model, @RequestParam("email") String email, RedirectAttributes redirect){
-        System.out.println("==>" + email);
         List<User> users = userService.getUserByEmail(email);
         if(users.size() <= 0)
             redirect.addFlashAttribute("notFound", true);
@@ -40,23 +39,29 @@ public class AdminAdsController {
     }
 
     @PostMapping("/ads/add/{id}")
-    public String addUserAds(Model model, @PathVariable("id") Long id){
+    public String addUserAds(Model model, @PathVariable("id") Long id, RedirectAttributes redirect){
         User user = userService.getUserById(id);
-        user.setHasAds(true);
-        Ads ads = new Ads();
-        ads.setUser(user);
-        userService.saveUser(user);
-        adsService.saveAds(ads);
+        if(!user.getHasAds()){
+            user.setHasAds(true);
+            Ads ads = new Ads();
+            ads.setUser(user);
+            userService.saveUser(user);
+            adsService.saveAds(ads);
+            redirect.addFlashAttribute("added", true);
+        }
         return "redirect:/admin/manage/ads";
     }
 
     @PostMapping("/ads/remove/{aid}")
-    public String removeUserAds(Model model, @PathVariable("aid") Long aid){
+    public String removeUserAds(Model model, @PathVariable("aid") Long aid, RedirectAttributes redirect){
         Ads ads = adsService.getAdsById(aid);
         User user = ads.getUser();
-        user.setHasAds(false);
-        userService.saveUser(user);
-        adsService.deleteAdsById(aid);
+        if(user != null){
+            user.setHasAds(false);
+            userService.saveUser(user);
+            adsService.deleteAdsById(aid);
+            redirect.addFlashAttribute("removed", true);
+        }
         return "redirect:/admin/manage/ads";
     }
 
