@@ -23,7 +23,7 @@ public class CreditCard {
     @Size(min=5, max=5, message="{card.validDate}")
     private String validDate;
     @NotNull
-    private Integer number;
+    private Long number;
 
     @OneToOne(cascade ={CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "creditCard")
     private User user;

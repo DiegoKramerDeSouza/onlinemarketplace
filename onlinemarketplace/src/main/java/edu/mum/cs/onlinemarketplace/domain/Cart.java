@@ -17,7 +17,8 @@ public class Cart {
 
     private boolean active;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable
     private List<Product>productList;
 
     @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "cart")
