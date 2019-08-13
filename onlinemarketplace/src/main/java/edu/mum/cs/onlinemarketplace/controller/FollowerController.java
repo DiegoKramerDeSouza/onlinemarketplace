@@ -21,7 +21,7 @@ public class FollowerController {
     private SellerService sellerService;
     @GetMapping("/users/followerList")
     public String getFollowerList(Model model){
-
+//Get seller id from session
         Long sid = 1L;
         User findFollowers= userService.findUserById(sid);
         model.addAttribute("followerList",findFollowers.getUserList());
