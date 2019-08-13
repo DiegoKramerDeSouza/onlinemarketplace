@@ -8,8 +8,8 @@
 
 <h1>Manage ADS</h1>
 
-<div class="result" th:if="${result} == 'added'" align="center" ><h2>Seller Ads added successfuly!</h2></div>
-<div class="result" th:if="${result} == 'removed'" align="center" ><h2>Seller Ads removed!</h2></div>
+<div class="result" th:if="${added}" align="center" ><h2>Seller Ads added successfuly!</h2></div>
+<div class="result" th:if="${removed}" align="center" ><h2>Seller Ads removed!</h2></div>
 
 <div align="center">
     <form th:action="@{/admin/manage/ads/search}" method="post">
