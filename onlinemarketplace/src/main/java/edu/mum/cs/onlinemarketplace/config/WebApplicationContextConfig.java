@@ -29,7 +29,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
      */
    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**").addResourceLocations("/resources/static/images/");
+//        registry.addResourceHandler("/img/**").addResourceLocations("/resources/static/images/");
 
         if(!registry.hasMappingForPattern("/admin/css/**")){
             registry.addResourceHandler("/admin/css/**").addResourceLocations("classpath:/static/admin/css/");
@@ -66,6 +66,11 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         if (!registry.hasMappingForPattern("/js/**")) {
             registry.addResourceHandler("/js/**").addResourceLocations(
                     "classpath:/static/js/");
+        }
+
+        if (!registry.hasMappingForPattern("/fonts/**")) {
+            registry.addResourceHandler("/fonts/**").addResourceLocations(
+                    "classpath:/static/fonts/");
         }
 
 

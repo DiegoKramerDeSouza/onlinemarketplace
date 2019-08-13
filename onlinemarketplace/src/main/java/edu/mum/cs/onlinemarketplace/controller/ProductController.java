@@ -39,7 +39,7 @@ public class ProductController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/")
+    @GetMapping("/products")
     public String getAllProducts(Model model, HttpSession session){
 //        session.setAttribute("userId",1L);
         if(!model.containsAttribute("userId")){
@@ -135,7 +135,10 @@ public class ProductController {
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 //        return "productview";
+
+
 //        return "single";
+
 
 
         User user =userService.findUserById(2L);
@@ -143,7 +146,7 @@ public class ProductController {
 
         if(user.getType().equalsIgnoreCase("BUYER")){
             List<User>follow = user.getUserList();
-            List<User>followList = follow.stream().filter(u->u.getId()==product.getSeller().getId()).collect(Collectors.toList());
+            List<User>followList = follow.stream().filter(u->u.getId()==product1.getSeller().getId()).collect(Collectors.toList());
             if(followList.size()==0){
                 model.addAttribute("follow",1);
             }
@@ -153,12 +156,16 @@ public class ProductController {
         }
 
 
-        model.addAttribute("product",product);
+        model.addAttribute("product",product1);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
         return "single";
 
+
+
+
     }
+
 
 
 

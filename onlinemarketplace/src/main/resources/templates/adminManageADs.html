@@ -8,43 +8,47 @@
 
 <h1>Manage ADS</h1>
 
-<div class="result" th:if="${result} == 'added'" align="center" ><h2>Seller added successfuly!</h2></div>
-<div class="result" th:if="${result} == 'removed'" align="center" ><h2>Seller removed!</h2></div>
+<div class="result" th:if="${added}" align="center" ><h2>Seller Ads added successfuly!</h2></div>
+<div class="result" th:if="${removed}" align="center" ><h2>Seller Ads removed!</h2></div>
 
-<!--<div th:each="userOrder: ${orders}" align="center">-->
-    <!--<h3 th:text="'Order Number:' + ${userOrder.id}" ></h3>-->
-    <!--<span th:text="${userOrder.buyer.name}" ></span> &nbsp;-->
-    <!--<span th:text="${userOrder.status}" ></span>-->
-    <!--<br />-->
-    <!--<span th:text="${userOrder.buyer.shippingAddress.street}" ></span>-->
-    <!--<br />-->
-    <!--<span th:text="${userOrder.buyer.shippingAddress.city}" ></span> &nbsp;-->
-    <!--<span th:text="${userOrder.buyer.shippingAddress.state}" ></span>-->
-    <!--<br />-->
-    <!--<span th:text="${userOrder.buyer.shippingAddress.zipCode}" ></span>-->
-    <!--<br />-->
-    <!--<ul>-->
-        <!--<li th:each="prod: ${userOrder.cart.productList}">-->
-            <!--<span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.name}"></span> &nbsp;-->
-            <!--<span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.seller.name}"></span> &nbsp;-->
-            <!--<span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.price}"></span>-->
-        <!--</li>-->
-    <!--</ul>-->
-    <!--<h4 th:text="'Total: $' + ${userOrder.total}" ></h4>-->
+<div align="center">
+    <form th:action="@{/admin/manage/ads/search}" method="post">
+        <input name="email" placeholder="User e-mail"/>
+        <input type="submit" value="Search User">
+    </form>
+</div>
+<div align="center" th:if="${users}">
+    <div align="center" th:style="'width: 80%; padding: 10px;'"
+    th:each="user : ${users}">
+        <form th:action="@{/admin/ads/add/{id} (id = ${user.id})}" method="post">
+            <a th:href="@{/profile/{id} (id = ${user.id})}" target="_blank">
+                <span th:text="'ID: ' + ${user.id}"></span>
+                <span th:text="'Name: ' + ${user.name}"></span>
+                <span th:text="'Email: ' + ${user.email}"></span>
+            </a>
+            <input type="submit" value="Add Seller to Ads" />
+        </form>
+    </div>
+</div>
 
-    <!--Created: <span th:text="${userOrder.createDate}" ></span><br />-->
-    <!--<span th:if="${userOrder.deliveryDate} != null" th:text="'Shipping date: ' + ${userOrder.deliveryDate}" ></span>-->
+<div th:if="${notFound}" align="center">
+    <h2>User not found!</h2>
+</div>
+<hr th:style="'width: 80%;'" />
+<div align="center">
+    <div th:each="ads: ${adsList}" align="center"
+         th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px; padding: 30px;'">
+        <div align="left">
+            <form  method="post" th:action="@{/admin/ads/remove/{id} (id = ${ads.user.id})}">
+                <span th:text="${ads.user.id}" ></span> &nbsp;
+                <span th:text="${ads.user.name}" ></span> &nbsp;
+                <span th:text="${ads.user.email}" ></span> &nbsp;
+                <input type="submit" value="Remove Ads" />
+            </form>
+        </div>
+    </div>
+</div>
 
-    <!--<div th:if="${userOrder.status} == 'waiting'">-->
-        <!--<form  method="post" th:action="@{/seller/order/change/{id}/canceled (id = ${userOrder.id})}" >-->
-            <!--<input type="submit" value="Cancel Order" />-->
-        <!--</form>-->
-        <!--<form method="post" th:action="@{/seller/order/change/{id}/shipped (id = ${userOrder.id})}" >-->
-            <!--<input type="submit" value="Ship Order" />-->
-        <!--</form>-->
-    <!--</div>-->
-
-<!--</div>-->
 
 </body>
 </html>
