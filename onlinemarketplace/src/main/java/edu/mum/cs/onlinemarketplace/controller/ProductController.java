@@ -1,8 +1,10 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
+import edu.mum.cs.onlinemarketplace.domain.Cart;
 import edu.mum.cs.onlinemarketplace.domain.Product;
 import edu.mum.cs.onlinemarketplace.domain.Review;
 import edu.mum.cs.onlinemarketplace.domain.User;
+import edu.mum.cs.onlinemarketplace.service.CartService;
 import edu.mum.cs.onlinemarketplace.service.ProductService;
 import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
@@ -33,6 +36,8 @@ public class ProductController {
     private UserService userService;
     @Autowired
     private ReviewService reviewService;
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/")
     public String getAllProducts(Model model, HttpSession session){
@@ -152,9 +157,22 @@ public class ProductController {
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
         return "single";
-
-
     }
+
+    @PostMapping("/product/{pid}/addToCart")
+    public String addToCart(@PathVariable("pid") Long pid, Model model, HttpSession session, RedirectAttributes redirect){
+//        Long id = (Long) session.getAttribute("userid");
+//        Long cid = (Long) session.getAttribute("cartid");
+        Long id = 2L;
+        Long cid = 1L;
+        Cart cart = cartService.getCartById(cid);
+        Product product = productService.findById(pid);
+        cart.getProductList().add(product);
+        cartService.saveCart(cart);
+        redirect.addFlashAttribute("added", true);
+        return "redirect:/buyer/cart";
+    }
+
 
     @PostMapping("/product/{pid}/newReview")
     public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid, Model model){
