@@ -56,6 +56,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
     private List<Product>productList;
 
+    private Boolean hasAds;
+
     @Override
     public String toString() {
         return "User{" +
