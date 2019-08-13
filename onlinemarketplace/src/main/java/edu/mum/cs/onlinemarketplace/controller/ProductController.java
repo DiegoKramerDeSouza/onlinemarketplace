@@ -136,6 +136,7 @@ public class ProductController {
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 //        return "productview";
 
+
 //        return "single";
 
 
@@ -159,6 +160,9 @@ public class ProductController {
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
         return "single";
+
+
+
 
     }
 
