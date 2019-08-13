@@ -7,8 +7,8 @@
 <body>
 
     <h1>Shopping Cart</h1>
-    <h2 id="result" th:if="${result}">Thanks for buying!</h2>
-    <h2 id="result" th:if="${resultRemove}">Product removed!</h2>
+    <h2 class="result" th:if="${result}">Thanks for buying!</h2>
+    <h2 class="result" th:if="${resultRemove}">Product removed!</h2>
     <div align="center">
         <div align="left" th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px;'">
             <div th:each="product : ${cart.productList}">
@@ -47,12 +47,11 @@
 
         <h2>Payment method:</h2>
         <div>
-            <!--<p>Credit Card number: <span th:text="${creditCard.number}"></span></p>-->
-            <!--<p>Name: <span th:text="${creditCard.name}"></span></p>-->
-            <!--<p>Valid Date: <span th:text="${creditCard.validDate}"></span></p>-->
+            <p><strong>Credit Card Number:</strong> <span th:text="${creditCard.number}"></span></p>
+            <p><strong>Name:</strong> <span th:text="${creditCard.name}"></span></p>
+            <p><strong>Valid Date:</strong> <span th:text="${creditCard.validDate}"></span></p>
         </div>
         <form th:action="@{/buyer/cart/setorder/1}" method="post">
-
             <input type="submit" value="Confirm and pay!" />
         </form>
     </div>

@@ -45,6 +45,7 @@ public class SignupController {
 
         user.setCreateDate(LocalDate.now());
         user.setPoints(0);
+        user.setHasAds(false);
         user.setCart(cartService.newCart());
 
         System.out.println(user.toString());

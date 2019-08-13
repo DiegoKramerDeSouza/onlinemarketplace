@@ -93,6 +93,7 @@ public class BuyerShoppingCartController {
         Cart newCart = cartService.newCart();
         //Update buyer cart
         user.setCart(newCart);
+        session.setAttribute("cartId", user.getCart().getId());
         userService.saveUser(user);
 
         redirect.addFlashAttribute("added", true);
