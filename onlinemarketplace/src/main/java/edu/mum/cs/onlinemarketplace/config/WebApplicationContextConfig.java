@@ -68,6 +68,11 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
                     "classpath:/static/js/");
         }
 
+        if (!registry.hasMappingForPattern("/fonts/**")) {
+            registry.addResourceHandler("/fonts/**").addResourceLocations(
+                    "classpath:/static/fonts/");
+        }
+
 
     }
 

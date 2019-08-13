@@ -39,7 +39,7 @@ public class ProductController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/")
+    @GetMapping("/products")
     public String getAllProducts(Model model, HttpSession session){
 //        session.setAttribute("userId",1L);
         if(!model.containsAttribute("userId")){

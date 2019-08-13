@@ -15,7 +15,7 @@ public class IndexController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping(value="/mainpage")
+    @RequestMapping(value="/")
     public String getAllProducts(Model model){
         model.addAttribute("allProducts",productService.getAllProducts());
         return "index";
