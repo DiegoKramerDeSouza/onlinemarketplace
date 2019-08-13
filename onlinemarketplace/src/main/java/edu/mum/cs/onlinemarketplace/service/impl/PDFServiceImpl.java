@@ -17,7 +17,7 @@ public class PDFServiceImpl implements PDFService {
     @Override
     public void createPDFFile(UserOrder order, List<Product> products) throws FileNotFoundException, DocumentException {
 
-        String path = "./src/main/resources/static/pdf/Order-" + order.getId() + ".pdf";
+        String path = "./src/main/resources/static/files/Order-" + order.getId() + ".pdf";
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -25,7 +25,7 @@ public class PDFServiceImpl implements PDFService {
 
         insertContent(document, String.format("Order number: %d-0", order.getId()), font);
         insertContent(document, String.format("Status: %s", order.getStatus().toUpperCase()), font);
-        insertContent(document, String.format(" "), font);
+        insertContent(document, String.format(".................................................."), font);
         insertContent(document, String.format("    Buyer: %s ", order.getBuyer().getName()), font);
         insertContent(document, String.format("    Email: %s", order.getBuyer().getEmail()), font);
         insertContent(document, String.format("    Shipping Address:"), font);

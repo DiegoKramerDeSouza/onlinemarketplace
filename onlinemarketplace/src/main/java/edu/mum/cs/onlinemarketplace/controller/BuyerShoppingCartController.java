@@ -122,7 +122,6 @@ public class BuyerShoppingCartController {
             order.setSeller(userService.getUserById((Long) me.getKey()));
             order.setBuyer(user);
             orderService.saveOrder(order);
-            pdfService.createPDFFile(order, pds);
         }
     }
 
