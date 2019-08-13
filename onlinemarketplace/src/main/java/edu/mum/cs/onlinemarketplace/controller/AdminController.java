@@ -23,31 +23,46 @@ public class AdminController {
     private EmailService emailService;
 
 
-    @GetMapping("users/manageSellers")
-    public String manageSellerForm(Model model){
-        model.addAttribute("manageSeller",sellerService.getAllSeller());
+
+    @GetMapping("/users/SellerList")
+    public String getAllSeller(Model model){
+        model.addAttribute("sellerList",sellerService.getAllSeller());
         System.out.println("Seller="+sellerService.getAllSeller());
+        return "adminHome";
+    }
+
+    @GetMapping("/users/manageSellers")
+    public String manageSellerForm(Model model){
+        model.addAttribute("manageSeller",sellerService.getAllPendingSeller());
+        System.out.println("Seller="+sellerService.getAllPendingSeller());
+
         return "manageSeller";
     }
 
-    @PostMapping("users/addSeller/{id}")
+    @PostMapping("/users/addSeller/{id}")
     public String approveSeller(@PathVariable("id")Long id,Model model){
         User newSeller = sellerService.findUserBySellerId(id);
+        newSeller.setName(newSeller.getName());
+        newSeller.setName(newSeller.getEmail());
+        newSeller.setPassword(newSeller.getPassword());
         newSeller.setStatus("Approved");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller.");
-        return "redirect:/users/manageSellers";
+        return "redirect:/users/SellerList";
     }
 
     @PostMapping("/users/removeSeller/{id}")
     public String removeSeller(@PathVariable("id")Long id){
         User newSeller = sellerService.findUserBySellerId(id);
+        newSeller.setName(newSeller.getName());
+        newSeller.setName(newSeller.getEmail());
+        newSeller.setPassword(newSeller.getPassword());
         newSeller.setType("BUYER");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Rejected","Sorry! we can't approve you as Seller");
-        return "redirect:/users/manageSellers";
+        return "redirect:/users/SellerList";
     }
 
     @GetMapping("/users/manageReviews")
