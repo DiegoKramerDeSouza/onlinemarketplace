@@ -7,7 +7,6 @@
 <body>
 <div th:each="seller:${manageSeller}">
 
-<!--<p th:if="${seller.status==null}">-->
  <p>
     Status:<span th:text="${seller.status}"></span>
     Name: <span th:text="${seller.name}"></span>
@@ -19,10 +18,6 @@
     </form>
 </p>
 
-<!--<p th:unless="${seller.status==null}">-->
-<!--    <label>Image: </label>-->
-<!--    <label >Name: </label><h6 th:text="${seller.name}"></h6>-->
-<!--</p>-->
 
 </div>
 

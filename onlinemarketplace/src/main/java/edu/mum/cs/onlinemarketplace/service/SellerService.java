@@ -9,4 +9,5 @@ public interface SellerService {
     User save(User user);
     User delete(Long id);
     User findUserBySellerId(Long id);
+    List<User>getAllPendingSeller();
 }
