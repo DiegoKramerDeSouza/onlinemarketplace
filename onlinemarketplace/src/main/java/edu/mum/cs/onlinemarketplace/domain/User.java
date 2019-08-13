@@ -4,6 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,8 +19,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     private Long id;
+    @NotBlank
+    @Size(min=5, max=25, message="{size.error}")
     private String name;
+    @NotBlank
+    @Size(min=11, max=31, message="{size.error}")
     private String email;
+    @NotBlank
+    @Size(min=6, max=20, message="{size.error}")
     private String password;
     private String type;
     private  String status;
@@ -24,19 +34,21 @@ public class User {
     private  Integer points;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Review> reviewList;
-
+    
+    @Valid
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "follower")
     private List<User> userList;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Address billingAddress;
+    @Valid
     @OneToOne(cascade = CascadeType.ALL)
     private Address shippingAddress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seller")
     private List<UserOrder> userOrderList;
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Cart cart;
+    @Valid
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private CreditCard creditCard;

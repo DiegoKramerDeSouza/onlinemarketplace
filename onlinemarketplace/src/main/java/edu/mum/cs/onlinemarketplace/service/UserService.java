@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface UserService {
 
-
     public User getUserById(Long id);
 
     User findUserById(Long id);
@@ -18,6 +17,5 @@ public interface UserService {
     User saveUser(User user);
 
     List<User>findAllFollowers(Long sid);
-
 
 }

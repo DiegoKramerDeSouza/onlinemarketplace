@@ -31,7 +31,7 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserService userService;
-
+    @LoggingAnnotation
     @Autowired
     private ReviewService reviewService;
 

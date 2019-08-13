@@ -38,7 +38,7 @@ public class UserprofileController {
     }
 
     @GetMapping("/profile/{id}/edit")
-    public String getEditProfile(@PathVariable  Long id, Model model){
+    public String getEditProfile(@ModelAttribute("user") User user,@PathVariable  Long id, Model model){
         model.addAttribute("user",userService.getUserById(id));
         return "editProfile";
     }
@@ -46,9 +46,19 @@ public class UserprofileController {
     @PostMapping("/profile/{id}/update")
     public String updateProfile(@Valid @ModelAttribute("user")User user, @PathVariable Long id, BindingResult result, Model model){
         User u = userService.getUserById(id);
-        u.setEmail(user.getName());
+        u.setName(user.getName());
         u.setShippingAddress(user.getShippingAddress());
         u.setBillingAddress(user.getBillingAddress());
+        userService.saveUser(u);
+
+
+
+//        System.out.println("Hereddfd"+user.getName());
+//        System.out.println("dkdkjf"+ u.getName());
+//
+//        Address a = u.getShippingAddress();
+//        System.out.println("naya city"+a.getCity());
+
 
 
         return "redirect:/profile/{id}";
