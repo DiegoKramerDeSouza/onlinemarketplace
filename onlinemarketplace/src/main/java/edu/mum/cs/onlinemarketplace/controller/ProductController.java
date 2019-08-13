@@ -119,10 +119,14 @@ public class ProductController {
 
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
-
-        model.addAttribute("product",productService.findById(id));
+        Product product = productService.findById(id);
+        model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
-        return "productview";
+
+        Long sellerId = product.getSeller().getId();
+        model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
+//        return "productview";
+        return "single";
 
     }
 

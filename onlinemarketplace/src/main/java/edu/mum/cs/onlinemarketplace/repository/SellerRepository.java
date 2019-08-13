@@ -17,4 +17,6 @@ public interface SellerRepository extends JpaRepository<User,Long> {
 
     @Query("delete from User u where u.type='SELLER' and u.id=:id")
     public User deleteSellerById(Long id);
+
+
 }
