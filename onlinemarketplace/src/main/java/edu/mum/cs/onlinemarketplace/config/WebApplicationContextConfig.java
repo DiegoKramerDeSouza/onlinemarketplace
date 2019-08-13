@@ -28,7 +28,15 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**").addResourceLocations("/resources/static/images/");
+
+        if (!registry.hasMappingForPattern("/pdf/**")) {
+            registry.addResourceHandler("/pdf/**").addResourceLocations(
+                    "classpath:/static/pdf/");
+        }
+        if (!registry.hasMappingForPattern("/img/**")) {
+            registry.addResourceHandler("/img/**").addResourceLocations(
+                    "classpath:/static/imgages/");
+        }
     }
 
     /**

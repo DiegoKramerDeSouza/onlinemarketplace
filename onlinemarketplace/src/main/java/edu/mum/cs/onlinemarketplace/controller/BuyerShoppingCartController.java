@@ -85,8 +85,6 @@ public class BuyerShoppingCartController {
 
         Cart cart = cartService.getCartById(cid);
 
-        System.out.println(user);
-
         //Create orders by sellers
         createOrders(cart, user);
         //Disable current cart and create a new one
@@ -95,7 +93,6 @@ public class BuyerShoppingCartController {
         Cart newCart = cartService.newCart();
         //Update buyer cart
         user.setCart(newCart);
-        System.out.println(newCart);
         userService.saveUser(user);
 
         redirect.addFlashAttribute("added", true);
