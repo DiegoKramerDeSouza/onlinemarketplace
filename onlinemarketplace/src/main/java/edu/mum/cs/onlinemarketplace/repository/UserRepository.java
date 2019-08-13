@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     public List<User>findFollowersById(Long sid);
 
+    @Query("select u from User u where u.name like %:name%")
+    public List<User> findUserByName(String name);
+
 }

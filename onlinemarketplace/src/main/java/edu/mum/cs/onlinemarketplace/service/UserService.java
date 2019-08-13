@@ -18,4 +18,6 @@ public interface UserService {
 
     List<User>findAllFollowers(Long sid);
 
+    List<User>findUserByName(String name);
+
 }
