@@ -47,6 +47,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.findFollowersById(sid);
     }
 
+    @Override
 
+    public List<User> findUserByName(String name) {
+        return userRepository.findUserByName(name);
+    }
+
+
+
+    public List<User> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
 }
