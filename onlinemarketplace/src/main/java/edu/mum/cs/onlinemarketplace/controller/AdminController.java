@@ -37,7 +37,7 @@ public class AdminController {
         newSeller.setStatus("Approved");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
-        emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller");
+        emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller.");
         return "redirect:/users/manageSellers";
     }
 
