@@ -13,6 +13,7 @@ public interface ProductService {
     List<Product>findProductByUserId(Long id);
     List<Product>getProductBySeller(Long id);
     List<Product>getProductsFromAds();
+    List<Product>getProductByName(String name);
 
 
 }

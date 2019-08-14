@@ -70,4 +70,9 @@ public class ProductServiceImpl implements ProductService {
         }
         return null;
     }
+
+    @Override
+    public List<Product> getProductByName(String name) {
+        return productRepository.getProductByName(name);
+    }
 }

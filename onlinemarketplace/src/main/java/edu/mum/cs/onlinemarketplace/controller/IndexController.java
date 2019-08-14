@@ -9,8 +9,7 @@ import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -47,5 +46,13 @@ public class IndexController {
         session.setAttribute("user", user);
         session.setAttribute("type", user.getType().getName());
         return "index";
+    }
+
+    @GetMapping("/search/products")
+    public String searchProducts(@RequestParam("search")String search, Model model){
+        System.out.println("value ======"+search);
+       model.addAttribute("allProducts",productService.getProductByName(search));
+        System.out.println("products============"+productService.getProductByName(search));
+       return "index";
     }
 }
