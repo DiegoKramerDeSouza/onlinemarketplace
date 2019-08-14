@@ -28,6 +28,7 @@ public class SignupController {
     public String registerInput(@ModelAttribute("user") User user) {
         return "registerFormNew";
     }
+
     @LogAnnotation
     @RequestMapping(value = "/register_save")
     public String registerSave(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
@@ -53,7 +54,6 @@ public class SignupController {
 
         model.addAttribute("user", user);
         ra.addFlashAttribute("confirmationMessage", "You are successfully registered " + user.getName() + ".");
-        //ra.addFlashAttribute("user", user);
         return "redirect:/login";
     }
 

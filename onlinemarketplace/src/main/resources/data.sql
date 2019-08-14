@@ -1,3 +1,6 @@
+INSERT INTO `ROLE` (name) VALUES ('ADMIN');
+INSERT INTO `ROLE` (name) VALUES ('SELLER');
+INSERT INTO `ROLE` (name) VALUES ('BUYER');
 
 INSERT INTO `ADDRESS` (id, city, state, status, street, zip_code) VALUES (1, 'Fairfield', 'IA', 'Shipping', '1000 North 4th', '52557');
 INSERT INTO `ADDRESS` (id, city, state, status, street, zip_code) VALUES (2, 'Fairfield-Shipping', 'IA', 'Shipping', '9874 North 10th', '52557');
@@ -12,9 +15,9 @@ INSERT INTO `CART` (id, total_price, active) VALUES (2, 0, true);
 INSERT INTO `CART` (id, total_price, active) VALUES (3, 0, true);
 
 
-INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (1, 'First User', '123456', 'first.user@gmail.com', 1, 2, 'SELLER', 1, 0, false, 2);
-INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (2, 'Second User', '123456', 'second.user@gmail.com', 1, 2, 'BUYER', 2, 0, false, 1);
-INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (3, 'Third User', '123456', 'third.user@gmail.com', 1, 2, 'SELLER', 3, 0, true, 3);
+INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (1, 'First User', '123456', 'first.user@gmail.com', 1, 2, 2, 1, 0, false, 2);
+INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (2, 'Second User', '123456', 'second.user@gmail.com', 1, 2, 3, 2, 0, false, 1);
+INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (3, 'Third User', '123456', 'third.user@gmail.com', 1, 2, 1, 3, 0, true, 3);
 
 
 INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (1, 'Madhur', 'Product01 description', 10, 1, 2,'madhur.jpg', true);

@@ -45,7 +45,7 @@ public class IndexController {
             return "index";
         }
         session.setAttribute("user", user);
-        session.setAttribute("type", user.getType());
+        session.setAttribute("type", user.getType().getName());
         return "index";
     }
 }

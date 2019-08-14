@@ -71,8 +71,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="">
                     <label>Account Type:</label><br/>
                     <select id="type" th:field="*{type}">
-                        <option th:value="'BUYER'">Buyer</option>
-                        <option th:value="'SELLER'">Seller</option>
+                        <!--<option th:value="'BUYER'">Buyer</option>-->
+                        <!--<option th:value="'SELLER'">Seller</option>-->
+                        <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.name}">Role</option>
                     </select>
                 </div>
                 <br/><br/>

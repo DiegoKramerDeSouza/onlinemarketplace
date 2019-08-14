@@ -1,18 +1,19 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
 import edu.mum.cs.onlinemarketplace.domain.Review;
+import edu.mum.cs.onlinemarketplace.domain.Role;
 import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.email.EmailService;
 import edu.mum.cs.onlinemarketplace.service.ReviewService;
+import edu.mum.cs.onlinemarketplace.service.RoleService;
 import edu.mum.cs.onlinemarketplace.service.SellerService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -25,8 +26,13 @@ public class AdminController {
     private EmailService emailService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
-
+    @ModelAttribute("types")
+    public List<Role> getRoles(Model model){
+        return roleService.getAllRoles();
+    }
 
     @GetMapping("/users/SellerList")
     public String getAllSeller(Model model){
@@ -62,7 +68,9 @@ public class AdminController {
         newSeller.setName(newSeller.getName());
         newSeller.setName(newSeller.getEmail());
         newSeller.setPassword(newSeller.getPassword());
-        newSeller.setType("BUYER");
+        Role role = roleService.getRoleById(3L);
+        newSeller.setType(role);
+//        newSeller.setType("BUYER");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Rejected","Sorry! we can't approve you as Seller");
