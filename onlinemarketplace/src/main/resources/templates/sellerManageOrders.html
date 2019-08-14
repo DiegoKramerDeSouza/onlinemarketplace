@@ -249,15 +249,15 @@
 				</span>
 			</h3>
 
-<div class="result" th:if="${result} == 'canceled'" align="center" ><h2>Order Canceled!</h2></div>
-<div class="result" th:if="${result} == 'shipped'" align="center" ><h2>Order Shipped!</h2></div>
+<div class="result text-danger" th:if="${result} == 'canceled'" align="center" ><h2>Order Canceled!</h2></div>
+<div class="result text-info" th:if="${result} == 'shipped'" align="center" ><h2>Order Shipped!</h2></div>
 <div th:each="userOrder: ${orders}"  style="margin-top:30px;">
     <p>
     <strong><span>Order Number: </span></strong><span th:text="${userOrder.id}" ></span>
     <br />
     <strong><span>Order By: </span></strong><span th:text="${userOrder.buyer.name}" ></span>
     <br />&nbsp;
-    <strong><span>Order Status: </span></strong><span th:text="${userOrder.status}" ></span>
+
 
     <br />
     <strong><span>Shipping Address: </span></strong><span th:text="${userOrder.buyer.shippingAddress.street}" ></span>
@@ -268,7 +268,10 @@
     <span th:text="${userOrder.buyer.shippingAddress.zipCode}" ></span>
     <br />
     <strong><span>Ordered On: </span></strong><span th:text="${userOrder.createDate}" ></span><br />
+    <strong><span>Order Status: </span></strong><span th:text="${userOrder.status}" ></span>
     </p>
+
+
 
 
 
@@ -299,7 +302,7 @@
 
 
                         </tbody>
-                        <strong><h5 class="pull-right" th:text="'Total: $' + ${userOrder.total}" ></h5></strong>
+                        <strong><h3 class="pull-right" th:text="'Total: $' + ${userOrder.total}" ></h3></strong>
 				</table>
 
 
@@ -314,9 +317,11 @@
         </form>
 
         <form  method="post" th:action="@{/seller/order/change/{id}/canceled (id = ${userOrder.id})}" >
-            <input type="submit" class="btn btn-danger" value="Cancel Order" style="margin-top:5px"/>
+            <input type="submit" class="btn btn-danger" value="Cancel Order" style="margin:5px 0px 10px 0px"/>
         </form>
     </div>
+    <hr>
+
 
 </div>
 
