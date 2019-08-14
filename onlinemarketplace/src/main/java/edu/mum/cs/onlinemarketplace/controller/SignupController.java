@@ -1,7 +1,9 @@
 package edu.mum.cs.onlinemarketplace.controller;
 
+import edu.mum.cs.onlinemarketplace.domain.Role;
 import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.service.CartService;
+import edu.mum.cs.onlinemarketplace.service.RoleService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class SignupController {
@@ -23,6 +26,13 @@ public class SignupController {
     private UserService userService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private RoleService roleService;
+
+    @ModelAttribute("types")
+    public List<Role> getRoles(Model model){
+        return roleService.findAllCommonRoles();
+    }
 
     @RequestMapping(value = {"/register_input" })
     public String registerInput(@ModelAttribute("user") User user) {
@@ -34,22 +44,22 @@ public class SignupController {
     public String registerSave(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
                                Model model, RedirectAttributes ra) {
 
-        if (bindingResult.hasErrors()) {
+        if(userService.countByEmail(user.getEmail()) > 0){
             return "registerFormNew";
         }
+        if (bindingResult.hasErrors()) return "registerFormNew";
 
-        String[] suppressedFields = bindingResult.getSuppressedFields();
-        if (suppressedFields.length > 0) {
-            throw new RuntimeException("Attempt to bind fields that haven't been allowed in initBinder(): "
-                    + StringUtils.addStringToArray(suppressedFields, ", "));
-        }
+//        String[] suppressedFields = bindingResult.getSuppressedFields();
+//        if (suppressedFields.length > 0) {
+//            throw new RuntimeException("Attempt to bind fields that haven't been allowed in initBinder(): "
+//                    + StringUtils.addStringToArray(suppressedFields, ", "));
+//        }
 
         user.setCreateDate(LocalDate.now());
         user.setPoints(0);
+        user.setActive(true);
         user.setHasAds(false);
         user.setCart(cartService.newCart());
-
-        System.out.println(user.toString());
         userService.saveUser(user);
 
         model.addAttribute("user", user);

@@ -24,11 +24,11 @@ public class User {
     private String name;
 
     @NotBlank
-    @Size(min=12, max=42, message="Length of the email should be between 12 to 42.")
+    @Size(min=6, max=42, message="Length of the email should be between 6 to 42.")
     private String email;
 
     @NotBlank
-    @Size(min=6, max=26, message="Length of the password should be between 6 to 26.")
+    @Size(min=6, message="Length of the password should be between 6 to 26.")
     private String password;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -36,6 +36,8 @@ public class User {
     private Role type;
 
     private  String status;
+
+    private Boolean active;
 
     private LocalDate createDate;
 
@@ -80,18 +82,14 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + type.getName() + '\'' +
                 ", status='" + status + '\'' +
                 ", createDate=" + createDate +
                 ", points=" + points +
-                ", reviewList=" + reviewList +
-                ", userList=" + userList +
-                ", billingAddress=" + billingAddress +
-                ", shippingAddress=" + shippingAddress +
-                ", userOrderList=" + userOrderList +
-                ", cart=" + cart +
-                ", creditCard=" + creditCard +
-                ", productList=" + productList +
+                ", billingAddress=" + billingAddress.getZipCode() +
+                ", shippingAddress=" + shippingAddress.getZipCode() +
+                ", cart=" + cart.getId() +
+                ", creditCard=" + creditCard.getId() +
                 '}';
     }
 }

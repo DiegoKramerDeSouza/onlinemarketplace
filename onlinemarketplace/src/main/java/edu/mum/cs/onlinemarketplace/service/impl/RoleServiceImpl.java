@@ -25,4 +25,9 @@ public class RoleServiceImpl implements RoleService {
     public Role getRoleById(Long id) {
         return roleRepository.findById(id).get();
     }
+
+    @Override
+    public List<Role> findAllCommonRoles() {
+        return roleRepository.findAllCommonRoles();
+    }
 }
