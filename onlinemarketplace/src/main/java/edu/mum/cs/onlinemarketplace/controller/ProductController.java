@@ -132,7 +132,7 @@ public class ProductController {
         if(user == null)session.setAttribute("type", "OFF");
         else {
 
-            if (user.getType().equalsIgnoreCase("BUYER")) {
+            if (user.getType().getName().equalsIgnoreCase("BUYER")) {
                 List<User> follow = user.getUserList();
                 List<User> followList = follow.stream().filter(u -> u.getId() == product.getSeller().getId()).collect(Collectors.toList());
                 if (followList.size() == 0) {
@@ -141,9 +141,9 @@ public class ProductController {
                     model.addAttribute("follow", 0);
                 }
             }
-            session.setAttribute("type", user.getType());
+            session.setAttribute("type", user.getType().getName());
             session.setAttribute("user", user);
-            model.addAttribute("userType", user);
+//            model.addAttribute("userType", user);
             model.addAttribute("product", product);
             model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
         }

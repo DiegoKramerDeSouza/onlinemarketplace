@@ -47,20 +47,10 @@ public class UserprofileController {
     public String updateProfile(@Valid @ModelAttribute("user")User user, @PathVariable Long id, BindingResult result, Model model){
         User u = userService.getUserById(id);
         u.setName(user.getName());
+        u.setCreditCard(user.getCreditCard());
         u.setShippingAddress(user.getShippingAddress());
         u.setBillingAddress(user.getBillingAddress());
         userService.saveUser(u);
-
-
-
-//        System.out.println("Hereddfd"+user.getName());
-//        System.out.println("dkdkjf"+ u.getName());
-//
-//        Address a = u.getShippingAddress();
-//        System.out.println("naya city"+a.getCity());
-
-
-
         return "redirect:/profile/{id}";
     }
 

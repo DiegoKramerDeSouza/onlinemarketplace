@@ -114,11 +114,9 @@
                                     </div>
                                     <div class="item-info-product ">
                                         <h4>
-
-                                            <a th:href="@{/product/{pid}(pid=${prod.id})}" th:text="${prod.name}">Almonds, 100g</a>
-
-                                            <a href="@{/product/{pid}(pid=${prod.id})}" th:text="${prod.name}">Almonds, 100g</a>
-
+                                            <a th:href="@{/product/{pid}(pid=${prod.id})}">
+                                                <span class="truncate-text" th:text="${prod.name}"></span>
+                                            </a>
                                         </h4>
                                         <div class="info-product-price">
                                             <span class="item_price" th:text="'$' + ${prod.price}">$149.00</span>
