@@ -4711,3 +4711,9 @@ ul.dropdown-menu {
     padding: 4px 7px 7px 7px;
 }
 }
+table{
+    width: 100%!important;
+}
+.chit-chat-layer1{
+    width: 100%!important;
+}

@@ -128,11 +128,11 @@ public class ProductController {
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
 
-        Product product1 = productService.findById(id);
-        model.addAttribute("product",product1);
+        Product product = productService.findById(id);
+        model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
-        Long sellerId = product1.getSeller().getId();
+        Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 //        return "productview";
 
@@ -146,7 +146,7 @@ public class ProductController {
 
         if(user.getType().equalsIgnoreCase("BUYER")){
             List<User>follow = user.getUserList();
-            List<User>followList = follow.stream().filter(u->u.getId()==product1.getSeller().getId()).collect(Collectors.toList());
+            List<User>followList = follow.stream().filter(u->u.getId()==product.getSeller().getId()).collect(Collectors.toList());
             if(followList.size()==0){
                 model.addAttribute("follow",1);
             }
@@ -156,7 +156,7 @@ public class ProductController {
         }
 
 
-        model.addAttribute("product",product1);
+        model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
 
         return "single";

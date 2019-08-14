@@ -20,7 +20,7 @@ public class CreditCard {
     @NotBlank
     private String name;
     @NotBlank
-    @Size(min=5, max=5, message="{card.validDate}")
+    @Size(min=5, max=5, message="Length of the state should be 5.")
     private String validDate;
     @NotNull
     private Long number;

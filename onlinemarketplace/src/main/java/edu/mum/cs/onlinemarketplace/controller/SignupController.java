@@ -26,7 +26,7 @@ public class SignupController {
 
     @RequestMapping(value = {"/register_input" })
     public String registerInput(@ModelAttribute("user") User user) {
-        return "registerForm";
+        return "registerFormNew";
     }
     @LogAnnotation
     @RequestMapping(value = "/register_save")
@@ -34,7 +34,7 @@ public class SignupController {
                                Model model, RedirectAttributes ra) {
         //System.out.println(user);
         if (bindingResult.hasErrors()) {
-            return "registerForm";
+            return "registerFormNew";
         }
 
         String[] suppressedFields = bindingResult.getSuppressedFields();
