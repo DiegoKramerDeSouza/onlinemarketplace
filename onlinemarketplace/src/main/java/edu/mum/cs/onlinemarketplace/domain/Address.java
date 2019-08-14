@@ -20,9 +20,9 @@ public class Address {
     @NotBlank
     private String street;
     @NotBlank
-    @Size(min=2, max=2, message = "{size.error}" )
+    @Size(min=2, max=2, message = "Length of the state should be 2." )
     private String state;
-    @Size(min=5, max=5, message = "{size.error}" )
+    @Size(min=5, max=5, message = "Length of the ZIP code should be 5." )
     private String zipCode;
     private LocalDate createDate;
     private String status;

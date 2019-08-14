@@ -4875,6 +4875,12 @@ input[type="radio"], input[type="checkbox"] {
     
 }
 
+
+.error {
+    color:red;
+}
+
+
  .animated {
     -webkit-transition: height 0.2s;
     -moz-transition: height 0.2s;

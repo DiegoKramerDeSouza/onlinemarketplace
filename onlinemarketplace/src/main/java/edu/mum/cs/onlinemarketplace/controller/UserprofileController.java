@@ -40,7 +40,7 @@ public class UserprofileController {
     @GetMapping("/profile/{id}/edit")
     public String getEditProfile(@ModelAttribute("user") User user,@PathVariable  Long id, Model model){
         model.addAttribute("user",userService.getUserById(id));
-        return "editProfile";
+        return "editProfileNew";
     }
 
     @PostMapping("/profile/{id}/update")

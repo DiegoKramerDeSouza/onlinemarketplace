@@ -20,13 +20,13 @@ public class User {
 
     private Long id;
     @NotBlank
-    @Size(min=5, max=25, message="{size.error}")
+    @Size(min=4, max=40, message="Length of the name should be between 4 to 40.")
     private String name;
     @NotBlank
-    @Size(min=11, max=31, message="{size.error}")
+    @Size(min=12, max=42, message="Length of the email should be between 12 to 42.")
     private String email;
     @NotBlank
-    @Size(min=6, max=20, message="{size.error}")
+    @Size(min=6, max=26, message="Length of the password should be between 6 to 26.")
     private String password;
     private String type;
     private  String status;

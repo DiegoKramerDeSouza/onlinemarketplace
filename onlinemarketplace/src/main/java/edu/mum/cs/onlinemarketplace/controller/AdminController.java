@@ -5,12 +5,14 @@ import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.email.EmailService;
 import edu.mum.cs.onlinemarketplace.service.ReviewService;
 import edu.mum.cs.onlinemarketplace.service.SellerService;
+import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
@@ -21,20 +23,22 @@ public class AdminController {
     private ReviewService reviewService;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private UserService userService;
 
 
 
     @GetMapping("/users/SellerList")
     public String getAllSeller(Model model){
         model.addAttribute("sellerList",sellerService.getAllSeller());
-        System.out.println("Seller="+sellerService.getAllSeller());
+//        System.out.println("Seller="+sellerService.getAllSeller());
         return "adminHome";
     }
 
     @GetMapping("/users/manageSellers")
     public String manageSellerForm(Model model){
         model.addAttribute("manageSeller",sellerService.getAllPendingSeller());
-        System.out.println("Seller="+sellerService.getAllPendingSeller());
+//        System.out.println("Seller="+sellerService.getAllPendingSeller());
 
         return "manageSeller";
     }
@@ -49,7 +53,7 @@ public class AdminController {
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller.");
-        return "redirect:/users/SellerList";
+        return "redirect:/users/manageSellers";
     }
 
     @PostMapping("/users/removeSeller/{id}")
@@ -62,7 +66,7 @@ public class AdminController {
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Rejected","Sorry! we can't approve you as Seller");
-        return "redirect:/users/SellerList";
+        return "redirect:/users/manageSellers";
     }
 
     @GetMapping("/users/manageReviews")
@@ -82,5 +86,7 @@ public class AdminController {
         reviewService.delete(rid);
         return "redirect:/users/manageReviews";
     }
+
+
 
 }
