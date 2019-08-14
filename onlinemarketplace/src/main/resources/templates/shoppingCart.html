@@ -3,59 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui1.css">
 </head>
 <body>
 
-<h1>Shopping Cart</h1>
+<h1 style="text-align: center">Shopping Cart</h1></body>
+<br/>
 
-    <h2 class="result" th:if="${added}">Product added successfuly!</h2>
+<h2 class="result" th:if="${added}" style="color: black">Product added successfuly!</h2>
 
-    <h2 class="result" th:if="${result}">Thanks for buying!</h2>
-    <h2 class="result" th:if="${resultRemove}">Product removed!</h2>
-    <div align="center">
-        <div align="left" th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px;'">
-            <div th:each="product : ${cart.productList}">
-                <form method="post"
-                      th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
-                    <p>
-                        <img th:src="@{/img/{photo} (photo = ${product.productImage})}"
-                             th:title="${product.name}" /> &nbsp;
-                        <span th:text="${product.name}"></span> &nbsp;
-                        <br />
-                        <span th:text="' Price: $' + ${product.price}"></span> &nbsp;
-                        <span th:text="' Seller: ' + ${product.seller.name}"></span>
-                        <input type="submit" value="Remove" />
-                    </p>
-                </form>
-            </div>
-
+<h2 class="result" th:if="${result}" style="color: black">Thanks for buying!</h2>
+<h2 class="result" th:if="${resultRemove}" style="color: black">Product removed!</h2>
+<div align="center">
+    <div align="left" th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px;'">
+        <div th:each="product : ${cart.productList}" style="color: black">
+            <form method="post"
+                  th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
+                <p style="text-align: center">
+                    <img th:src="@{/img/{photo} (photo = ${product.productImage})}"
+                         th:title="${product.name}"/> &nbsp;
+                    <span style="color: black" th:text="${product.name}"></span> &nbsp;
+                    <br/>
+                    <span style="color: black" th:text="' Price: $' + ${product.price}"></span> &nbsp;
+                    <span style="color: black" th:text="' Seller: ' + ${product.seller.name}"></span>
+                    <input style="color: black" type="submit" value="Remove"/>
+                </p>
+            </form>
         </div>
+
     </div>
 </div>
-<div align="right">
-    <h4 th:text="'Total: $' + ${cart.totalPrice}"></h4>
+</div>
+<br/>
+<div style="text-align: center; color: black; font-weight: bold; font-size: 18px;">
+    <h4 th:text="'Total of cart: $' + ${cart.totalPrice}"></h4>
 </div>
 <hr/>
 
-<div align="center" th:if="${cart.productList.size()} > 0">
+<div style="text-align: center; color:black" th:if="${cart.productList.size()} > 0" >
     <h2>Please confirm your payment method and open your order</h2>
     <div th:each="product : ${cart.productList}">
         <p>
-            <span th:text="${product.name}"></span> &nbsp; |
-            <span th:text="${product.seller.name}"></span> &nbsp; |
-            <strong th:text="'$' + ${product.price}"></strong>
+            <span style="color: black" th:text="${product.name}"></span> &nbsp; |
+            <span style="color: black" th:text="${product.seller.name}"></span> &nbsp; |
+            <strong style="color: black" th:text="'$' + ${product.price}"></strong>
         </p>
     </div>
-    <h4 th:text="'Total: $' + ${cart.totalPrice}"></h4>
+    <p style="color:black; font-size: 16px" th:text="'Total: $' + ${cart.totalPrice}"></p>
 
     <h2>Payment method:</h2>
-    <div>
-        <p><strong>Credit Card Number:</strong> <span th:text="${creditCard.number}"></span></p>
-        <p><strong>Name:</strong> <span th:text="${creditCard.name}"></span></p>
-        <p><strong>Valid Date:</strong> <span th:text="${creditCard.validDate}"></span></p>
+    <div style="color: black">
+        <p><strong style="color: black">Credit Card Number:</strong> <span style="color: black"
+                                                                           th:text="${creditCard.number}"></span></p>
+        <p><strong style="color: black">Name:</strong> <span style="color: black" th:text="${creditCard.name}"></span>
+        </p>
+        <p><strong style="color: black">Valid Date:</strong> <span style="color: black"
+                                                                   th:text="${creditCard.validDate}"></span></p>
     </div>
+    <br/>
     <form th:action="@{/buyer/cart/setorder/1}" method="post">
-        <input type="submit" value="Confirm and pay!"/>
+        <input style="height: 40px; width: 160px;" type="submit" value="Confirm and pay!"/>
+        <br/><br/>
     </form>
 </div>
 
