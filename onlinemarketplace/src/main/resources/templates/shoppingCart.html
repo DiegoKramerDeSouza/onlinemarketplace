@@ -8,10 +8,6 @@
 
     <h1>Shopping Cart</h1>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3bba541b878e0d594f75a0d5c8659e0ab8a139d3
     <h2 class="result" th:if="${added}">Product added successfuly!</h2>
 
     <h2 class="result" th:if="${result}">Thanks for buying!</h2>
@@ -22,7 +18,7 @@
                 <form method="post"
                       th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
                     <p>
-                        <img th:src="@{/img/{photo} (photo = ${product.name} + ${product.id} + '.jpg')}"
+                        <img th:src="@{/img/{photo} (photo = ${product.productImage})}"
                              th:title="${product.name}" /> &nbsp;
                         <span th:text="${product.name}"></span> &nbsp;
                         <br />
