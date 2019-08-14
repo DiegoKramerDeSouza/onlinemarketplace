@@ -17,15 +17,15 @@ INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_addr
 INSERT INTO `USER` (id, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (3, 'Third User', '123456', 'third.user@gmail.com', 1, 2, 'SELLER', 3, 0, true, 3);
 
 
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (1, 'Madhur', 'Product01 description', 10, 1, 2,'madhur.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (2, 'Dream Catchers', 'Product02 description', 10, 1, 3,'dreamcatchers.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (3, 'Product03', 'Product03 description', 10, 1, 2,'sneakers.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (4, 'Green Tea', 'Product04 description', 10, 1, 3, 'greentea.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (5, 'Kissan', 'Product05 description', 10, 3, 3,'kissan.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (6, 'Odonil', 'Product06 description', 10, 3, 3,'odonil.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (7, 'Surf Excel', 'Product07 description', 10, 3, 3,'surfexcel.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (8, 'Scherwan Noodle', 'Product08 description', 10, 3, 3,'noodle.jpg');
-INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image) VALUES (9, 'Almonds', 'Almonds is very good for health', 10, 3, 3,'almonds.jpg');
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (1, 'Madhur', 'Product01 description', 10, 1, 2,'madhur.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (2, 'Dream Catchers', 'Product02 description', 10, 1, 3,'dreamcatchers.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (3, 'Product03', 'Product03 description', 10, 1, 2,'sneakers.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (4, 'Green Tea', 'Product04 description', 10, 1, 3, 'greentea.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (5, 'Kissan', 'Product05 description', 10, 3, 3,'kissan.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (6, 'Odonil', 'Product06 description', 10, 3, 3,'odonil.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (7, 'Surf Excel', 'Product07 description', 10, 3, 3,'surfexcel.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (8, 'Scherwan Noodle', 'Product08 description', 10, 3, 3,'noodle.jpg', true);
+INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (9, 'Almonds', 'Almonds is very good for health', 10, 3, 3,'almonds.jpg', true);
 
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (1, 1);
 INSERT INTO `CART_PRODUCT_LIST` (cart_id, product_list_id) VALUES (1, 2);

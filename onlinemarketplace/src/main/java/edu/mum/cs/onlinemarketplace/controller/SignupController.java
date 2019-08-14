@@ -32,7 +32,7 @@ public class SignupController {
     @RequestMapping(value = "/register_save")
     public String registerSave(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
                                Model model, RedirectAttributes ra) {
-        //System.out.println(user);
+
         if (bindingResult.hasErrors()) {
             return "registerFormNew";
         }

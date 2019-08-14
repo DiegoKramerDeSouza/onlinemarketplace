@@ -42,16 +42,13 @@ public class ProductController {
     @GetMapping("/products")
     public String getAllProducts(Model model, HttpSession session){
 //        session.setAttribute("userId",1L);
-        if(!model.containsAttribute("userId")){
-            model.addAttribute("productList",productService.getAllProducts());
-            System.out.println("products are ==All Products"+productService.getAllProducts().toString());
-        }
-        else{
-            model.addAttribute("productList",productService.findProductByUserId(1L));
-            System.out.println("products are ==Some Products");
-        }
+        Long id = 1L;
+        List<Product> products = productService.findProductByUserId(id);
+        if(products.size() <= 0)
+            model.addAttribute("message","This is unavailable");
+        else
+            model.addAttribute("productList", products);
 
-        model.addAttribute("message","This is unavailable");
         return "home";
     }
 
@@ -75,39 +72,26 @@ public class ProductController {
         User user = userService.getUserById(id);
         product.setCreateDate(LocalDate.now());
         product.setSeller(user);
+        product.setEnable(true);
         Product newProduct= productService.save(product);
 
-//        System.out.println("User Id= "+userId);
         if (result.hasErrors()) {
-            System.out.println("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
             model.addAttribute("errors", result.getAllErrors());
             return "addProductForm";
         }else {
-            if (!file.isEmpty()) {
-            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            File dir = new File("src/main/resources/static/imgages/");
-            dir.mkdir();
-            File destination = new File(dir,newProduct.getName()+newProduct.getId()+".jpg");
-            destination.createNewFile();
-            ImageIO.write(src,"JPG",destination);
-            newProduct.setProductImage(destination.getName());
+            checkfile(file, newProduct);
+            productService.save(newProduct);
+            return "redirect:/products";
         }
-            System.out.println("SUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCESSSSSSSSSS");
-
-
-            System.out.println("product ID============"+product.getId());
-            System.out.println("Product Name ="+product.getName());
-           productService.save(newProduct);
-            return "redirect:/";
-        }
-//
     }
 
     @LogAnnotation
     @PostMapping("/product/delete/{pid}")
     public String deleteProduct(@PathVariable Long pid){
-         productService.delete(pid);
-         return "redirect:/";
+        Product product = productService.findById(pid);
+        product.setEnable(false);
+        productService.save(product);
+        return "redirect:/products";
     }
 
     @GetMapping(value = "/product/update/{pid}")
@@ -122,18 +106,10 @@ public class ProductController {
         updateProduct.setName(product.getName());
         updateProduct.setDescription(product.getDescription());
         updateProduct.setPrice(product.getPrice());
-        if (!file.isEmpty()) {
-            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            File dir = new File("src/main/resources/static/imgages/");
-            dir.mkdir();
-            File destination = new File(dir, updateProduct.getName() + updateProduct.getId() + ".jpg");
-            destination.createNewFile();
-            ImageIO.write(src, "JPG", destination);
-            updateProduct.setProductImage(destination.getName());
-        }
+        checkfile(file, updateProduct);
        // updateProduct.setProductImage(product.getProductImage());
         productService.save(updateProduct);
-        return "redirect:/";
+        return "redirect:/products";
     }
 
     @GetMapping("/error")
@@ -150,12 +126,6 @@ public class ProductController {
 
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
-//        return "productview";
-
-
-//        return "single";
-
-
 
         User user =userService.findUserById(2L);
 
@@ -171,27 +141,16 @@ public class ProductController {
                 model.addAttribute("follow",0);
             }
         }
-
-
         model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
         model.addAttribute("userType",user);
 
         return "single";
-
-
-
-
     }
-
-
-
 
     @PostMapping("/product/{pid}/addToCart")
     public String addToCart(@PathVariable("pid") Long pid, Model model, HttpSession session, RedirectAttributes redirect){
-//        Long id = (Long) session.getAttribute("userid");
 //        Long cid = (Long) session.getAttribute("cartid");
-        Long id = 2L;
         Long cid = 1L;
         Cart cart = cartService.getCartById(cid);
         Product product = productService.findById(pid);
@@ -204,9 +163,11 @@ public class ProductController {
 
     @PostMapping("/product/{pid}/newReview")
     public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid, Model model){
+//        Long cid = (Long) session.getAttribute("cartid");
+        Long id = 1L;
         review.setCreateDate(LocalDate.now());
         review.setProduct(productService.findById(pid));
-        review.setUser(userService.findUserById(1l));
+        review.setUser(userService.findUserById(id));
 
 //        if(result.hasErrors())
 //            return "/product/{pid}";
@@ -216,8 +177,18 @@ public class ProductController {
             return "redirect:/product/{pid}";
 
 //        }
+    }
 
-
+    public void checkfile(MultipartFile file, Product product) throws IOException {
+        if (!file.isEmpty()) {
+            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+            File dir = new File("src/main/resources/static/imgages/");
+            dir.mkdir();
+            File destination = new File(dir, product.getName() + product.getId() + ".jpg");
+            destination.createNewFile();
+            ImageIO.write(src, "JPG", destination);
+            product.setProductImage(destination.getName());
+        }
     }
 
 

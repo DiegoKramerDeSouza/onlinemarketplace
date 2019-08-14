@@ -36,6 +36,7 @@ public class Product {
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "product")
     private List<Review>reviewList;
     private String productImage;
+    private Boolean enable;
     @Override
     public String toString() {
         return "Product{" +
