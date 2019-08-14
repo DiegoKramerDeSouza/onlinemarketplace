@@ -57,7 +57,8 @@ public class ProductController {
 
     @GetMapping(value = "/addProduct")
     public String getProductForm(@ModelAttribute("newProduct") Product product, Model model){
-        model.addAttribute("userId",1L);
+//        model.addAttribute("userId",1L);
+        model.addAttribute("userId",userService.findUserById(1L));
 //        if(!model.containsAttribute("userId")){
 //            model.addAttribute("message","This is currently unavailable");
 //            return "errorMsg";
@@ -157,6 +158,7 @@ public class ProductController {
 
 
         User user =userService.findUserById(2L);
+
 //        Product product = productService.findById(id);
 
         if(user.getType().equalsIgnoreCase("BUYER")){
@@ -173,6 +175,7 @@ public class ProductController {
 
         model.addAttribute("product",product);
         model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
+        model.addAttribute("userType",user);
 
         return "single";
 
