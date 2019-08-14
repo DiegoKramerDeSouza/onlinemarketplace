@@ -30,6 +30,7 @@ public class UserprofileController {
     public String getUserProfile(@PathVariable(value = "id", required = false) Long id, Model model, HttpSession session){
 
         User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         model.addAttribute("user", user);
         model.addAttribute("shippingAddress", user.getShippingAddress());
         model.addAttribute("billingAddress", user.getBillingAddress());
@@ -40,6 +41,7 @@ public class UserprofileController {
     @GetMapping("/profile/{id}/edit")
     public String getEditProfile(@ModelAttribute("user") User user,@PathVariable  Long id, Model model, HttpSession session){
         User objUser = (User)session.getAttribute("user");
+        if(user == null) return "redirect:/";
         model.addAttribute("user", objUser);
         return "editProfileNew";
     }
@@ -48,6 +50,7 @@ public class UserprofileController {
     public String updateProfile(@Valid @ModelAttribute("user")User user, @PathVariable Long id, BindingResult result,
                                 Model model, HttpSession session){
         User u = (User)session.getAttribute("user");
+        if(user == null) return "redirect:/";
         u.setName(user.getName());
         u.setCreditCard(user.getCreditCard());
         u.setShippingAddress(user.getShippingAddress());

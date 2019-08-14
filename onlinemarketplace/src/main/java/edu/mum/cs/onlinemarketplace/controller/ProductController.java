@@ -41,9 +41,9 @@ public class ProductController {
 
     @GetMapping("/products")
     public String getAllProducts(Model model, HttpSession session){
-//        session.setAttribute("userId",1L);
-        Long id = 1L;
-        List<Product> products = productService.findProductByUserId(id);
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
+        List<Product> products = productService.findProductByUserId(user.getId());
         if(products.size() <= 0)
             model.addAttribute("message","This is unavailable");
         else
@@ -53,9 +53,11 @@ public class ProductController {
     }
 
     @GetMapping(value = "/addProduct")
-    public String getProductForm(@ModelAttribute("newProduct") Product product, Model model){
-//        model.addAttribute("userId",1L);
-        model.addAttribute("userId",userService.findUserById(1L));
+    public String getProductForm(@ModelAttribute("newProduct") Product product, Model model, HttpSession session){
+
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
+        model.addAttribute("userId",userService.findUserById(user.getId()));
 //        if(!model.containsAttribute("userId")){
 //            model.addAttribute("message","This is currently unavailable");
 //            return "errorMsg";
@@ -67,9 +69,9 @@ public class ProductController {
 
     @PostMapping(value = "/product/",params = "uid")
     public String addProduct(@RequestParam String uid, HttpSession session, @Valid @ModelAttribute("newProduct") Product product, BindingResult result, Model model,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
-//        Long id = (Long) session.getAttribute("userid");
-        Long id = 1L;
-        User user = userService.getUserById(id);
+
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         product.setCreateDate(LocalDate.now());
         product.setSeller(user);
         product.setEnable(true);
@@ -127,7 +129,7 @@ public class ProductController {
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 
-        User user =userService.findUserById(2L);
+        User user = (User) session.getAttribute("user");
         //Set user data
         if(user == null)session.setAttribute("type", "OFF");
         else {
@@ -143,19 +145,18 @@ public class ProductController {
             }
             session.setAttribute("type", user.getType().getName());
             session.setAttribute("user", user);
-//            model.addAttribute("userType", user);
             model.addAttribute("product", product);
             model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
         }
-
         return "single";
     }
 
     @PostMapping("/product/{pid}/addToCart")
     public String addToCart(@PathVariable("pid") Long pid, Model model, HttpSession session, RedirectAttributes redirect){
-//        Long cid = (Long) session.getAttribute("cartid");
-        Long cid = 1L;
-        Cart cart = cartService.getCartById(cid);
+
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
+        Cart cart = user.getCart();
         Product product = productService.findById(pid);
         cart.getProductList().add(product);
         cartService.saveCart(cart);
@@ -165,21 +166,21 @@ public class ProductController {
 
 
     @PostMapping("/product/{pid}/newReview")
-    public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid, Model model){
-//        Long cid = (Long) session.getAttribute("cartid");
-        Long id = 1L;
+    public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid,
+                            Model model, HttpSession session){
+
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         review.setCreateDate(LocalDate.now());
         review.setProduct(productService.findById(pid));
-        review.setUser(userService.findUserById(id));
+        review.setUser(userService.findUserById(user.getId()));
 
-//        if(result.hasErrors())
-//            return "/product/{pid}";
-//        else {
-
+        if(result.hasErrors())
+            return "/product/{pid}";
+        else {
             reviewService.addReview(review);
             return "redirect:/product/{pid}";
-
-//        }
+        }
     }
 
     public void checkfile(MultipartFile file, Product product) throws IOException {

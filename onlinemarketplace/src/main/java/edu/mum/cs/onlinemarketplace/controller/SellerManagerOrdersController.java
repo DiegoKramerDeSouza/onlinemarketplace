@@ -36,9 +36,10 @@ public class SellerManagerOrdersController {
 
     @GetMapping("/orders")
     public String managerOrders(Model model, HttpSession session){
-//        Long id = (Long) session.getAttribute("userid");
-        Long id = 1L;
-        model.addAttribute("orders", orderService.getOrdersBySellerId(id));
+
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
+        model.addAttribute("orders", orderService.getOrdersBySellerId(user.getId()));
         return "sellerManageOrders";
     }
 
