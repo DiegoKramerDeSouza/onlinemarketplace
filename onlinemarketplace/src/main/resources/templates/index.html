@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
@@ -11,6 +12,7 @@
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
+
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
@@ -380,6 +382,7 @@
             removalDelay: 300,
             mainClass: 'my-mfp-zoom-in'
         });
+
     });
 </script>
 <!-- Large modal -->
@@ -404,6 +407,7 @@
             }
         });
         $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
     }); //]]>
 </script>
 <!-- //price range (top products) -->
@@ -434,6 +438,7 @@
                 }
             }
         });
+
     });
 </script>
 <!-- //flexisel (for special offers) -->
@@ -451,6 +456,7 @@
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
             event.preventDefault();
+
             $('html,body').animate({
                 scrollTop: $(this.hash).offset().top
             }, 1000);
