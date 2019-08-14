@@ -68,7 +68,13 @@ public class ProductController {
     }
 
     @PostMapping(value = "/product/",params = "uid")
-    public String addProduct(@RequestParam String uid,@Valid @ModelAttribute("newProduct") Product product, BindingResult result, Model model,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
+    public String addProduct(@RequestParam String uid, HttpSession session, @Valid @ModelAttribute("newProduct") Product product, BindingResult result, Model model,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
+//        Long id = (Long) session.getAttribute("userid");
+        Long id = 1L;
+        User user = userService.getUserById(id);
+        product.setCreateDate(LocalDate.now());
+        product.setSeller(user);
+        Product newProduct= productService.save(product);
 
 //        System.out.println("User Id= "+userId);
         if (result.hasErrors()) {
@@ -80,17 +86,17 @@ public class ProductController {
             BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
             File dir = new File("src/main/resources/static/imgages/");
             dir.mkdir();
-            File destination = new File(dir,product.getName()+product.getId()+".jpg");
+            File destination = new File(dir,newProduct.getName()+newProduct.getId()+".jpg");
             destination.createNewFile();
             ImageIO.write(src,"JPG",destination);
-            product.setProductImage(destination.getName());
+            newProduct.setProductImage(destination.getName());
         }
             System.out.println("SUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCESSSSSSSSSS");
 
-            product.setCreateDate(LocalDate.now());
-//            System.out.println("seller Id="+product.getSeller().getId());
-//            product.getSeller().setId(1L);
-            productService.save(product);
+
+            System.out.println("product ID============"+product.getId());
+            System.out.println("Product Name ="+product.getName());
+           productService.save(newProduct);
             return "redirect:/";
         }
 //
@@ -110,11 +116,20 @@ public class ProductController {
     }
 
     @PostMapping("/product/update/{pid}")
-    public String updateProduct(Product product, @PathVariable Long pid){
+    public String updateProduct(Product product, @PathVariable Long pid,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
         Product updateProduct = productService.findById(pid);
         updateProduct.setName(product.getName());
         updateProduct.setDescription(product.getDescription());
         updateProduct.setPrice(product.getPrice());
+        if (!file.isEmpty()) {
+            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+            File dir = new File("src/main/resources/static/imgages/");
+            dir.mkdir();
+            File destination = new File(dir, updateProduct.getName() + updateProduct.getId() + ".jpg");
+            destination.createNewFile();
+            ImageIO.write(src, "JPG", destination);
+            updateProduct.setProductImage(destination.getName());
+        }
        // updateProduct.setProductImage(product.getProductImage());
         productService.save(updateProduct);
         return "redirect:/";
