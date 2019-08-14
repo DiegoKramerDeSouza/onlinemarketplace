@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
@@ -35,8 +36,10 @@ public class SignupController {
     }
 
     @RequestMapping(value = {"/register_input" })
-    public String registerInput(@ModelAttribute("user") User user) {
-        return "registerFormNew";
+    public String registerInput(@ModelAttribute("user") User user, HttpSession session) {
+        User us = (User)session.getAttribute("user");
+        if(us == null) return "registerFormNew";
+        return "redirect:/";
     }
 
     @LogAnnotation
@@ -68,7 +71,9 @@ public class SignupController {
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String getLogin() {
-        return "login";
+    public String getLogin(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        if(user == null) return "login";
+        return "redirect:/";
     }
 }
