@@ -63,18 +63,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/files/**",
                         "/pdf/**",
                         "/admin/js/**",
-                        "/admin/css/**"
+                        "/admin/css/**",
+//                        //for test
+                        "/buyer/**",
+                        "/addProduct"
 
                 ).permitAll()
-                .antMatchers("**/addToCart/**", "/buyer/**", "**/newReview/**").hasAuthority("BUYER")
+                .antMatchers("**/addToCart/**", /*"/buyer/**"*/ "**/newReview/**").hasAuthority("BUYER")
                 .antMatchers(
                         "**/addToCart/**",
                         "/product/update/**",
                         "/product/delete/**",
                         "/products",
-                        "/addProduct",
+                       // "/addProduct",
                         "/product/"
-                ).hasAuthority("SELLER")
+                )
+        .hasAuthority("SELLER")
                 .anyRequest().authenticated() //all other urls can be access by any authenticated role
                 .and()
                 .formLogin() //enable form login instead of basic login
