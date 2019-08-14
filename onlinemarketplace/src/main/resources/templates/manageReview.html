@@ -118,11 +118,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <td th:text="${review.description}">Description</td>
                                         <td th:text="${review.user.name}">Buyer Name</td>
                                         <td> <form th:action="@{/users/manageReview/{rid}/accept(rid=${review.id})}" method="post">
-                                            <input type="submit" value="Accept Review"/>
+                                            <input type="submit" value="Accept Review" class="btn btn-success"/>
                                         </form></td>
 
                                         <td> <form  th:action="@{/users/manageReview/{rid}/delete(rid=${review.id})}" method="post">
-                                            <input type="submit" value="Deny Review"/>
+                                            <input type="submit" value="Deny Review" class="btn btn-danger"/>
                                         </form></td>
                                     </tr>
 
