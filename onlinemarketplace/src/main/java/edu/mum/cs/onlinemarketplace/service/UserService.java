@@ -24,4 +24,6 @@ public interface UserService {
 
     List<User> getUserByEmail(String email);
 
+    Long countByEmail(String email);
+
 }

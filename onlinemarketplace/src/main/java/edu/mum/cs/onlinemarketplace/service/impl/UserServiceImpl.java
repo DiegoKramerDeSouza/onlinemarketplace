@@ -8,6 +8,7 @@ import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.repository.UserRepository;
 import edu.mum.cs.onlinemarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     AddressRepository addressRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -43,9 +47,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+        Long count = userRepository.countByEmail(user.getEmail());
+        if(count <= 0) user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
-
 
     @Override
     public List<User> findAllFollowers(Long sid) {
@@ -53,15 +58,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-
     public List<User> findUserByName(String name) {
         return userRepository.findUserByName(name);
     }
 
-
-
+    @Override
     public List<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public Long countByEmail(String email) {
+        return userRepository.countByEmail(email);
+    }
 }

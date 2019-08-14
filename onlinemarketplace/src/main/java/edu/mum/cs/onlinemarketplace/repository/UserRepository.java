@@ -11,14 +11,14 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    public List<User>findFollowersById(Long sid);
+    List<User>findFollowersById(Long sid);
 
     @Query("select u from User u where u.name like %:name%")
-    public List<User> findUserByName(String name);
+    List<User> findUserByName(String name);
 
     @Query("SELECT u FROM User u where u.email like %:email%")
-    public List<User> findByEmail(String email);
+    List<User> findByEmail(String email);
 
-
+    Long countByEmail(String email);
 
 }
