@@ -4,6 +4,7 @@ import com.itextpdf.text.DocumentException;
 import edu.mum.cs.onlinemarketplace.domain.Product;
 import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.domain.UserOrder;
+import edu.mum.cs.onlinemarketplace.email.EmailService;
 import edu.mum.cs.onlinemarketplace.service.OrderService;
 import edu.mum.cs.onlinemarketplace.service.PDFService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
@@ -34,6 +35,9 @@ public class SellerManagerOrdersController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    EmailService emailService;
+
     @GetMapping("/orders")
     public String managerOrders(Model model, HttpSession session){
 //        Long id = (Long) session.getAttribute("userid");
@@ -55,6 +59,10 @@ public class SellerManagerOrdersController {
                     .filter(prod -> prod.getSeller().getId() == userOrder.getSeller().getId())
                     .collect(Collectors.toList());
             pdfService.createPDFFile(userOrder, products);
+            notifyBuyer(userOrder.getBuyer());
+
+
+
         }
         //Update Buyer points
         if(userOrder.getStatus().equals("shipped")){
@@ -65,6 +73,16 @@ public class SellerManagerOrdersController {
             userService.saveUser(user);
         }
         return "redirect:/seller/orders";
+    }
+
+
+    public void notifyBuyer(User buyer){
+
+        String messageBody = "Dear" +buyer.getName() + "You Order Has Been Shipped Successfully";
+        String subject = "MUM Express, Order Shipped";
+        emailService.sendSimpleMessage(buyer.getEmail(),subject,messageBody);
+
+
     }
 
 
