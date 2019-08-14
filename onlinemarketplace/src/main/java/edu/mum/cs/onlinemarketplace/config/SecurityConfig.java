@@ -64,18 +64,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/pdf/**",
                         "/admin/js/**",
                         "/admin/css/**",
-//                        //for test
+
                         "/buyer/**",
                         "/addProduct"
+                        "/search/products/**"
+
 
                 ).permitAll()
-                .antMatchers("**/addToCart/**", /*"/buyer/**"*/ "**/newReview/**").hasAuthority("BUYER")
+                .antMatchers("**/addToCart/**", "/buyer/**" "**/newReview/**").hasAuthority("BUYER")
                 .antMatchers(
                         "**/addToCart/**",
                         "/product/update/**",
                         "/product/delete/**",
                         "/products",
-                       // "/addProduct",
+                        "/addProduct",
                         "/product/"
                 )
         .hasAuthority("SELLER")
