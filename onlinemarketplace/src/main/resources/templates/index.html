@@ -342,7 +342,11 @@
 								</div>
 								<div class="item-info-product ">
 									<h4>
+
+										<a th:href="@{/product/{pid}(pid=${p.getId()})}" th:text="${p.getName()}">Almonds, 100g</a>
+
 										<a href="single.html" th:text="${p.name}">Almonds, 100g</a>
+
 									</h4>
 									<div class="info-product-price">
 										<span class="item_price" th:text="'$' + ${p.price}">$149.00</span>
