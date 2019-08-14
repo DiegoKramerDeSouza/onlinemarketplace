@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div align="center">
                                     <form th:action="@{/admin/manage/ads/search}" method="post">
                                         <input name="email" placeholder="User e-mail"/>
-                                        <input type="submit" value="Search User">
+                                        <input type="submit" value="Search User" class="btn btn-search-input">
                                     </form>
                                 </div>
                                 <div align="center" th:if="${users}">
@@ -117,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <span th:text="'Name: ' + ${user.name}"></span>
                                                 <span th:text="'Email: ' + ${user.email}"></span>
                                             </a>
-                                            <input type="submit" value="Add Seller to Ads" />
+                                            <input type="submit" value="Add Seller to Ads" class="btn btn-success" />
                                         </form>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <span th:text="${ads.user.id}" ></span> &nbsp;
                                                 <span th:text="${ads.user.name}" ></span> &nbsp;
                                                 <span th:text="${ads.user.email}" ></span> &nbsp;
-                                                <input type="submit" value="Remove Ads" />
+                                                <input type="submit" value="Remove Ads" class="btn btn-danger" />
                                             </form>
                                         </div>
                                     </div>
