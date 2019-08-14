@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -24,7 +25,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+
+        return productRepository.getAllEnable();
+//        return productRepository.findAll();
     }
 
     @Override
@@ -39,7 +42,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) {
-        return productRepository.findById(id).get();
+        Optional<Product> products = productRepository.findById(id);
+        if(products.isPresent()) return products.get();
+        return null;
     }
 
     @Override
