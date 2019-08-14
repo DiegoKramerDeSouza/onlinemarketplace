@@ -12,7 +12,7 @@ public interface ProductService {
     Product findById(Long id);
     List<Product>findProductByUserId(Long id);
     List<Product>getProductBySeller(Long id);
-
+    List<Product>getProductsFromAds();
 
 
 }
