@@ -130,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div th:each="ads: ${adsList}" align="center"
                                          th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px; padding: 30px;'">
                                         <div align="left">
-                                            <form  method="post" th:action="@{/admin/ads/remove/{id} (id = ${ads.user.id})}">
+                                            <form  method="post" th:action="@{/admin/ads/remove/{id} (id = ${ads.id})}">
                                                 <span th:text="${ads.user.id}" ></span> &nbsp;
                                                 <span th:text="${ads.user.name}" ></span> &nbsp;
                                                 <span th:text="${ads.user.email}" ></span> &nbsp;
