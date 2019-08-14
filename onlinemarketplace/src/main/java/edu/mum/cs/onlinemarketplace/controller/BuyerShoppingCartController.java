@@ -54,7 +54,7 @@ public class BuyerShoppingCartController {
         model.addAttribute("cart", cart);
         model.addAttribute("user", user);
         model.addAttribute("creditCard", creditCard);
-        return "shoppingCart";
+        return "cartNew";
     }
 
     @PostMapping("/cart/remove/{id}/{pid}")

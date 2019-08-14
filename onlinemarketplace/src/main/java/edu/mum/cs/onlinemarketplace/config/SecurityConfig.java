@@ -68,6 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/login",
                         "/product/**",
                         "/h2-console/**"
+                        "/search/products/**"
+
                 ).permitAll()
 
                 .antMatchers("**/addToCart/**", "/buyer/**", "**/newReview/**", "/profile/**").hasAuthority("BUYER")

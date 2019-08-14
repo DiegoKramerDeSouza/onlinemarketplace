@@ -52,8 +52,8 @@
 		<div class="col-md-8 header">
 			<!-- search -->
 			<div class="agileits_search">
-				<form action="#" method="post">
-					<input name="Search" type="search" placeholder="How can we help you today?" required="">
+				<form th:action="@{/search/products}" th:object="${search}"method="get">
+					<input name="search" type="search" placeholder="How can we help you today?" required="">
 					<button type="submit" class="btn btn-default" aria-label="Left Align">
 						<span class="fa fa-search" aria-hidden="true"> </span>
 					</button>
@@ -441,7 +441,7 @@
 	<!-- copyright -->
 	<div class="copy-right">
 		<div class="container">
-			<p>© 2017 Grocery Shoppy. All rights reserved /p>
+			<p>© 2019 MUM Express. All rights reserved /p>
 		</div>
 	</div>
 	<!-- //copyright -->

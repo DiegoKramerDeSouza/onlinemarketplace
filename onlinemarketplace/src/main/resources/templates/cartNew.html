@@ -240,207 +240,107 @@
 	</div>
 	<!-- //navigation -->
 
- <div class="container" id="manageorders">
-<h3 class="tittle-w3l">Manage Orders
-				<span class="heading-style">
-					<i></i>
-					<i></i>
-					<i></i>
-				</span>
-			</h3>
+<div class="container" style="width: 1000px; margin:0 auto;">
+<div class="row">
+	 <br>
+            <div class="col-md-12">
+                <h4 class="result text-info text-left" th:if="${added}">Product added successfuly!</h4>
 
+                    <h4 class="result text-info text-left" th:if="${result}" >Thanks for buying!</h4>
+                    <h4 class="result text-info text-left" th:if="${resultRemove}">Product removed!</h4>
+                <div class="col-md-4 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
 
-     <div class="result" th:if="${result}" align="center" >
-        <h2 class="text-warning">Order Canceled!</h2>
-        <h3 class="text-light">Your payment will be returned to you.</h3>
-    </div>
+                    <!--REVIEW ORDER-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h4>Review Order</h4>
+                        </div>
+                        <div class="panel-body" th:if="${cart.productList.size()} > 0">
+                                <div class="col-md-12" th:each="product : ${cart.productList}">
+                                    <strong th:text="${product.name}" ></strong>
+                                    <div class="pull-right"><span>$</span><span th:text="${product.price}">200.00</span></div>
 
-     <div class="result" th:if="${added}" align="center" >
-        <h2 class="text-info">Thank you for buying!</h2>
-        <h3 class="text-light">New order added!</h3>
-    </div>
-
-<div th:each="userOrder: ${orders}"  style="margin-top:30px;">
-    <p>
-    <strong><span>Order Number: </span></strong><span th:text="${userOrder.id}" ></span>
-    <br />
-    <strong><span>Shipping Address: </span></strong><span th:text="${userOrder.buyer.shippingAddress.street}" ></span>
-    <br />
-    <span th:text="${userOrder.buyer.shippingAddress.city}" ></span> &nbsp;
-    <span th:text="${userOrder.buyer.shippingAddress.state}" ></span>
-    <br />
-    <span th:text="${userOrder.buyer.shippingAddress.zipCode}" ></span>
-    <br />
-    <strong><span>Ordered On: </span></strong><span th:text="${userOrder.createDate}" ></span><br />
-    <span th:if="${userOrder.deliveryDate} != null"><strong>Shipping Date</strong>
-    <span th:text="${userOrder.deliveryDate}"></span></span><br/>
-
-    <strong><span>Order Status: </span></strong><span th:text="${userOrder.status}" ></span>
-    </p>
-
-
-                <table class="table table-hover">
-                        <thead>
-                            <tr>
-								<th>item#:</th>
-                                <th>Product Name</th>
-                                <th>Seller Name</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr  th:each="prod: ${userOrder.cart.productList}">
-								<td><img class="media-object" th:src="@{${'/img/'+prod.productImage}}" style="width: 62px; height: 62px;"></td>
-                                <td><span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.name}"></span></td>
-                                <td><span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.seller.name}"></span></td>
-                                <td><span th:if="${prod.seller.id} == ${userOrder.seller.id}" th:text="${prod.price}"></span></td>
-
-                            </tr>
+                                </div>
 
 
 
-                        </tbody>
-                        <strong><h3 class="pull-right" th:text="'Total: $' + ${userOrder.total}" ></h3></strong>
-				</table>
+                                <div class="col-md-12">
+                                    <hr>
+                                    <strong>Order Total</strong>
+                                    <div class="pull-right"><span>$</span><span th:text="${cart.totalPrice}">150.00</span></div>
+                                    <hr>
+                                </div>
 
+                                <div class="col-md-12">
+                                    <strong>Credit Card Number:</strong>
+                                    <div class="pull-right"><span></span><span th:text="${creditCard.number}">150.00</span></div>
+                                    <hr>
+                                </div>
 
+                                <div class="col-md-12">
+                                    <strong>Credit Card Name:</strong>
+                                    <div class="pull-right"><span></span><span th:text="${creditCard.name}">150.00</span></div>
+                                    <hr>
+                                </div>
 
+                                <div class="col-md-12">
+                                    <strong>Card Expiry</strong>
+                                    <div class="pull-right"><span></span><span  th:text="${creditCard.validDate}"></span></div>
+                                    <hr>
+                                </div>
 
-    <span th:if="${userOrder.deliveryDate} != null" th:text="'Shipping date: ' + ${userOrder.deliveryDate}" ></span>
+                            <form th:action="@{/buyer/cart/setorder/1}" method="post">
+                                <button type="submit" class="btn btn-info btn-lg btn-block">Checkout</button>
+                            </form>
 
-    <div th:if="${userOrder.status} == 'waiting'">
+                        </div>
 
+                    </div>
+                    <!--REVIEW ORDER END-->
+                </div>
+                <div class="col-md-8 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
+                    <!--SHIPPING METHOD-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center"><h4>Current Cart</h4></div>
+                        <div class="panel-body">
+                           <table class="table borderless">
+    						<thead>
+                                <tr>
+        							<td><strong>Your Cart: # item</strong></td>
+        							<td>Price</td>
+        							<td>Seller Name:</td>
+        							<td></td>
 
-        <form  method="post" th:action="@{/buyer/order/{id}/cancel (id = ${userOrder.id})}" >
-            <input type="submit" class="btn btn-danger" value="Cancel Order" style="margin:5px 0px 10px 0px"/>
-        </form>
-    </div>
-        <a th:if="${userOrder.status} != 'waiting'" th:href="@{/files/Order-{id}.pdf (id = ${userOrder.id})}" target="_blank">Download Order</a>
-    <br />
+                                </tr>
+    						</thead>
+    						<tbody>
+    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
+    							<tr  th:each="product : ${cart.productList}">
+    								<td class="col-md-4">
+    								    <div class="media">
+    								         <a class="thumbnail pull-left" href="#"> <img class="media-object" th:src="@{${'/img/'+product.productImage}}" style="width: 72px; height: 72px;"> </a>
+    								         <div class="media-body">
+    								             <h5 class="media-heading" th:text="${product.name}"> Product Name</h5>
+    								             <h5 class="media-heading" th:text="'PR'+${product.id}"> Product Code</h5>
+    								         </div>
+    								    </div>
+    								</td>
+    								<td class="text-left" th:text="${product.price}">$10.99</td>
+    								<td class="text-left" th:text="${product.seller.name}"></td>
+                                    <form method="post" th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
+    								<td class="text-right"><button type="submit" class="btn btn-danger">Remove</button></td>
+                                    </form>
+    							</tr>
 
-    <hr>
-
-
+    						</tbody>
+    					</table>
+                        </div>
+                    </div>
+                    <!--SHIPPING METHOD END-->
+                </div>
+                </div>
+                </div>
 </div>
-
-
-
-
-
- </div>
-<!--End of Container-->
-	<!-- copyright -->
-	<div class="copy-right">
-		<div class="container">
-			<p>© 2019 MUM Express. All rights reserved /p>
-		</div>
-	</div>
-	<!-- //copyright -->
-
-	<!-- js-files -->
-	<!-- jquery -->
-	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
-	<!-- //jquery -->
-
-	<!-- popup modal (for signin & signup)-->
-	<script th:src="@{/js/jquery.magnific-popup.js}"></script>
-	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
-	</script>
-
-
-
-
-	<!-- smoothscroll -->
-	<script th:src="@{/js/SmoothScroll.min.js}"></script>
-	<!-- //smoothscroll -->
-
-	<!-- start-smooth-scrolling -->
-	<script th:src="@{/js/move-top.js}"></script>
-	<script th:src="@{/js/easing.js}"></script>
-	<script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-	</script>
-	<!-- //end-smooth-scrolling -->
-
-
-	<!-- imagezoom -->
-	<script th:src="@{/js/imagezoom.js}"></script>
-	<!-- //imagezoom -->
-
-	<!-- FlexSlider -->
-	<script th:src="@{/js/jquery.flexslider.js}"></script>
-	<script>
-		// Can also be used with $(document).ready()
-		$(window).load(function () {
-			$('.flexslider').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
-			});
-		});
-	</script>
-	<!-- //FlexSlider-->
-
-	<!-- flexisel (for special offers) -->
-	<script th:src="@{/js/jquery.flexisel.js}"></script>
-	<script>
-		$(window).load(function () {
-			$("#flexiselDemo1").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
-
-		});
-	</script>
-	<!-- //flexisel (for special offers) -->
-
-	<!-- for bootstrap working -->
-	<script th:src="@{/js/bootstrap.js}"></script>
-
-	<!-- //for bootstrap working -->
-	<!-- //js-files -->
 
 </body>
 </html>
-
-
-

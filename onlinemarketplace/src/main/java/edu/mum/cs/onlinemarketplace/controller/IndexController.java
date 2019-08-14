@@ -5,6 +5,7 @@ import edu.mum.cs.onlinemarketplace.domain.User;
 import edu.mum.cs.onlinemarketplace.service.AdsService;
 import edu.mum.cs.onlinemarketplace.service.ProductService;
 import edu.mum.cs.onlinemarketplace.service.UserService;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -59,4 +60,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/search/products")
+    public String searchProducts(@RequestParam("search")String search, Model model){
+        System.out.println("value ======"+search);
+       model.addAttribute("allProducts",productService.getProductByName(search));
+        System.out.println("products============"+productService.getProductByName(search));
+       return "index";
+    }
 }
