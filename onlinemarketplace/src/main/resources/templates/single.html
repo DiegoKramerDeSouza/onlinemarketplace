@@ -315,8 +315,16 @@
 						<li>
 							Sold and fulfilled by <span style="color:deepskyblue" th:text="${product.getSeller().getName()}"></span> .
 						</li>
-
 					</ul>
+					<div th:if="${userType.type}=='BUYER'">
+						<form th:if="${follow}==1" th:action="@{/users/follow/{uid}(uid=${product.seller.id})}" method="post">
+							<input type="submit" value="Follow"/>
+						</form>
+
+						<form th:if="${follow}==0" th:action="@{/users/unfollow/{uid}(uid=${product.seller.id})}" method="post">
+							<input type="submit" value="Unfollow"/>
+						</form>
+					</div>
 				</div>
 				<div class="product-single-w3l">
 					<p>
