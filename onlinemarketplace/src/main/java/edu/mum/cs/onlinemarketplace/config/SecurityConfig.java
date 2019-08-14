@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/",
                         "/login",
                         "/product/**",
-                        "/h2-console/**"
+                        "/h2-console/**",
                         "/search/products/**"
 
                 ).permitAll()
