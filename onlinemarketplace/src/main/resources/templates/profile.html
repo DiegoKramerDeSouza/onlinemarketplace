@@ -201,34 +201,31 @@
 						</div>
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav menu__list">
+														<ul th:if="${user.type} == 'SELLER'" class="nav navbar-nav menu__list">
 								<li class="active">
-									<a class="nav-stylehead" href="index.html">Home
+									<a class="nav-stylehead" th:href="@{/}">Home
 										<span class="sr-only">(current)</span>
 									</a>
 								</li>
 								<li class="">
-									<a class="nav-stylehead" href="about.html">Profile</a>
+									<a class="nav-stylehead" th:href="@{/products}">Products</a>
 								</li>
-
 								<li class="">
-									<a class="nav-stylehead" href="about.html">Orders</a>
+									<a class="nav-stylehead" th:href="@{/seller/orders}">Orders</a>
 								</li>
-
 								<li class="">
-									<a class="nav-stylehead" href="about.html">Products</a>
+									<a class="nav-stylehead" th:href="@{/users/followerList}">Followers</a>
 								</li>
-
 								<li class="">
-									<a class="nav-stylehead" href="about.html">Logout</a>
+									<a class="nav-stylehead" th:href="@{/profile/{id} (id = ${user.id})}">Profile</a>
 								</li>
-
-
-
-
-
+								<li class="">
+									<a class="nav-stylehead" th:href="@{/}">Logout</a>
+								</li>
 
 							</ul>
+
+
 						</div>
 					</div>
 				</nav>

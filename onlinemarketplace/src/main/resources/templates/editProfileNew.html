@@ -1,9 +1,4 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
@@ -844,9 +839,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <input type="text" th:field="*{billingAddress.street}"
                                    placeholder="Shipping street">
                         </div>
-                        <div class="">
-                            <input type="hidden" value="" th:field="*{billingAddress.city}"  placeholder="Shipping City">
-                        </div>
+
+                            <input type="hidden" value="" th:field="*{email}" th:value="${user.email}" >
+                            <input type="hidden" value="" th:field="*{password}" th:value="${user.password}">
+
                         <input type="submit" value="Change Profile">
                     </form>
                 </div>
