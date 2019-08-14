@@ -54,7 +54,9 @@ public class AdminAdsController {
 
     @PostMapping("/ads/remove/{aid}")
     public String removeUserAds(Model model, @PathVariable("aid") Long aid, RedirectAttributes redirect){
+        System.out.println("id=============="+aid);
         Ads ads = adsService.getAdsById(aid);
+        System.out.println("id=============="+aid);
         User user = ads.getUser();
         if(user != null){
             user.setHasAds(false);
