@@ -25,4 +25,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
 //    @Query("delete from Product p where p.id=:id")
 //    public void deleteById(Long id);
+
+    @Query("select p from Product p where lower(p.name) like %:name%")
+    public List<Product>getProductByName(String name);
 }
