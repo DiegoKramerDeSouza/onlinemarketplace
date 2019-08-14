@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="errorAuthorization.css">
+    <title>Not Authorized</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/errorAuthorization.css}">
 </head>
 <body>
 <div class="maincontainer">
@@ -31,7 +31,7 @@
         <img class="wing rightwing"
              src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
     </div>
-    <img class="foregroundimg" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/HauntedHouseForeground.png" alt="haunted house">
+    <img class="foregroundimg" th:src="@{https://www.blissfullemon.com/wp-content/uploads/2018/09/HauntedHouseForeground.png}" alt="haunted house">
 
 </div>
 <h1 class="errorcode">ERROR 403</h1>

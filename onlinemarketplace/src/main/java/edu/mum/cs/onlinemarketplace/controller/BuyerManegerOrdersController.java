@@ -40,14 +40,12 @@ public class BuyerManegerOrdersController {
     @GetMapping("/orders")
     public String userOrders(Model model, HttpSession session) {
 
-        //Long id = (Long) session.getAttribute("userid");
-        Long id = 2L;
-        User user = userService.getUserById(id);
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         CreditCard creditCard = user.getCreditCard();
-        List<UserOrder> orders = orderService.getOrdersByBuyerId(id);
+        List<UserOrder> orders = orderService.getOrdersByBuyerId(user.getId());
         Comparator<UserOrder> compareByStatus = (UserOrder u1, UserOrder u2) -> u1.getStatus().compareTo( u2.getStatus() );
         Collections.sort(orders, compareByStatus.reversed());
-
 
         model.addAttribute("user", user);
         model.addAttribute("creditCard", creditCard);

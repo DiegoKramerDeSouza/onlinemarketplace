@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -59,7 +60,7 @@ public class AdminController {
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller.");
-        return "redirect:/users/manageSellers";
+        return "redirect:/admin/users/manageSellers";
     }
 
     @PostMapping("/users/removeSeller/{id}")
@@ -74,7 +75,7 @@ public class AdminController {
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
         emailService.sendSimpleMessage("sanjtrital@gmail.com","Rejected","Sorry! we can't approve you as Seller");
-        return "redirect:/users/manageSellers";
+        return "redirect:/admin/users/manageSellers";
     }
 
     @GetMapping("/users/manageReviews")
@@ -87,12 +88,12 @@ public class AdminController {
         Review updateReview = reviewService.findReviewById(rid);
         updateReview.setStatus("approved");
         reviewService.save(updateReview);
-        return "redirect:/users/manageReviews";
+        return "redirect:/admin/users/manageReviews";
     }
     @PostMapping("/users/manageReview/{rid}/delete")
     public String deleteReview(@PathVariable("rid") Long rid){
         reviewService.delete(rid);
-        return "redirect:/users/manageReviews";
+        return "redirect:/admin/users/manageReviews";
     }
 
 
