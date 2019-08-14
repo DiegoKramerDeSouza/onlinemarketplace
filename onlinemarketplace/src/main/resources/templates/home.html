@@ -1,27 +1,282 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Produc View</title>
+    <!--/tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--//tags -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
+    <!--pop-up-box-->
+    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+    <!--//pop-up-box-->
+    <!-- price range -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
+    <!-- flexslider -->
+    <link rel="stylesheet" th:href="@{/css/flexslider.css}" type="text/css" media="screen" />
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <link href="@{/fonts/FontAwesome.otf}">
 </head>
+
 <body>
+<!-- top-header -->
+<div class="header-most-top">
+    <p></p>
+</div>
+<!-- //top-header -->
+<!-- header-bot-->
+<div class="header-bot">
+    <div class="header-bot_inner_wthreeinfo_header_mid">
+        <!-- header-bot-->
+        <div class="col-md-4 logo_agile">
+            <h1>
+                <a th:href="@{/}">
+                    <span>G</span>rocery
+                    <span>S</span>hoppy
+                    <img src="images/logo2.png" alt=" ">
+                </a>
+            </h1>
+        </div>
+        <!-- header-bot -->
+        <div class="col-md-8 header">
+
+            <!-- //cart details -->
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="page-head_agile_info_w3l">
+
+</div>
+<!-- //banner-2 -->
+<!-- page -->
+
+<!-- //page -->
+<!-- contact page -->
+<div class="contact-w3l">
+    <div class="container">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l">My Products
+            <span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+				</span>
+        </h3>
+        <!-- //tittle heading -->
+
+        <!-- top Products -->
+        <div class="ads-grid">
+            <div class="container">
+                <!-- tittle heading -->
+<!--                <h3 class="tittle-w3l">MY Products-->
+<!--                    <span class="heading-style">-->
+<!--					<i></i>-->
+<!--					<i></i>-->
+<!--					<i></i>-->
+<!--				</span>-->
+<!--                </h3>-->
+
+                <!-- product right -->
+                <div class="agileinfo-ads-display col-md-12">
+                    <div class="wrapper">
+                        <!-- first section (nuts) -->
+                        <div class="product-sec1">
+                            <h3 class="heading-tittle">Top Products</h3>
+                            <div th:each="prod :${productList}" class="col-md-4 product-men">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item">
+                                        <img th:src="@{${'/img/'+ prod.productImage}}">
+
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a th:href="@{/product/{pid}(pid=${prod.id})}" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+                                        <span class="product-new-top">New</span>
+                                    </div>
+                                    <div class="item-info-product ">
+                                        <h4>
+
+                                            <a th:href="@{/product/{pid}(pid=${prod.id})}" th:text="${prod.name}">Almonds, 100g</a>
+
+                                            <a href="@{/product/{pid}(pid=${prod.id})}" th:text="${prod.name}">Almonds, 100g</a>
+
+                                        </h4>
+                                        <div class="info-product-price">
+                                            <span class="item_price" th:text="'$' + ${prod.price}">$149.00</span>
+                                            <del th:text="${prod.price}"></del>
+                                        </div>
+                                        <div >
+                                            <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
+                                                <input type="submit" value="delete" class="btn btn-danger">
+                                            </form>
+                                        </div>
+                                        <br />
+                                        <div >
+                                            <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
+                                                <input type="submit" value="update" class="btn btn-info">
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
 
-        <div th:each="prod :${productList}">
+                            <div class="clearfix"></div>
+                        </div>
 
-        <p th:text="${prod.name}">Product Name</p>
-        <p th:text="${prod.price}"> Product Price</p>
-         <p><img th:src="@{../static/imgages/${prod.productImage}}"></p>
-            <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
-               <input type="submit" value="delete">
-            </form>
-
-            <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
-                <input type="submit" value="update">
-            </form>
-
+                        <!-- //fourth section (noodles) -->
+                    </div>
+                </div>
+                <!-- //product right -->
+            </div>
         </div>
 
+    </div>
+</div>
+
+<div class="copy-right">
+    <div class="container">
+        <p>© 2019 MUM Express. All rights reserved | </p>
+    </div>
+</div>
+<!-- //copyright -->
+
+<!-- js-files -->
+<!-- jquery -->
+<script src="js/jquery-2.1.4.min.js"></script>
+<!-- //jquery -->
+
+<!-- popup modal (for signin & signup)-->
+<script src="js/jquery.magnific-popup.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+</script>
+<!-- Large modal -->
+<!-- <script>
+    $('#').modal('show');
+</script> -->
+<!-- //popup modal (for signin & signup)-->
+
+<!-- cart-js -->
+<script src="js/minicart.js"></script>
+<script>
+    paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
+
+    paypalm.minicartk.cart.on('checkout', function (evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
+
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
+        }
+
+        if (total < 3) {
+            alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
+        }
+    });
+</script>
+<!-- //cart-js -->
+
+<!-- password-script -->
+<script>
+    window.onload = function () {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    }
+
+    function validatePassword() {
+        var pass2 = document.getElementById("password2").value;
+        var pass1 = document.getElementById("password1").value;
+        if (pass1 != pass2)
+            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
+</script>
+<!-- //password-script -->
+
+<!-- smoothscroll -->
+<script src="js/SmoothScroll.min.js"></script>
+<!-- //smoothscroll -->
+
+<!-- start-smooth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
+</script>
+<!-- //end-smooth-scrolling -->
+
+<!-- smooth-scrolling-of-move-up -->
+<script>
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+</script>
+<!-- //smooth-scrolling-of-move-up -->
+
+<!-- for bootstrap working -->
+<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- //js-files -->
 
 </body>
+
 </html>

@@ -31,7 +31,7 @@ public class IndexController {
     @RequestMapping(value="/")
     public String getAllProducts(Model model, HttpSession session){
 //        Long id = (Long) session.getAttribute("userid");
-        Long id = 2L;
+        Long id = 1L;
         User user = userService.getUserById(id);
         model.addAttribute("allProducts",productService.getAllProducts());
 
