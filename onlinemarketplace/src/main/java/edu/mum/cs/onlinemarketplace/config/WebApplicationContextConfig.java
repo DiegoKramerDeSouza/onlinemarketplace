@@ -53,8 +53,10 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 
 
         if (!registry.hasMappingForPattern("/img/**")) {
+//            registry.addResourceHandler("/img/**").addResourceLocations(
+//                    "classpath:/static/imgages/");
             registry.addResourceHandler("/img/**").addResourceLocations(
-                    "classpath:/static/imgages/");
+                    "file:.\\src\\main\\resources\\static\\imgages\\");
         }
 
 

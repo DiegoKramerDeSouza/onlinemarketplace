@@ -103,7 +103,7 @@
                             <div th:each="prod :${productList}" class="col-md-4 product-men">
                                 <div class="men-pro-item simpleCart_shelfItem">
                                     <div class="men-thumb-item">
-                                        <img th:src="@{${'/img/'+ prod.productImage}}">
+                                        <img th:src="@{/img/{img} (img = ${prod.productImage})}">
 
                                         <div class="men-cart-pro">
                                             <div class="inner-men-cart-pro">

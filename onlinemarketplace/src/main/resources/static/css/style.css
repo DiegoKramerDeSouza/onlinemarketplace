@@ -4937,5 +4937,12 @@ Profile CSS
             min-height:  800px;
         }
 
+        .speioffer-agile>a>img,
+        .speioffer-agile>img,
+        .men-thumb-item>img{
+            width: 130px !important;
+            height: 150px !important;
+        }
+
 
 /*--//responsive--*/
