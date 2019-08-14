@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a href="#" data-toggle="modal" data-target="#myModal1">
 							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
 					</li>
-					<li>
+					<li>afs
 						<a href="#" data-toggle="modal" data-target="#myModal2">
 							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
 					</li>
@@ -803,15 +803,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="contact-form wthree">
 						<form th:action="@{/product/?uid=1L}" th:object="${newProduct}" method="post" enctype="multipart/form-data">
 							<div class="">
+								<label>Product name:</label><br/>
 								<input type="text" th:field="*{name}" placeholder="Product Name" required=""/>
 							</div>
 							<div class="">
+								<label>Product description:</label><br/>
 								<textarea class="text" th:field="*{description}" placeholder="Product description" required=""></textarea>
 							</div>
 							<div class="">
+								<label>Product price:</label><br/>
 								<input type="text" th:field="*{price}" placeholder="Product price" required=""/>
 							</div>
 							<div class="">
+								<label>Product picture:</label><br/>
 								<input type="file" name="file" required="">
 							</div>
 							<input type="submit" value="Submit Product">
