@@ -118,7 +118,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{pid}")
-    public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model){
+    public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model, HttpSession session){
 
         Product product = productService.findById(id);
         model.addAttribute("product",product);
@@ -128,22 +128,25 @@ public class ProductController {
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 
         User user =userService.findUserById(2L);
+        //Set user data
+        if(user == null)session.setAttribute("type", "OFF");
+        else {
 
-//        Product product = productService.findById(id);
-
-        if(user.getType().equalsIgnoreCase("BUYER")){
-            List<User>follow = user.getUserList();
-            List<User>followList = follow.stream().filter(u->u.getId()==product.getSeller().getId()).collect(Collectors.toList());
-            if(followList.size()==0){
-                model.addAttribute("follow",1);
+            if (user.getType().equalsIgnoreCase("BUYER")) {
+                List<User> follow = user.getUserList();
+                List<User> followList = follow.stream().filter(u -> u.getId() == product.getSeller().getId()).collect(Collectors.toList());
+                if (followList.size() == 0) {
+                    model.addAttribute("follow", 1);
+                } else {
+                    model.addAttribute("follow", 0);
+                }
             }
-            else {
-                model.addAttribute("follow",0);
-            }
+            session.setAttribute("type", user.getType());
+            session.setAttribute("user", user);
+            model.addAttribute("userType", user);
+            model.addAttribute("product", product);
+            model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
         }
-        model.addAttribute("product",product);
-        model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
-        model.addAttribute("userType",user);
 
         return "single";
     }
