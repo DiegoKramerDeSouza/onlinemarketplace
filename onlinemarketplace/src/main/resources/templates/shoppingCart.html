@@ -8,25 +8,27 @@
 
 <h1>Shopping Cart</h1>
 
-<h2 class="result" th:if="${added}">Product added successfuly!</h2>
+    <h2 class="result" th:if="${added}">Product added successfuly!</h2>
 
-<h2 class="result" th:if="${result}">Thanks for buying!</h2>
-<h2 class="result" th:if="${resultRemove}">Product removed!</h2>
-<div align="center">
-    <div align="left" th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px;'">
-        <div th:each="product : ${cart.productList}">
-            <form method="post"
-                  th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
-                <p>
-                    <img th:src="@{/img/{photo} (photo = ${product.name} + ${product.id} + '.jpg')}"
-                         th:title="${product.name}"/> &nbsp;
-                    <span th:text="${product.name}"></span> &nbsp;
-                    <br/>
-                    <span th:text="' Price: $' + ${product.price}"></span> &nbsp;
-                    <span th:text="' Seller: ' + ${product.seller.name}"></span>
-                    <input type="submit" value="Remove"/>
-                </p>
-            </form>
+    <h2 class="result" th:if="${result}">Thanks for buying!</h2>
+    <h2 class="result" th:if="${resultRemove}">Product removed!</h2>
+    <div align="center">
+        <div align="left" th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px;'">
+            <div th:each="product : ${cart.productList}">
+                <form method="post"
+                      th:action="@{/buyer/cart/remove/{id}/{pid} (id = ${cart.id}, pid = ${product.id})}">
+                    <p>
+                        <img th:src="@{/img/{photo} (photo = ${product.productImage})}"
+                             th:title="${product.name}" /> &nbsp;
+                        <span th:text="${product.name}"></span> &nbsp;
+                        <br />
+                        <span th:text="' Price: $' + ${product.price}"></span> &nbsp;
+                        <span th:text="' Seller: ' + ${product.seller.name}"></span>
+                        <input type="submit" value="Remove" />
+                    </p>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

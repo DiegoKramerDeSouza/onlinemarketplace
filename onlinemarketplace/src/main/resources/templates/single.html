@@ -273,9 +273,9 @@
 				<div class="grid images_3_of_2">
 					<div class="flexslider">
 						<ul class="slides">
-							<li th:attr="data-thumb=@{${'/img/'+product.getProductImage()}}">
+							<li th:attr="data-thumb=@{${'/img/'+product.productImage}}">
 								<div class="thumb-image">
-									<img th:src="@{${'/img/'+product.getProductImage()}}" data-imagezoom="true" class="img-responsive" alt=""> </div>
+									<img th:src="@{${'/img/'+product.productImage}}" data-imagezoom="true" class="img-responsive" alt=""> </div>
 							</li>
 
 
