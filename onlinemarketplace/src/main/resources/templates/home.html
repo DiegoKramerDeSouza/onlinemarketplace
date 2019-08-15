@@ -1,32 +1,33 @@
-
 <!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <title>Product View</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
+
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
     </script>
     <!--//tags -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
     <!--pop-up-box-->
-    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
     <!-- flexslider -->
-    <link rel="stylesheet" th:href="@{/css/flexslider.css}" type="text/css" media="screen" />
+    <link rel="stylesheet" th:href="@{/css/flexslider.css}" type="text/css" media="screen"/>
     <!-- fonts -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
     <link href="@{/fonts/FontAwesome.otf}">
@@ -176,6 +177,7 @@
             <div class="wrapper">
                 <!-- first section (nuts) -->
                 <div class="product-sec1">
+                    <h2 align="center">Products on market</h2><br/>
                     <div th:each="prod :${productList}" class="col-md-4 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
@@ -183,7 +185,8 @@
 
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        <a th:href="@{/product/{pid}(pid=${prod.id})}" class="link-product-add-cart">Quick View</a>
+                                        <a th:href="@{/product/{pid}(pid=${prod.id})}" class="link-product-add-cart">Quick
+                                            View</a>
                                     </div>
                                 </div>
                                 <span class="product-new-top">New</span>
@@ -198,31 +201,56 @@
                                     <span class="item_price" th:text="'$' + ${prod.price}">$149.00</span>
                                     <del th:text="${prod.price}"></del>
                                 </div>
-                                <div >
+                                <div>
                                     <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
                                         <input type="submit" value="delete" class="btn btn-danger">
                                     </form>
                                 </div>
-                                <br />
-                                <div >
+                                <br/>
+                                <div>
                                     <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
                                         <input type="submit" value="update" class="btn btn-info">
                                     </form>
                                 </div>
-
                             </div>
                         </div>
+                        <span class="product-new-top">New</span>
                     </div>
+                    <div class="item-info-product ">
+                        <h4>
+                            <a th:href="@{/product/{pid}(pid=${prod.id})}">
+                                <span class="truncate-text" th:text="${prod.name}"></span>
+                            </a>
+                        </h4>
+                        <div class="info-product-price">
+                            <span class="item_price" th:text="'$' + ${prod.price}">$149.00</span>
+                            <del th:text="${prod.price}"></del>
+                        </div>
+                        <div>
+                            <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
+                                <input type="submit" value="delete" class="btn btn-danger">
+                            </form>
+                        </div>
+                        <br/>
+                        <div>
+                            <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
+                                <input type="submit" value="update" class="btn btn-info">
+                            </form>
+                        </div>
 
-
-                    <div class="clearfix"></div>
+                    </div>
                 </div>
-
-                <!-- //fourth section (noodles) -->
             </div>
+
+
+            <div class="clearfix"></div>
         </div>
-        <!-- //product right -->
+
+        <!-- //fourth section (noodles) -->
     </div>
+</div>
+<!-- //product right -->
+</div>
 </div>
 
 </div>
@@ -231,7 +259,8 @@
 <!-- FOOTER -->
 <div class="copy-right">
     <div class="container">
-        <p>&nbsp;&nbsp;&nbsp;Email: buysell@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: 641 451 85 69</p>
+        <p>&nbsp;&nbsp;&nbsp;Email: buysell@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Phone: 641 451 85 69</p>
         <p>Copyright ©2019 MUM Express. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All rights reserved.</p>
     </div>
 </div>
@@ -292,6 +321,7 @@
         document.getElementById("password1").onchange = validatePassword;
         document.getElementById("password2").onchange = validatePassword;
     }
+
     function validatePassword() {
         var pass2 = document.getElementById("password2").value;
         var pass1 = document.getElementById("password1").value;

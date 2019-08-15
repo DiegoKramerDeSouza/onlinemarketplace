@@ -1,12 +1,18 @@
 <!DOCTYPE HTML>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin Panel-Manage Ads.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="MUM Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">-->
     <link th:href="@{/admin/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
@@ -33,13 +39,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="header-main">
                 <div class="header-left">
                     <div class="logo-name">
-                        <a th:href="@{/admin/users/SellerList}"> <h1>Admin</h1>
+                        <a th:href="@{/admin/users/SellerList}"><h1>Admin</h1>
                             <!--<img id="logo" src="" alt="Logo"/>-->
                         </a>
                     </div>
                     <!--search-box-->
                     <!--//end-search-box-->
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="header-right">
 
@@ -60,26 +66,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu drp-mnu">
-                                    <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-                                    <li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                                    <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"> </div>
+                <div class="clearfix"></div>
             </div>
             <!--heder end here-->
             <!-- script-for sticky-nav -->
             <script>
-                $(document).ready(function() {
-                    var navoffeset=$(".header-main").offset().top;
-                    $(window).scroll(function(){
-                        var scrollpos=$(window).scrollTop();
-                        if(scrollpos >=navoffeset){
+                $(document).ready(function () {
+                    var navoffeset = $(".header-main").offset().top;
+                    $(window).scroll(function () {
+                        var scrollpos = $(window).scrollTop();
+                        if (scrollpos >= navoffeset) {
                             $(".header-main").addClass("fixed");
-                        }else{
+                        } else {
                             $(".header-main").removeClass("fixed");
                         }
                     });
@@ -89,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- /script-for sticky-nav -->
             <!--inner block start here-->
             <div align="center">
-                 <h1 >Ads Maintenance Page</h1>
+                <h1>Ads Maintenance Page</h1>
             </div>
             <div class="inner-block">
                 <!--mainpage chit-chating-->
@@ -99,8 +105,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="chit-chat-heading">
                             </div>
                             <div class="table-responsive">
-                                <div class="result" th:if="${added}" align="center" ><h2>Seller Ads added successfuly!</h2></div>
-                                <div class="result" th:if="${removed}" align="center" ><h2>Seller Ads removed!</h2></div>
+                                <div class="result" th:if="${added}" align="center"><h2>Seller Ads added
+                                    successfuly!</h2></div>
+                                <div class="result" th:if="${removed}" align="center"><h2>Seller Ads removed!</h2></div>
 
                                 <div align="center">
                                     <form th:action="@{/admin/manage/ads/search}" method="post">
@@ -117,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <span th:text="'Name: ' + ${user.name}"></span>
                                                 <span th:text="'Email: ' + ${user.email}"></span>
                                             </a>
-                                            <input type="submit" value="Add Seller to Ads" class="btn btn-success" />
+                                            <input type="submit" value="Add Seller to Ads" class="btn btn-success"/>
                                         </form>
                                     </div>
                                 </div>
@@ -125,16 +132,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div th:if="${notFound}" align="center">
                                     <h2>User not found!</h2>
                                 </div>
-                                <hr th:style="'width: 80%;'" />
+                                <hr th:style="'width: 80%;'"/>
                                 <div align="center">
                                     <div th:each="ads: ${adsList}" align="center"
                                          th:style="'width: 80%; border: 1px solid rgba(30,30,30,0.4); border-radius: 3px; padding: 30px;'">
                                         <div align="left">
-                                            <form  method="post" th:action="@{/admin/ads/remove/{id} (id = ${ads.id})}">
-                                                <span th:text="${ads.user.id}" ></span> &nbsp;
-                                                <span th:text="${ads.user.name}" ></span> &nbsp;
-                                                <span th:text="${ads.user.email}" ></span> &nbsp;
-                                                <input type="submit" value="Remove Ads" class="btn btn-danger" />
+                                            <form method="post" th:action="@{/admin/ads/remove/{id} (id = ${ads.id})}">
+                                                <span th:text="${ads.user.id}"></span> &nbsp;
+                                                <span th:text="${ads.user.name}"></span> &nbsp;
+                                                <span th:text="${ads.user.email}"></span> &nbsp;
+                                                <input type="submit" value="Remove Ads" class="btn btn-danger"/>
                                             </form>
                                         </div>
                                     </div>
@@ -142,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
                 <!--main page chit chating end here-->
 
@@ -157,38 +164,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!--slider menu-->
     <div class="sidebar-menu">
-        <div class="logo"> <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="#"> <span id="logo" ></span>
+        <div class="logo"><a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="#"> <span
+                id="logo"></span>
             <!--<img id="logo" src="" alt="Logo"/>-->
-        </a> </div>
+        </a></div>
         <div class="menu">
             <ul id="menu">
                 <li><a th:href="@{/users/SellerList}"><i class="a fa-home"></i><span>Home Page</span></a></li>
-                <li id="menu-home" ><a th:href="@{/admin/users/manageSellers}"><i class="fa fa-user"></i><span>Manage Sellers</span></a></li>
-                <li class="menu-home" ><a th:href="@{/admin/users/manageReviews}"><<i class="fa fa-comment-o"></i><span>Manage Reviews</span></a></li>
-                <li class="menu-home" ><a th:href="@{/admin/manage/ads}"><i class="fa fa-tachometer"></i><span>Post Ads</span></a></li>
-
+                <li id="menu-home"><a th:href="@{/admin/users/manageSellers}"><i class="fa fa-user"></i><span>Manage Sellers</span></a>
+                </li>
+                <li class="menu-home"><a th:href="@{/admin/users/manageReviews}"><<i class="fa fa-comment-o"></i><span>Manage Reviews</span></a>
+                </li>
+                <li class="menu-home"><a th:href="@{/admin/manage/ads}"><i
+                        class="fa fa-tachometer"></i><span>Post Ads</span></a></li>
 
 
             </ul>
         </div>
     </div>
-    <div class="clearfix"> </div>
+    <div class="clearfix"></div>
 </div>
 <!--slide bar menu end here-->
 <script>
     var toggle = true;
 
-    $(".sidebar-icon").click(function() {
-        if (toggle)
-        {
+    $(".sidebar-icon").click(function () {
+        if (toggle) {
             $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-            $("#menu span").css({"position":"absolute"});
-        }
-        else
-        {
+            $("#menu span").css({"position": "absolute"});
+        } else {
             $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-            setTimeout(function() {
-                $("#menu span").css({"position":"relative"});
+            setTimeout(function () {
+                $("#menu span").css({"position": "relative"});
             }, 400);
         }
         toggle = !toggle;
@@ -198,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script th:src="@{/admin/js/jquery.nicescroll.js}"></script>
 <script th:src="@{/admin/js/scripts.js}"></script>
 <!--//scrolling js-->
-<script th:src="@{/admin/js/bootstrap.js}"> </script>
+<script th:src="@{/admin/js/bootstrap.js}"></script>
 <!-- mother grid end here-->
 </body>
 </html>
