@@ -16,6 +16,7 @@
 </head>
 <body>
 
+
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <!-- header-bot-->
@@ -134,21 +135,25 @@
 </div>
 
 
-<div style="text-align: center">
+<div class="container" style="text-align: center; margin-top:70px;">
 
-    <form th:action="@{/login}" method="POST">
-        <label style="font-weight: bold">&nbsp;&nbsp;Email:
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type="text" name="email" />
-        <br/><br/>
-        <label style="font-weight: bold">&nbsp;&nbsp;Password: &nbsp;&nbsp;</label>
-        <input type="password" name="password"/>
-        <br/><br/>
-        <div>
-            <input type="checkbox" name="remember-me"/> Remember Me?<br/><br/>
+    <div class="well well-sm" style="margin: auto; height:280px;width:400px; background-color: white;">
+            <strong><h3 class="text-info text-center" style="margin:20px 0px 20px 0px; ">Login</h3></strong>
+            <form th:action="@{/login}" method="POST">
+
+                <label style="font-weight: bold">&nbsp;&nbsp;Email:
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="email" />
+                <br/><br/>
+                <label style="font-weight: bold">&nbsp;&nbsp;Password: &nbsp;&nbsp;</label>
+                <input type="password" name="password"/>
+                <br/><br/>
+                <div>
+                    <input type="checkbox" name="remember-me"/> Remember Me?<br/><br/>
+                </div>
+                <input class="btn btn-info btn-md"  type="Submit" value="Login" />
+            </form>
         </div>
-        <input class="btn btn-success"  type="Submit" value="Login" />
-    </form>
 
 </div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
