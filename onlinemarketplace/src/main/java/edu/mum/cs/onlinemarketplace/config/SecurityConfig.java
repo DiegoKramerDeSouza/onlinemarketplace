@@ -62,6 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/admin/js/**",
                         "/admin/css/**",
                         "/",
+                        "/product/**",
+                        "/addProduct",
                         "/login",
                         "/product/**",
                         "/h2-console/**",
@@ -79,9 +81,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/seller/**",
                         "/product/update/**",
                         "/product/delete/**",
-                        "/products",
-                        "/addProduct",
-                        "/product/"
+                        "/products"
+
+
                 ).hasAuthority("SELLER")
 
                 .anyRequest().authenticated() //all other urls can be access by any authenticated role

@@ -67,11 +67,12 @@ public class ProductController {
         return "addProductFormNew";
     }
 
-    @PostMapping(value = "/product/",params = "uid")
+    @PostMapping(value = "/addnewproduct")
     public String addProduct(@RequestParam String uid, HttpSession session, @Valid @ModelAttribute("newProduct") Product product, BindingResult result, Model model,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
 
-        User user = (User) session.getAttribute("user");
-        if(user == null) return "redirect:/";
+        User user1 = (User) session.getAttribute("user");
+        if(user1 == null) return "redirect:/";
+        User user = userService.findUserById(user1.getId());
         product.setCreateDate(LocalDate.now());
         product.setSeller(user);
         product.setEnable(true);
@@ -103,7 +104,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/update/{pid}")
-    public String updateProduct(Product product, @PathVariable Long pid,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
+    public String updateProduct( @ModelAttribute("updateProduct")Product product, @PathVariable Long pid,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
         Product updateProduct = productService.findById(pid);
         updateProduct.setName(product.getName());
         updateProduct.setDescription(product.getDescription());
@@ -114,10 +115,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-//    @GetMapping("/error")
-//    public String errorMsg(Model model){
-//        return "errorMsg";
-//    }
+
 
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model, HttpSession session){
