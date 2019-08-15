@@ -44,16 +44,18 @@ public class BuyerShoppingCartController {
         User user = (User) session.getAttribute("user");
         if(user == null) return "redirect:/";
         CreditCard creditCard = user.getCreditCard();
-        Cart cart = user.getCart();
+        Cart cart = cartService.getCartById(user.getCart().getId());
         if(cart == null){
             cart = cartService.newCart();
             user.setCart(cart);
             cart = user.getCart();
         }
         cart.calculateTotalPrice();
+        cart = cartService.saveCart(cart);
         model.addAttribute("cart", cart);
         model.addAttribute("user", user);
         model.addAttribute("creditCard", creditCard);
+
         return "cartNew";
     }
 
@@ -63,11 +65,15 @@ public class BuyerShoppingCartController {
                                 @PathVariable("pid") Long pid, Model model, RedirectAttributes redirect){
         Cart cart = cartService.getCartById(id);
         System.out.println(cart.getProductList());
-        List<Product> products = cart.getProductList()
-                                        .stream()
-                                        .filter(pd -> pd.getId() != pid)
-                                        .collect(Collectors.toList());
-        cart.setProductList( products);
+        Product product = productService.findById(pid);
+        List<Product> products = cart.getProductList();
+        products.remove(product);
+//        List<Product> products = cart.getProductList()
+//                                        .stream()
+//                                        .filter(pd -> pd.getId() != pid)
+//                                        .collect(Collectors.toList());
+        System.out.println(products);
+        cart.setProductList(products);
         cart.calculateTotalPrice();
         cartService.saveCart(cart);
         redirect.addFlashAttribute("resultRemove", true);

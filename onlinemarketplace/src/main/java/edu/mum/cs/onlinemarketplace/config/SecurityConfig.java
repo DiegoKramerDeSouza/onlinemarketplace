@@ -45,25 +45,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(
-                "/resources/**",
-                "/fonts/**",
-                "/js/**",
-                "/css/**",
-                "/img/**",
-                "/files/**",
-                "/pdf/**",
-                "/admin/js/**",
-                "/admin/css/**");
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/profile/**").authenticated()
                 .antMatchers(
+<<<<<<< HEAD
                         "/",
                         "/login",
                         "/product/**",
@@ -73,6 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                         "/register_input",
 
+=======
+                        "/resources/**",
+>>>>>>> 8e8441e2cc02e774882c7ae3894934bb274e88fe
                         "/fonts/**",
                         "/js/**",
                         "/css/**",
@@ -81,16 +73,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/pdf/**",
                         "/admin/js/**",
                         "/admin/css/**",
-                        "/buyer/**",
-                        "/addProduct",
+                        "/",
+                        "/login",
+                        "/product/**",
+                        "/h2-console/**",
+                        "/register_input",
                         "/register_save",
                         "/search/products/**"
 
                 ).permitAll()
 
-                .antMatchers("**/addToCart/**", "/buyer/**", "**/newReview/**", "/profile/**").hasAuthority("BUYER")
+                .antMatchers("**/addToCart/**", "/buyer/**", "**/newReview/**").hasAuthority("BUYER")
 
-                .antMatchers("/admin/**", "/profile/**").hasAuthority("ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
 
                 .antMatchers(
                         "/seller/**",
@@ -98,8 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/product/delete/**",
                         "/products",
                         "/addProduct",
-                        "/product/",
-                        "/profile/**"
+                        "/product/"
                 ).hasAuthority("SELLER")
 
                 .anyRequest().authenticated() //all other urls can be access by any authenticated role

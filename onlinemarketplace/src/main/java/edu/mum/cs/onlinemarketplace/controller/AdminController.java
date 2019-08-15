@@ -31,7 +31,15 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
 
+<<<<<<< HEAD
 
+=======
+//    @ModelAttribute("Adminuser")
+//    public User getUserInSession( HttpSession session){
+//        User user= (User) session.getAttribute("user");
+//        return userService.findUserById(user.getId());
+//    }
+>>>>>>> 8e8441e2cc02e774882c7ae3894934bb274e88fe
 
     @ModelAttribute("types")
     public List<Role> getRoles(Model model){
@@ -41,7 +49,7 @@ public class AdminController {
     @GetMapping("/users/SellerList")
     public String getAllSeller(Model model, HttpSession session){
         model.addAttribute("sellerList",sellerService.getAllSeller());
-//        System.out.println("Seller="+sellerService.getAllSeller());
+        System.out.println("Seller="+sellerService.getAllSeller());
        User user= (User) session.getAttribute("user");
        model.addAttribute("Adminuser",userService.findUserById(user.getId()));
         System.out.println("session inside Admin==="+session.getAttribute("user"));
@@ -49,9 +57,11 @@ public class AdminController {
     }
 
     @GetMapping("/users/manageSellers")
-    public String manageSellerForm(Model model){
+    public String manageSellerForm(Model model,HttpSession session){
         model.addAttribute("manageSeller",sellerService.getAllPendingSeller());
 //        System.out.println("Seller="+sellerService.getAllPendingSeller());
+        User user= (User) session.getAttribute("user");
+        model.addAttribute("Adminuser",userService.findUserById(user.getId()));
 
         return "manageSeller";
     }
@@ -86,8 +96,10 @@ public class AdminController {
     }
 
     @GetMapping("/users/manageReviews")
-    public String manageReviewForm(Model model){
+    public String manageReviewForm(Model model,HttpSession session){
         model.addAttribute("reviewList",reviewService.getAllReview());
+        User user= (User) session.getAttribute("user");
+        model.addAttribute("Adminuser",userService.findUserById(user.getId()));
         return "manageReview";
     }
     @PostMapping("/users/manageReview/{rid}/accept")

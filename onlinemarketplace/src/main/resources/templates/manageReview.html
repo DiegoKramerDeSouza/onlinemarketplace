@@ -57,8 +57,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="profile_img">
                                         <span class="prfil-img"><img src="images/p1.png" alt=""> </span>
                                         <div class="user-name">
-                                            <p>Malorum</p>
-                                            <span>Administrator</span>
+                                            <p th:text="${Adminuser.name}">Malorum</p>
+                                            <span th:text="${Adminuser.type.name}">Administrator</span>
                                         </div>
                                         <i class="fa fa-angle-down lnr"></i>
                                         <i class="fa fa-angle-up lnr"></i>
@@ -66,8 +66,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu drp-mnu">
-                                    <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                    <li><a th:href="@{/profile/{id}(id=${Adminuser.id})}"><i class="fa fa-user"></i> Profile</a></li>
+                                    <form th:action="@{/logout}" method="post">
+                                        <button type="submit"><i class="fa fa-sign-out"></i> Logout</button>
+                                    </form>
+
+<!--                                    <li><a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a></li>-->
                                 </ul>
                             </li>
                         </ul>

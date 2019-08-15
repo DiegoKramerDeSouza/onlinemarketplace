@@ -72,8 +72,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+											<li> <a th:href="@{/profile/{id}(id=${Adminuser.id})}"><i class="fa fa-user"></i> Profile</a> </li>
+											<form th:action="@{/logout}" method="post">
+                                                <input type="submit" value="Logout" class="fa fa-sign-out">
+                                            </form>
+<!--                                            <li> <a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a> </li>-->
 										</ul>
 									</li>
 								</ul>
@@ -98,8 +101,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 
 		});
 		</script>
+<<<<<<< HEAD
 		<!-- /script-for sticky-nav -->
 
+=======
+
+            <!-- /script-for sticky-nav -->
+>>>>>>> 8e8441e2cc02e774882c7ae3894934bb274e88fe
             <!--inner block start here-->
             <div class="inner-block">
                 <!--mainpage chit-chating-->
