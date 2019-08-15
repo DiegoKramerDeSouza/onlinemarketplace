@@ -214,32 +214,9 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="product-new-top">New</span>
+<!--                        <span class="product-new-top">New</span>-->
                     </div>
-                    <div class="item-info-product ">
-                        <h4>
-                            <a th:href="@{/product/{pid}(pid=${prod.id})}">
-                                <span class="truncate-text" th:text="${prod.name}"></span>
-                            </a>
-                        </h4>
-                        <div class="info-product-price">
-                            <span class="item_price" th:text="'$' + ${prod.price}">$149.00</span>
-                            <del th:text="${prod.price}"></del>
-                        </div>
-                        <div>
-                            <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
-                                <input type="submit" value="delete" class="btn btn-danger">
-                            </form>
-                        </div>
-                        <br/>
-                        <div>
-                            <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
-                                <input type="submit" value="update" class="btn btn-info">
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
+            </div>
             </div>
 
 
