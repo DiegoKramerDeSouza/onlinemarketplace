@@ -39,15 +39,18 @@ public class FollowerController {
         Long id = ((User) session.getAttribute("user")).getId();
         User me = userService.getUserById(id);
         User followerUser = userService.findUserById(uid);
+        System.out.println(me.getUserList());
+
 
         List<User> userlist = me.getUserList();
         userlist.add(followerUser);
 
-//        List<User> followlist = followerUser.getUserList();
-//        followlist.add(me);
+        List<User> followlist = followerUser.getUserList();
+        followlist.add(me);
 
         userService.saveUser(me);
-//        userService.saveUser(followerUser);
+        userService.saveUser(followerUser);
+        System.out.println(me.getUserList());
 
         return "redirect:/users/followerList";
     }
@@ -55,10 +58,8 @@ public class FollowerController {
     @PostMapping("/users/unfollow/{uid}")
     public String removeFollower(@PathVariable("uid")Long uid, HttpSession session){
 
-        User me1 = (User) session.getAttribute("user");
-        if(me1 == null) return "redirect:/";
-
-        User me = userService.findUserById(me1.getId());
+        Long id = ((User) session.getAttribute("user")).getId();
+        User me = userService.getUserById(id);
 
         User followerUser = userService.findUserById(uid);
 
