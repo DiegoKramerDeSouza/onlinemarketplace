@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,9 +23,11 @@ public class AdminAdsController {
     AdsService adsService;
 
     @GetMapping("/manage/ads")
-    public String manageAds(Model model){
+    public String manageAds(Model model, HttpSession session){
         List<Ads> ads = adsService.getAllAds();
         model.addAttribute("adsList", ads);
+        User user= (User) session.getAttribute("user");
+        model.addAttribute("Adminuser",userService.findUserById(user.getId()));
         return "adminManageADs";
     }
 
