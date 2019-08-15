@@ -42,7 +42,7 @@ public class IndexController {
         model.addAttribute("allProducts",productService.getAllProducts());
         //Get Ads
         List<Product> products = productService.getProductsFromAds();
-        if(products.size() > 0) model.addAttribute("adsProducts", products);
+        if(products != null) model.addAttribute("adsProducts", products);
 
         if(authentication != null) {
             if(!model.containsAttribute("user")){

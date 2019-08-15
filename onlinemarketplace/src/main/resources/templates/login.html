@@ -14,7 +14,7 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui1.css">
 </head>
-<body sec:authorize="!(isAuthenticated())">
+<body>
 
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
@@ -50,7 +50,7 @@
                         </button>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+                    <div sec:authorize="!(isAuthenticated())" class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
                             <li class="active">
                                 <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home
@@ -66,68 +66,66 @@
                                         class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign up</a>
                             </li>
                         </ul>
-                        <!--<ul sec:authorize="hasAuthority('SELLER')" class="nav navbar-nav menu__list">-->
-                            <!--<li class="active">-->
-                                <!--<a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home-->
-                                    <!--<span class="sr-only">(current)</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/products}"><i class="fa fa-cubes"></i> Products</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/seller/orders}"><i class="fa fa-file-text-o"></i>-->
-                                    <!--Orders</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/users/followerList}"><i class="fa fa-users"></i>-->
-                                    <!--Followers</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/profile/{id} (id = ${session.user.id})}"><i-->
-                                        <!--class="fa fa-user-circle-o"></i> Profile</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                        <!--<ul sec:authorize="hasAuthority('BUYER')" class="nav navbar-nav menu__list">-->
-                            <!--<li class="active">-->
-                                <!--<a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home-->
-                                    <!--<span class="sr-only">(current)</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/buyer/cart}"><i class="fa fa-shopping-cart"-->
-                                                                                     <!--aria-hidden="true"></i>-->
-                                    <!--Cart</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/profile/{id} (id = ${session.user.id})}"><i-->
-                                        <!--class="fa fa-user-circle-o"></i> Profile</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/buyer/orders}"><i class="fa fa-file-text-o"></i>-->
-                                    <!--Orders</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                        <!--<ul sec:authorize="hasAuthority('ADMIN')" class="nav navbar-nav menu__list">-->
-                            <!--<li class="active">-->
-                                <!--<a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home-->
-                                    <!--<span class="sr-only">(current)</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/admin/users/SellerList}"><i-->
-                                        <!--class="fa fa-user-circle-o"></i> Admin Page</a>-->
-                            <!--</li>-->
-                            <!--<li class="">-->
-                                <!--<a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
+                        <ul sec:authorize="hasAuthority('SELLER')" class="nav navbar-nav menu__list">
+                            <li class="active">
+                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" th:href="@{/products}"><i class="fa fa-cubes"></i> Products</a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" th:href="@{/seller/orders}"><i class="fa fa-file-text-o"></i>
+                                    Orders</a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" th:href="@{/users/followerList}"><i class="fa fa-users"></i>
+                                    Followers</a>
+                            </li>
+                            <li class="">
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
+                            </li>
+                        </ul>
+                        <ul sec:authorize="hasAuthority('BUYER')" class="nav navbar-nav menu__list">
+                            <li class="active">
+                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" th:href="@{/buyer/cart}"><i class="fa fa-shopping-cart"
+                                                                                     aria-hidden="true"></i>
+                                    Cart</a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" th:href="@{/buyer/orders}"><i class="fa fa-file-text-o"></i>
+                                    Orders</a>
+                            </li>
+                            <li class="">
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
+                            </li>
+                        </ul>
+                        <ul sec:authorize="hasAuthority('ADMIN')" class="nav navbar-nav menu__list">
+                            <li class="active">
+                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-home"></i> Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" th:href="@{/admin/users/SellerList}"><i
+                                        class="fa fa-user-circle-o"></i> Admin Page</a>
+                            </li>
+                            <li class="">
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -138,19 +136,19 @@
 
 <div style="text-align: center">
 
-    <span class="text-success" th:text="${confirmationMessage}"></span><br/><br/>
-<form th:action="@{/login}" method="POST">
-    <label style="font-weight: bold">&nbsp;&nbsp;Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" name="email"/><br/><br/>
-    <label style="font-weight: bold">&nbsp;&nbsp;Password: &nbsp;&nbsp;</label> <input type="password" name="password"/><br/><br/>
-    <div>
-        <input type="checkbox" name="remember-me" /> Remember Me?<br/><br/>
-    </div>
-    <button class="btn btn-info" name="Submit" value="Login" style="width: 90px; height: 40px;" type="Submit" th:text="Login"></button>
-</form>
-
-
-
-
+    <form th:action="@{/login}" method="POST">
+        <label style="font-weight: bold">&nbsp;&nbsp;Email:
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" name="email" />
+        <br/><br/>
+        <label style="font-weight: bold">&nbsp;&nbsp;Password: &nbsp;&nbsp;</label>
+        <input type="password" name="password"/>
+        <br/><br/>
+        <div>
+            <input type="checkbox" name="remember-me"/> Remember Me?<br/><br/>
+        </div>
+        <input class="btn btn-success"  type="Submit" value="Login" />
+    </form>
 
 </div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

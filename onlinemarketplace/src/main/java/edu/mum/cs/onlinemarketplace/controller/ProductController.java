@@ -79,7 +79,7 @@ public class ProductController {
 
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
-            return "addProductForm";
+            return "addProductFormNew";
         }else {
             checkfile(file, newProduct);
             productService.save(newProduct);
