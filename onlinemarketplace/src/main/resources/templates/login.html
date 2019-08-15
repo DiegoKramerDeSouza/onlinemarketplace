@@ -130,15 +130,16 @@
     </div>
 </div>
 
-<span th:text="${confirmationMessage}"></span><br/><br/>
+
 <div style="text-align: center">
+    <span class="text-success" th:text="${confirmationMessage}"></span><br/><br/>
 <form th:action="@{/login}" method="POST">
     <label style="font-weight: bold">&nbsp;&nbsp;Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" name="email"/><br/><br/>
     <label style="font-weight: bold">&nbsp;&nbsp;Password: &nbsp;&nbsp;</label> <input type="password" name="password"/><br/><br/>
     <div>
         <input type="checkbox" name="remember-me" /> Remember Me?<br/><br/>
     </div>
-    <button class="btn-success" name="Submit" value="Login" style="width: 90px; height: 40px;" type="Submit" th:text="Login"></button>
+    <button class="btn btn-info" name="Submit" value="Login" style="width: 90px; height: 40px;" type="Submit" th:text="Login"></button>
 </form>
 </div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
