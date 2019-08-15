@@ -24,9 +24,11 @@ INSERT INTO `CART` (id, total_price, active) VALUES (3, 0, true);
 
 
 INSERT INTO `USER` (id, active, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (1, true, 'First User', '$2a$10$6wt6Q1Mn/ab0BgK2gUhQ8.T5MP.6dsNt1Ugn0bCsm9QOtfoKXj9eu', 'first.user@gmail.com', 1, 2, 2, 1, 0, false, 2);
+INSERT INTO `USER` (id, active, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (5, true, 'Sanjay', '$2a$10$6wt6Q1Mn/ab0BgK2gUhQ8.T5MP.6dsNt1Ugn0bCsm9QOtfoKXj9eu', 'sanjtrital@gmail.com', 1, 2, 2, 1, 0, false, 2);
 INSERT INTO `USER` (id, active, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (2, true, 'Second User', '$2a$10$6wt6Q1Mn/ab0BgK2gUhQ8.T5MP.6dsNt1Ugn0bCsm9QOtfoKXj9eu', 'second.user@gmail.com', 1, 2, 3, 2, 0, false, 1);
 INSERT INTO `USER` (id, active, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (3, true, 'Third User', '$2a$10$6wt6Q1Mn/ab0BgK2gUhQ8.T5MP.6dsNt1Ugn0bCsm9QOtfoKXj9eu', 'third.user@gmail.com', 1, 2, 1, 3, 0, true, 3);
 INSERT INTO `USER` (id, active, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (4, true, 'John Smith', '$2a$10$6wt6Q1Mn/ab0BgK2gUhQ8.T5MP.6dsNt1Ugn0bCsm9QOtfoKXj9eu', 'ebusinessguide88@gmail.com', 1, 2, 3, 3, 0, true, 3);
+INSERT INTO `USER` (id, active, name, password, email, billing_address_id, shipping_address_id, type, credit_card_id, points, has_ads, cart_id) VALUES (6, true, 'Michel', '$2a$10$6wt6Q1Mn/ab0BgK2gUhQ8.T5MP.6dsNt1Ugn0bCsm9QOtfoKXj9eu', 'm.ch@gmail.com', 1, 2, 2, 1, 0, false , 2);
 
 
 INSERT INTO `PRODUCT` (id, name, description, price, seller_id, quantiy, product_image, enable) VALUES (1, 'Madhur', 'Product01 description', 10, 1, 2,'madhur.jpg', true);
