@@ -167,7 +167,9 @@
 
 
         <div class="row">
+
 			<h3 class="text-info" th:text="${user.getName()}+'\'s Profile'"><span></span></h3><br/>
+
             <div class="col-12">
 
 
@@ -239,10 +241,10 @@
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Something</label>
+                                                <label style="font-weight:bold;">Earning Points</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                Something
+                                                <span class="text-warning" th:text="${user.points}"></span>
                                             </div>
                                         </div>
                                         <hr />

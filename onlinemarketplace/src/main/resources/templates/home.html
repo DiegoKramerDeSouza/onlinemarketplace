@@ -12,7 +12,6 @@
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
-
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
@@ -211,23 +210,48 @@
                                                 <input type="submit" value="update" class="btn btn-info">
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
+                                <span class="product-new-top">New</span>
                             </div>
+                            <div class="item-info-product ">
+                                <h4>
+                                    <a th:href="@{/product/{pid}(pid=${prod.id})}">
+                                        <span class="truncate-text" th:text="${prod.name}"></span>
+                                    </a>
+                                </h4>
+                                <div class="info-product-price">
+                                    <span class="item_price" th:text="'$' + ${prod.price}">$149.00</span>
+                                    <del th:text="${prod.price}"></del>
+                                </div>
+                                <div >
+                                    <form th:action="@{/product/delete/{pid}(pid=${prod.id})}" method="post">
+                                        <input type="submit" value="delete" class="btn btn-danger">
+                                    </form>
+                                </div>
+                                <br />
+                                <div >
+                                    <form th:action="@{/product/update/{pid}(pid=${prod.id})}" method="get">
+                                        <input type="submit" value="update" class="btn btn-info">
+                                    </form>
+                                </div>
 
-
-                            <div class="clearfix"></div>
+                            </div>
                         </div>
-
-                        <!-- //fourth section (noodles) -->
                     </div>
+
+
+                    <div class="clearfix"></div>
                 </div>
-                <!-- //product right -->
+
+                <!-- //fourth section (noodles) -->
             </div>
         </div>
-
+        <!-- //product right -->
     </div>
+</div>
+
+</div>
 </div>
 
 <!-- FOOTER -->
@@ -259,7 +283,6 @@
             removalDelay: 300,
             mainClass: 'my-mfp-zoom-in'
         });
-
     });
 </script>
 <!-- Large modal -->
@@ -272,18 +295,15 @@
 <script src="js/minicart.js"></script>
 <script>
     paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
-
     paypalm.minicartk.cart.on('checkout', function (evt) {
         var items = this.items(),
             len = items.length,
             total = 0,
             i;
-
         // Count the number of each item in the cart
         for (i = 0; i < len; i++) {
             total += items[i].get('quantity');
         }
-
         if (total < 3) {
             alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
             evt.preventDefault();
@@ -298,7 +318,6 @@
         document.getElementById("password1").onchange = validatePassword;
         document.getElementById("password2").onchange = validatePassword;
     }
-
     function validatePassword() {
         var pass2 = document.getElementById("password2").value;
         var pass1 = document.getElementById("password1").value;
@@ -322,7 +341,6 @@
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
             event.preventDefault();
-
             $('html,body').animate({
                 scrollTop: $(this.hash).offset().top
             }, 1000);
@@ -345,7 +363,6 @@
         $().UItoTop({
             easingType: 'easeOutQuart'
         });
-
     });
 </script>
 <!-- //smooth-scrolling-of-move-up -->

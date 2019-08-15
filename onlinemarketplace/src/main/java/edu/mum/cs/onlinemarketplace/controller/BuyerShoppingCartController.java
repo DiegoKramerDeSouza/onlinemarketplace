@@ -40,23 +40,21 @@ public class BuyerShoppingCartController {
 
     @GetMapping("/cart")
     public String shoppingCart(Model model, HttpSession session){
-        //Long id = (Long) session.getAttribute("userid");
-        Long id = 2L;
-        User user = userService.getUserById(id);
+
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         CreditCard creditCard = user.getCreditCard();
         Cart cart = user.getCart();
         if(cart == null){
-//            cart = cartService.newCart();
-//            user.setCart(cart);
-            Long cartId = 1L;
-            user.setCart(cartService.getCartById(cartId));
+            cart = cartService.newCart();
+            user.setCart(cart);
             cart = user.getCart();
         }
         cart.calculateTotalPrice();
         model.addAttribute("cart", cart);
         model.addAttribute("user", user);
         model.addAttribute("creditCard", creditCard);
-        return "shoppingCart";
+        return "cartNew";
     }
 
     @PostMapping("/cart/remove/{id}/{pid}")
@@ -68,7 +66,6 @@ public class BuyerShoppingCartController {
                                         .stream()
                                         .filter(pd -> pd.getId() != pid)
                                         .collect(Collectors.toList());
-        System.out.println(products);
         cart.setProductList(products);
         cart.calculateTotalPrice();
         cartService.saveCart(cart);
@@ -79,12 +76,9 @@ public class BuyerShoppingCartController {
     @PostMapping("/cart/setorder/{cid}")
     public String setOrder(@PathVariable("cid") Long cid, HttpSession session, RedirectAttributes redirect) throws FileNotFoundException, DocumentException {
 
-        //Long id = (Long) session.getAttribute("userid");
-        Long id = 2L;
-        User user = userService.getUserById(id);
-
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         Cart cart = cartService.getCartById(cid);
-
         //Create orders by sellers
         createOrders(cart, user);
         //Disable current cart and create a new one
