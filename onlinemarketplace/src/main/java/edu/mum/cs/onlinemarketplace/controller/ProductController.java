@@ -190,17 +190,21 @@ public class ProductController {
     public String addReview(@Valid @ModelAttribute("newReview") Review review, BindingResult result, @PathVariable Long pid,
                             Model model, HttpSession session){
 
-        User user = (User) session.getAttribute("user");
-        if(user == null) return "redirect:/";
+        User user1 = (User) session.getAttribute("user");
+        if(user1 == null) return "redirect:/";
+        User user = userService.findUserById(user1.getId());
         review.setCreateDate(LocalDate.now());
         review.setProduct(productService.findById(pid));
         review.setUser(userService.findUserById(user.getId()));
 
-        if(result.hasErrors())
-            return "/product/{pid}";
+        if(result.hasErrors()){
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOR");
+            return "redirect:/";//"/product/{pid}";
+        }
         else {
+            System.out.println("SUUUUUUUUUUUUCCCESS");
             reviewService.addReview(review);
-            return "redirect:/product/{pid}";
+            return "redirect:/";///product/{pid};
         }
     }
 

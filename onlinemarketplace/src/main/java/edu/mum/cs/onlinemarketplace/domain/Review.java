@@ -16,11 +16,11 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty()
+    @NotEmpty
     @Size(min=6, max = 50)
     private String description;
     private String status;
-    @NotNull
+
     private LocalDate createDate;
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private User user;
