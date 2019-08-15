@@ -73,7 +73,7 @@ public class AdminController {
         newSeller.setStatus("Approved");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
-        emailService.sendSimpleMessage("sanjtrital@gmail.com","Accepted","Congratulations!! You are accepted as Seller.");
+        emailService.sendSimpleMessage(newSeller.getEmail(),"Accepted","Congratulations!! You are accepted as Seller.");
         return "redirect:/admin/users/manageSellers";
     }
 
@@ -89,7 +89,7 @@ public class AdminController {
 //        newSeller.setType("BUYER");
 //        System.out.println("status==============="+status);
         sellerService.save(newSeller);
-        emailService.sendSimpleMessage("sanjtrital@gmail.com","Rejected","Sorry! we can't approve you as Seller");
+        emailService.sendSimpleMessage(newSeller.getEmail(),"Rejected","Sorry! we can't approve you as Seller");
         return "redirect:/admin/users/manageSellers";
     }
 

@@ -28,7 +28,8 @@ public class UserprofileController {
     @GetMapping("/profile/{id}")
     public String getUserProfile(@PathVariable(value = "id", required = false) Long id, Model model, HttpSession session){
 
-        User user = (User) session.getAttribute("user");
+//        User user = (User) session.getAttribute("user");
+        User user = userService.findUserById(id);
         if(user == null) return "redirect:/";
         model.addAttribute("user", user);
         model.addAttribute("shippingAddress", user.getShippingAddress());
