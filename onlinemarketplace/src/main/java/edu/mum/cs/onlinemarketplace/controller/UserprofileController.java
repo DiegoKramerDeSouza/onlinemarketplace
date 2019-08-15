@@ -28,10 +28,11 @@ public class UserprofileController {
     @GetMapping("/profile/{id}")
     public String getUserProfile(@PathVariable(value = "id", required = false) Long id, Model model, HttpSession session){
 
-//        User user = (User) session.getAttribute("user");
+        User sessionuser = (User) session.getAttribute("user");
         User user = userService.findUserById(id);
         if(user == null) return "redirect:/";
         model.addAttribute("user", user);
+        model.addAttribute("sessionUser",sessionuser);
         model.addAttribute("shippingAddress", user.getShippingAddress());
         model.addAttribute("billingAddress", user.getBillingAddress());
 //        model.addAttribute("addresses", addressService.getAddressByUserId(id));
