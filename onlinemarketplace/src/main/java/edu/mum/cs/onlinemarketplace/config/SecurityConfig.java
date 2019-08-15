@@ -88,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/product/**",
                         "/products/**",
                         "/addProduct/**"
+
                 ).hasAuthority("SELLER")
 
                 .anyRequest().authenticated() //all other urls can be access by any authenticated role

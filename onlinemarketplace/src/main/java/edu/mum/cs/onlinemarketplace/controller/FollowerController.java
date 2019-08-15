@@ -28,11 +28,13 @@ public class FollowerController {
         Long id = ((User) session.getAttribute("user")).getId();
         List<User> userList = userService.getUserById(id).getUserList();
         model.addAttribute("followerList",userList);
+
         return "followerList";
     }
 
     @PostMapping("/users/follow/{uid}")
     public String addFollower(@PathVariable("uid")Long uid, HttpSession session){
+
 
         Long id = ((User) session.getAttribute("user")).getId();
         User me = userService.getUserById(id);
@@ -53,8 +55,11 @@ public class FollowerController {
     @PostMapping("/users/unfollow/{uid}")
     public String removeFollower(@PathVariable("uid")Long uid, HttpSession session){
 
-        User me = (User) session.getAttribute("user");
-        if(me == null) return "redirect:/";
+        User me1 = (User) session.getAttribute("user");
+        if(me1 == null) return "redirect:/";
+
+        User me = userService.findUserById(me1.getId());
+
         User followerUser = userService.findUserById(uid);
 
         List<User> userlist = me.getUserList();

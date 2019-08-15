@@ -240,6 +240,8 @@
                                         </div>
                                     </div>
                                     <hr/>
+
+
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
                                             <label style="font-weight:bold;">Earning Points</label>
@@ -249,9 +251,40 @@
                                         </div>
                                     </div>
                                     <hr/>
+<!--                                    <h5>Payment Details</h5>-->
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Credit Card Number:</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <span class="text-warning" th:text="${user.getCreditCard().number}"></span>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Credit Card Name:</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <span class="text-warning" th:text="${user.getCreditCard().name}"></span>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Card Validity:</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <span class="text-warning" th:text="${user.getCreditCard().validDate}"></span>
+                                        </div>
+                                    </div>
+
+
 
                                     <form th:action="@{/profile/{uid}/edit(uid=${user.id})}" method="get">
-                                        <div>
+                                        <div style="margin-top:5px;">
 
                                             <div class="col-md-8 col-6">
 

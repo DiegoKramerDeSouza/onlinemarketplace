@@ -103,6 +103,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/update/{pid}")
+
     public String updateProduct(Product product, @PathVariable Long pid,@RequestParam(value = "file",required = false) MultipartFile file, HttpSession session) throws IOException {
         Product updateProduct = productService.findById(pid);
         updateProduct.setName(product.getName());
@@ -123,10 +124,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-//    @GetMapping("/error")
-//    public String errorMsg(Model model){
-//        return "errorMsg";
-//    }
+
 
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model, HttpSession session){

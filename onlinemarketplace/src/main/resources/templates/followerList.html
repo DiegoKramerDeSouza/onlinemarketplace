@@ -108,7 +108,9 @@
                                         class="fa fa-user-circle-o"></i> Profile</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
                             </li>
                         </ul>
                         <ul sec:authorize="hasAuthority('BUYER')" class="nav navbar-nav menu__list">
@@ -131,7 +133,9 @@
                                     Orders</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
                             </li>
                         </ul>
                         <ul sec:authorize="hasAuthority('ADMIN')" class="nav navbar-nav menu__list">
@@ -145,7 +149,9 @@
                                         class="fa fa-user-circle-o"></i> Admin Page</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -193,7 +199,6 @@
                             </thead>
                             <tbody th:each="follower : ${followerList}">
                             <tr th:if="${follower.name}=='BUYER'">
-                                <h1>You are following</h1>
                                 <td th:text="${follower.id}">Id</td>
                                 <td th:text="${follower.name}">Name</td>
                                 <td th:text="${follower.email}">Email</td>
@@ -201,7 +206,6 @@
                                     Profile</a></td>
                             </tr>
                             <tr th:unless="${follower.name}=='BUYER'">
-                                <h1>Your are following</h1>
                                 <td th:text="${follower.id}">Id</td>
                                 <td th:text="${follower.name}">Name</td>
                                 <td th:text="${follower.email}">Email</td>
