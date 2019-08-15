@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,9 +19,9 @@ public class Cart {
 
     private boolean active;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable
-    private List<Product>productList;
+    private List<Product> productList;
 
     @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "cart")
     private User buyer;
@@ -29,12 +31,15 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" +
-                "id=" + id +
-                ", totalPrice=" + totalPrice +
-                ", active=" + active +
-                ", productList=" + productList +
-                ", buyer=" + buyer +
-                '}';
+//        return "Cart{" +
+////                "id=" + id +
+////                ", totalPrice=" + totalPrice +
+////                ", active=" + active +
+////                ", productList=" + productList +
+////                ", buyer=" + buyer +
+////                '}';
+        return "price";
     }
+
+
 }

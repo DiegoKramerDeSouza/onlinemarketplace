@@ -66,7 +66,7 @@ public class BuyerShoppingCartController {
                                         .stream()
                                         .filter(pd -> pd.getId() != pid)
                                         .collect(Collectors.toList());
-        cart.setProductList(products);
+        cart.setProductList( products);
         cart.calculateTotalPrice();
         cartService.saveCart(cart);
         redirect.addFlashAttribute("resultRemove", true);

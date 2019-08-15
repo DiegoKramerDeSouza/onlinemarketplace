@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -77,19 +78,20 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", type='" + type.getName() + '\'' +
-                ", status='" + status + '\'' +
-                ", createDate=" + createDate +
-                ", points=" + points +
-                ", billingAddress=" + billingAddress.getZipCode() +
-                ", shippingAddress=" + shippingAddress.getZipCode() +
-                ", cart=" + cart.getId() +
-                ", creditCard=" + creditCard.getId() +
-                '}';
+//        return "User{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", type='" + type.getName() + '\'' +
+//                ", status='" + status + '\'' +
+//                ", createDate=" + createDate +
+//                ", points=" + points +
+//                ", billingAddress=" + billingAddress.getZipCode() +
+//                ", shippingAddress=" + shippingAddress.getZipCode() +
+//                ", cart=" + cart.getId() +
+//                ", creditCard=" + creditCard.getId() +
+//                '}';
+        return name;
     }
 }

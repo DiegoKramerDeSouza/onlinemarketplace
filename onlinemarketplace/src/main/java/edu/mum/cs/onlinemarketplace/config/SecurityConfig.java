@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/login",
                         "/product/**",
                         "/h2-console/**",
-
+                        "/register_input",
                         "/fonts/**",
                         "/js/**",
                         "/css/**",
@@ -79,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/admin/css/**",
                         "/buyer/**",
                         "/addProduct",
-
+                        "/register_save",
                         "/search/products/**"
 
                 ).permitAll()
