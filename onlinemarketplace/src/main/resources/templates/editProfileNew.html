@@ -181,40 +181,58 @@
                         <div class="">
                             <label>Full Name</label><br/>
                             <input type="text" th:field="*{name}" placeholder="Full name">
+                            <p th:if="${#fields.hasErrors('name')}" class="error" th:errors="*{name}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Shipping State</label><br/>
                             <input type="text" th:field="*{shippingAddress.state}" placeholder="Shipping State">
+                            <p th:if="${#fields.hasErrors('shippingAddress.state')}" class="error" th:errors="*{shippingAddress.state}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Shipping ZipCode</label><br/>
                             <input type="text" th:field="*{shippingAddress.zipCode}" id="zipCode">
+                            <p th:if="${#fields.hasErrors('shippingAddress.zipCode')}" class="error" th:errors="*{shippingAddress.zipCode}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Shipping City</label><br/>
                             <input type="text" th:field="*{shippingAddress.city}" id="city" placeholder="Shipping City">
+                            <p th:if="${#fields.hasErrors('shippingAddress.city')}" class="error" th:errors="*{shippingAddress.city}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Shipping Street</label><br/>
                             <input type="text" th:field="*{shippingAddress.street}" id="street"
                                    placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('shippingAddress.street')}" class="error" th:errors="*{shippingAddress.street}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Billing State</label><br/>
                             <input type="text" th:field="*{billingAddress.state}" placeholder="Shipping State">
+                            <p th:if="${#fields.hasErrors('billingAddress.state')}" class="error" th:errors="*{billingAddress.state}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Billing ZipCode</label><br/>
                             <input type="text" th:field="*{billingAddress.zipCode}">
+                            <p th:if="${#fields.hasErrors('billingAddress.zipCode')}" class="error" th:errors="*{billingAddress.zipCode}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Billing City</label><br/>
                             <input type="text" th:field="*{billingAddress.city}" placeholder="Shipping City">
+                            <p th:if="${#fields.hasErrors('billingAddress.city')}" class="error" th:errors="*{billingAddress.city}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
                         <div class="">
                             <label>Billing Street</label><br/>
                             <input type="text" th:field="*{billingAddress.street}"
                                    placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{billingAddress.street}"
+                               th:errorclass="fieldError">Error</p>
                         </div>
 
                         <input type="hidden" value="" th:field="*{email}" th:value="${user.email}">

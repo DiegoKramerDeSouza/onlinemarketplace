@@ -42,7 +42,6 @@ public class SignupController {
         return "redirect:/";
     }
 
-    @LogAnnotation
     @RequestMapping(value = "/register_save")
     public String registerSave(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
                                Model model, RedirectAttributes ra) {

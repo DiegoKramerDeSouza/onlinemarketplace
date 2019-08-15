@@ -63,6 +63,7 @@ public class AdminController {
         return "redirect:/admin/users/manageSellers";
     }
 
+    @LogAnnotation
     @PostMapping("/users/removeSeller/{id}")
     public String removeSeller(@PathVariable("id")Long id){
         User newSeller = sellerService.findUserBySellerId(id);
