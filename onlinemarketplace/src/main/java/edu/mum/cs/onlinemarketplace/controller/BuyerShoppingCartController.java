@@ -85,17 +85,18 @@ public class BuyerShoppingCartController {
 
         User user = (User) session.getAttribute("user");
         if(user == null) return "redirect:/";
-        Cart cart = cartService.getCartById(cid);
+        Cart cart = userService.getUserById(user.getId()).getCart();
         //Create orders by sellers
         createOrders(cart, user);
         //Disable current cart and create a new one
         cart.setActive(false);
-        cartService.saveCart(cart);
+        cart = cartService.saveCart(cart);
+        System.out.println(cart.getProductList());
         Cart newCart = cartService.newCart();
         //Update buyer cart
         user.setCart(newCart);
-        session.setAttribute("cartId", user.getCart().getId());
-        userService.saveUser(user);
+        session.setAttribute("cartId", newCart.getId());
+        user = userService.saveUser(user);
 
         redirect.addFlashAttribute("added", true);
         return "redirect:/buyer/orders";
@@ -103,6 +104,7 @@ public class BuyerShoppingCartController {
 
     private void createOrders(Cart cart, User user) throws FileNotFoundException, DocumentException {
         //Divide products by sellers
+        System.out.println("CART ID:  ---->" + cart.getId());
         HashMap<Long, List<Product>> mapProducts = new HashMap<>();
         List<Long> seller = cart.getProductList().stream().map(prod -> prod.getSeller().getId()).collect(Collectors.toList());
         Set<Long> sellersId = new HashSet<>(seller);

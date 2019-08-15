@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +44,8 @@ public class SellerManagerOrdersController {
 
         User user = (User) session.getAttribute("user");
         if(user == null) return "redirect:/";
-        model.addAttribute("orders", orderService.getOrdersBySellerId(user.getId()));
+        List<UserOrder> orders = orderService.getOrdersBySellerId(user.getId());
+        model.addAttribute("orders", orders);
         return "sellerManageOrders";
     }
 

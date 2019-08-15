@@ -67,11 +67,11 @@ public class ProductController {
         return "addProductFormNew";
     }
 
-    @PostMapping(value = "/product/",params = "uid")
-    public String addProduct(@RequestParam String uid, HttpSession session, @Valid @ModelAttribute("newProduct") Product product, BindingResult result, Model model,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
+    @RequestMapping(value = "/product/add/new")
+    public String addProduct(HttpSession session, @Valid @ModelAttribute("newProduct") Product product, BindingResult result, Model model,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
 
-        User user = (User) session.getAttribute("user");
-        if(user == null) return "redirect:/";
+        Long id = ((User) session.getAttribute("user")).getId();
+        User user = userService.getUserById(id);
         product.setCreateDate(LocalDate.now());
         product.setSeller(user);
         product.setEnable(true);

@@ -46,7 +46,7 @@ public class BuyerManegerOrdersController {
         List<UserOrder> orders = orderService.getOrdersByBuyerId(user.getId());
         Comparator<UserOrder> compareByStatus = (UserOrder u1, UserOrder u2) -> u1.getStatus().compareTo( u2.getStatus() );
         Collections.sort(orders, compareByStatus.reversed());
-
+        System.out.println(orders);
         model.addAttribute("user", user);
         model.addAttribute("creditCard", creditCard);
         model.addAttribute("orders", orders);

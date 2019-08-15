@@ -177,8 +177,7 @@
         <div class="contact agileits">
             <div class="contact-agileinfo">
                 <div class="contact-form wthree">
-                    <form th:action="@{/product/?uid=1L}" th:object="${newProduct}" method="post"
-                          enctype="multipart/form-data">
+                    <form th:action="@{/product/add/new}" th:object="${newProduct}" method="post" enctype="multipart/form-data">
                         <div class="">
                             <input type="text" th:field="*{name}" placeholder="Product Name" required=""/>
                         </div>
