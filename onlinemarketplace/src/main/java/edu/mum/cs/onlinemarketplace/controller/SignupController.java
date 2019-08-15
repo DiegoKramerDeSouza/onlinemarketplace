@@ -70,9 +70,7 @@ public class SignupController {
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String getLogin(HttpSession session) {
-        User user = (User)session.getAttribute("user");
-        if(user == null) return "login";
-        return "redirect:/";
+    public String getLogin(HttpSession session, Model model) {
+        return "login";
     }
 }
