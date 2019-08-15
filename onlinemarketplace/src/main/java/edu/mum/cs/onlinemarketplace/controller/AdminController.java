@@ -31,15 +31,13 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
 
-<<<<<<< HEAD
 
-=======
 //    @ModelAttribute("Adminuser")
 //    public User getUserInSession( HttpSession session){
 //        User user= (User) session.getAttribute("user");
 //        return userService.findUserById(user.getId());
 //    }
->>>>>>> 8e8441e2cc02e774882c7ae3894934bb274e88fe
+
 
     @ModelAttribute("types")
     public List<Role> getRoles(Model model){
