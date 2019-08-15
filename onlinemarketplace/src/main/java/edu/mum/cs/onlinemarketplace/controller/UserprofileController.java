@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -26,10 +27,10 @@ public class UserprofileController {
     AddressService addressService;
 
     @GetMapping("/profile/{id}")
-    public String getUserProfile(@PathVariable("id") Long id, Model model){
+    public String getUserProfile(@PathVariable(value = "id", required = false) Long id, Model model, HttpSession session){
 
-
-        User user = userService.getUserById(id);
+        User user = (User) session.getAttribute("user");
+        if(user == null) return "redirect:/";
         model.addAttribute("user", user);
         model.addAttribute("shippingAddress", user.getShippingAddress());
         model.addAttribute("billingAddress", user.getBillingAddress());
@@ -38,14 +39,18 @@ public class UserprofileController {
     }
 
     @GetMapping("/profile/{id}/edit")
-    public String getEditProfile(@ModelAttribute("user") User user,@PathVariable  Long id, Model model){
-        model.addAttribute("user",userService.getUserById(id));
+    public String getEditProfile(@ModelAttribute("user") User user,@PathVariable  Long id, Model model, HttpSession session){
+        User objUser = (User)session.getAttribute("user");
+        if(user == null) return "redirect:/";
+        model.addAttribute("user", objUser);
         return "editProfileNew";
     }
 
     @PostMapping("/profile/{id}/update")
-    public String updateProfile(@Valid @ModelAttribute("user")User user, @PathVariable Long id, BindingResult result, Model model){
-        User u = userService.getUserById(id);
+    public String updateProfile(@Valid @ModelAttribute("user")User user, @PathVariable Long id, BindingResult result,
+                                Model model, HttpSession session){
+        User u = (User)session.getAttribute("user");
+        if(user == null) return "redirect:/";
         u.setName(user.getName());
         u.setCreditCard(user.getCreditCard());
         u.setShippingAddress(user.getShippingAddress());

@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="header-main">
                 <div class="header-left">
                     <div class="logo-name">
-                        <a th:href="@{/users/SellerList}"> <h1>Admin</h1>
+                        <a th:href="@{/admin/users/SellerList}"> <h1>Admin</h1>
                             <!--<img id="logo" src="" alt="Logo"/>-->
                         </a>
                     </div>
@@ -117,11 +117,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <td th:text="${review.product.seller.name}">Seller Name</td>
                                         <td th:text="${review.description}">Description</td>
                                         <td th:text="${review.user.name}">Buyer Name</td>
-                                        <td> <form th:action="@{/users/manageReview/{rid}/accept(rid=${review.id})}" method="post">
+                                        <td> <form th:action="@{/admin/users/manageReview/{rid}/accept(rid=${review.id})}" method="post">
                                             <input type="submit" value="Accept Review" class="btn btn-success"/>
                                         </form></td>
 
-                                        <td> <form  th:action="@{/users/manageReview/{rid}/delete(rid=${review.id})}" method="post">
+                                        <td> <form  th:action="@{/admin/users/manageReview/{rid}/delete(rid=${review.id})}" method="post">
                                             <input type="submit" value="Deny Review" class="btn btn-danger"/>
                                         </form></td>
                                     </tr>
@@ -152,9 +152,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a> </div>
         <div class="menu">
             <ul id="menu">
-                <li><a th:href="@{/users/SellerList}"><i class="a fa-home"></i><span>Home Page</span></a></li>
-                <li id="menu-home" ><a th:href="@{/users/manageSellers}"><i class="fa fa-user"></i><span>Manage Sellers</span></a></li>
-                <li class="menu-home" ><a th:href="@{/users/manageReviews}"><i class="fa fa-comment-o"></i><span>Manage Reviews</span></a></li>
+                <li><a th:href="@{/admin/users/SellerList}"><i class="a fa-home"></i><span>Home Page</span></a></li>
+                <li id="menu-home" ><a th:href="@{/admin/users/manageSellers}"><i class="fa fa-user"></i><span>Manage Sellers</span></a></li>
+                <li class="menu-home" ><a th:href="@{/admin/users/manageReviews}"><i class="fa fa-comment-o"></i><span>Manage Reviews</span></a></li>
                 <li class="menu-home" ><a th:href="@{/admin/manage/ads}"><i class="fa fa-tachometer"></i><span>Post Ads</span></a></li>
 
 

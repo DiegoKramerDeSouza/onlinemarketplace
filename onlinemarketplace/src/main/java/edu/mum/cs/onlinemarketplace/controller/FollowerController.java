@@ -20,19 +20,19 @@ public class FollowerController {
     @Autowired
     private SellerService sellerService;
     @GetMapping("/users/followerList")
-    public String getFollowerList(Model model){
-//Get seller id from session
-        Long sid = 1L;
-        User findFollowers= userService.findUserById(sid);
-        model.addAttribute("followerList",findFollowers.getUserList());
+    public String getFollowerList(Model model, HttpSession session){
+        //Get seller id from session
+        User me = (User) session.getAttribute("user");
+        if(me == null) return "redirect:/";
+        model.addAttribute("followerList",me.getUserList());
         return "followerList";
     }
 
     @PostMapping("/users/follow/{uid}")
     public String addFollower(@PathVariable("uid")Long uid, HttpSession session){
-//        Long id = (Long) session.getAttribute("userid");
-        Long id = 2L;
-        User me = userService.getUserById(id);
+
+        User me = (User) session.getAttribute("user");
+        if(me == null) return "redirect:/";
         User followerUser = userService.findUserById(uid);
 
         List<User> userlist = me.getUserList();
@@ -48,9 +48,9 @@ public class FollowerController {
     }
     @PostMapping("/users/unfollow/{uid}")
     public String removeFollower(@PathVariable("uid")Long uid, HttpSession session){
-//        Long id = (Long) session.getAttribute("userid");
-        Long id = 2L;
-        User me = userService.getUserById(id);
+
+        User me = (User) session.getAttribute("user");
+        if(me == null) return "redirect:/";
         User followerUser = userService.findUserById(uid);
 
         List<User> userlist = me.getUserList();
@@ -64,4 +64,5 @@ public class FollowerController {
 
         return "redirect:/users/followerList";
     }
+
 }
