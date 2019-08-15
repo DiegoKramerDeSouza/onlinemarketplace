@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -129,8 +133,9 @@
     </div>
 </div>
 
-<span th:text="${confirmationMessage}"></span><br/><br/>
+
 <div style="text-align: center">
+
     <form th:action="@{/login}" method="POST">
         <label style="font-weight: bold">&nbsp;&nbsp;Email:
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
@@ -144,6 +149,7 @@
         </div>
         <input class="btn btn-success"  type="Submit" value="Login" />
     </form>
+
 </div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
