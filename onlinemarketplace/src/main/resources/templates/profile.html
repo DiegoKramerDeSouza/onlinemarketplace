@@ -281,9 +281,7 @@
                                         </div>
                                     </div>
 
-
-
-                                    <form th:action="@{/profile/{uid}/edit(uid=${user.id})}" method="get">
+                                    <form th:if="${user.id}==${sessionUser.id}" th:action="@{/profile/{uid}/edit(uid=${user.id})}" method="get">
                                         <div style="margin-top:5px;">
 
                                             <div class="col-md-8 col-6">
