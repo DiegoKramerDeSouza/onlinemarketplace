@@ -80,8 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/buyer/**",
                         "/addProduct",
 
-                        "/h2-console/**"
-
                         "/search/products/**"
 
                 ).permitAll()
