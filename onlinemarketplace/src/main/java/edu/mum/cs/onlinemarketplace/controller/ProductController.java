@@ -114,10 +114,10 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @GetMapping("/error")
-    public String errorMsg(Model model){
-        return "errorMsg";
-    }
+//    @GetMapping("/error")
+//    public String errorMsg(Model model){
+//        return "errorMsg";
+//    }
 
     @GetMapping("/product/{pid}")
     public String viewProduct(@ModelAttribute("newReview") Review review, @PathVariable("pid")Long id, Model model, HttpSession session){
@@ -165,10 +165,10 @@ public class ProductController {
 
         User user = (User) session.getAttribute("user");
         if(user == null) return "redirect:/";
-        Cart cart = user.getCart();
+        Cart cart = cartService.getCartById(user.getCart().getId());
         Product product = productService.findById(pid);
         cart.getProductList().add(product);
-        cartService.saveCart(cart);
+        cart = cartService.saveCart(cart);
         redirect.addFlashAttribute("added", true);
         return "redirect:/buyer/cart";
     }
