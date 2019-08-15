@@ -46,6 +46,7 @@ public class FollowerController {
 
         return "redirect:/users/followerList";
     }
+    @LogAnnotation
     @PostMapping("/users/unfollow/{uid}")
     public String removeFollower(@PathVariable("uid")Long uid, HttpSession session){
 

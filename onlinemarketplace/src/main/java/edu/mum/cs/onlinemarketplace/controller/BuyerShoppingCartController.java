@@ -57,6 +57,7 @@ public class BuyerShoppingCartController {
         return "cartNew";
     }
 
+    @LogAnnotation
     @PostMapping("/cart/remove/{id}/{pid}")
     public String removeProduct(@PathVariable("id") Long id,
                                 @PathVariable("pid") Long pid, Model model, RedirectAttributes redirect){
