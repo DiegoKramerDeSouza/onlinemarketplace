@@ -129,13 +129,22 @@ public class ProductController {
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 
-        User user = (User) session.getAttribute("user");
+        User user1 = (User) session.getAttribute("user");
+        User user = userService.findUserById(user1.getId());
+//        User user = userService.findUserById(2L);
+        System.out.println("Session inside product is ="+user);
         //Set user data
-        if(user == null)session.setAttribute("type", "OFF");
+        if(user == null){
+            session.setAttribute("type", "OFF");
+            System.out.println(" inside if Session inside product is ="+user.getType());
+        }
         else {
 
             if (user.getType().getName().equalsIgnoreCase("BUYER")) {
+                System.out.println(" inside else Session inside product is ="+user.getUserList().toString());
+
                 List<User> follow = user.getUserList();
+                System.out.println("followers==="+follow);
                 List<User> followList = follow.stream().filter(u -> u.getId() == product.getSeller().getId()).collect(Collectors.toList());
                 if (followList.size() == 0) {
                     model.addAttribute("follow", 1);

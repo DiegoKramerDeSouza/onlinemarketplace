@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -36,9 +37,12 @@ public class AdminController {
     }
 
     @GetMapping("/users/SellerList")
-    public String getAllSeller(Model model){
+    public String getAllSeller(Model model, HttpSession session){
         model.addAttribute("sellerList",sellerService.getAllSeller());
 //        System.out.println("Seller="+sellerService.getAllSeller());
+       User user= (User) session.getAttribute("user");
+       model.addAttribute("Adminuser",userService.findUserById(user.getId()));
+        System.out.println("session inside Admin==="+session.getAttribute("user"));
         return "adminHome";
     }
 
