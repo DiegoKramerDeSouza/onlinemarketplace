@@ -199,7 +199,6 @@
                             </thead>
                             <tbody th:each="follower : ${followerList}">
                             <tr th:if="${follower.name}=='BUYER'">
-                                <h1>You are following</h1>
                                 <td th:text="${follower.id}">Id</td>
                                 <td th:text="${follower.name}">Name</td>
                                 <td th:text="${follower.email}">Email</td>
@@ -207,7 +206,6 @@
                                     Profile</a></td>
                             </tr>
                             <tr th:unless="${follower.name}=='BUYER'">
-                                <h1>Your are following</h1>
                                 <td th:text="${follower.id}">Id</td>
                                 <td th:text="${follower.name}">Name</td>
                                 <td th:text="${follower.email}">Email</td>
