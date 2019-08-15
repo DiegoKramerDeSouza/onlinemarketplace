@@ -235,6 +235,30 @@
                                th:errorclass="fieldError">Error</p>
                         </div>
 
+                         <div class="">
+                            <label>Credit Number</label><br/>
+                            <input type="text" th:field="*{creditCard.number}"
+                                   placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{creditCard.number}"
+                               th:errorclass="fieldError">Error</p>
+                        </div>
+
+                        <div class="">
+                            <label>Credit Name</label><br/>
+                            <input type="text" th:field="*{creditCard.name}"
+                                   placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{creditCard.number}"
+                               th:errorclass="fieldError">Error</p>
+                        </div>
+
+                          <div class="">
+                            <label>Credit Card Validity</label><br/>
+                            <input type="text" th:field="*{creditCard.validDate}"
+                                   placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{creditCard.number}"
+                               th:errorclass="fieldError">Error</p>
+                        </div>
+
                         <input type="hidden" value="" th:field="*{email}" th:value="${user.email}">
                         <input type="hidden" value="" th:field="*{password}" th:value="${user.password}">
 
