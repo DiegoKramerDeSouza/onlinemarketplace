@@ -254,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <br/>
                 <div class="">
                     <label>Billing City:</label><br/>
-                    <input type="text" id="billingAddress_city" th:field="*{billingAddress.city}" placeholder="city"> class="form-control"
+                    <input type="text" id="billingAddress_city" th:field="*{billingAddress.city}" placeholder="city" class="form-control"/>
                     <p th:if="${#fields.hasErrors('billingAddress.city')}" class="error"
                        th:errors="*{billingAddress.city}" th:errorclass="fieldError">Error</p>
                 </div>

@@ -138,6 +138,9 @@ public class ProductController {
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 
+        if(session.getAttribute("user")!=null){
+
+
         Long uid = ((User) session.getAttribute("user")).getId();
         User user = userService.getUserById(uid);
 
@@ -164,6 +167,7 @@ public class ProductController {
             session.setAttribute("user", user);
             model.addAttribute("product", product);
             model.addAttribute("reviews", reviewService.getReviewsByProduct(id));
+        }
         }
         return "single";
     }
