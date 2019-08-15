@@ -152,13 +152,15 @@
     <div class="container">
             <div class="grid_3 grid_5 w3ls">
                         <h3>Notifications</h3>
-						<div th:each="u: ${userLists}">
+<!--						<div th:each="u: ${userLists}">-->
 
-							<div th:if="${u.getId()==1}" class="alert alert-success" role="alert">
-								<strong th:text="${newProduct} +'Uploaded !!!'"></strong> <a th:href="@{/}"> Click Here </a> to check surprise Deals.
-							</div>
+<!--							<div th:if="${u.getId()==user.id}" class="alert alert-success" role="alert">-->
+<!--								<strong th:text="${newProduct.name} +'Uploaded !!!'"></strong> <a th:href="@{/}"> Click Here </a> to check surprise Deals.-->
+<!--							</div>-->
 
-						</div>
+<!--						</div>-->
+
+				<span th:text="${newProduct.name}"></span>
 
             </div>
     </div>

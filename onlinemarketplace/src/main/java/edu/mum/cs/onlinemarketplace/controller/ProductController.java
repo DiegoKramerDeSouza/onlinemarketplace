@@ -114,10 +114,12 @@ public class ProductController {
         productService.save(updateProduct);
 
 
-//        User sellerObject = updateProduct.getSeller();
-//        List<User> followersList = sellerObject.getUserList();
-//        session.setAttribute("notifyUsers", followersList);
-//        session.setAttribute("product", updateProduct);
+        User sellerObject = updateProduct.getSeller();
+        List<User> followersList = sellerObject.getUserList();
+        session.setAttribute("notifyUsers", followersList);
+        session.setAttribute("product", updateProduct);
+
+
 
 
 

@@ -64,15 +64,19 @@ public class UserprofileController {
     }
 
 
-//    @RequestMapping(value = "/notification")
-//    public String notification(HttpSession session, Model model){
-//
-//      List<User> users = session.getAttribute(notifyUsers);
-//      Product p = session.getAttribute(product);
-//      model.addAttribute("newProduct",p);
-//      model.addAttribute("userLists",users);
-//      return "notification";
-//    }
+    @RequestMapping(value = "/notification")
+    public String notification(HttpSession session, Model model){
+      User user = (User) session.getAttribute("user");
+      List<User> users = (List<User>) session.getAttribute("notifyUsers");
+      Product p = (Product)session.getAttribute("product");
+
+      model.addAttribute("newProduct",p);
+      model.addAttribute("userLists",users);
+      model.addAttribute("user" ,user);
+
+        System.out.println("Sanjha parepachi ni lai lai "+p.getName() + user.getEmail() );
+      return "notification";
+    }
 
 
 
