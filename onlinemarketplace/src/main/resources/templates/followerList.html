@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <title>Mum Express</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -17,11 +18,11 @@
         }
     </script>
     <!--//tags -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
     <!--pop-up-box-->
-    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
@@ -196,14 +197,16 @@
                                 <td th:text="${follower.id}">Id</td>
                                 <td th:text="${follower.name}">Name</td>
                                 <td th:text="${follower.email}">Email</td>
-                                <td><a th:href="@{/profile/{id}(id=${follower.id})}"><i class="fa fa-user"></i>View Profile</a>	</td>
+                                <td><a th:href="@{/profile/{id}(id=${follower.id})}"><i class="fa fa-user"></i>View
+                                    Profile</a></td>
                             </tr>
                             <tr th:unless="${follower.name}=='BUYER'">
                                 <h1>Your are following</h1>
                                 <td th:text="${follower.id}">Id</td>
                                 <td th:text="${follower.name}">Name</td>
                                 <td th:text="${follower.email}">Email</td>
-                                <td><a th:href="@{/profile/{id}(id=${follower.id})}"><i class="fa fa-user"></i>View Profile</a>	</td>
+                                <td><a th:href="@{/profile/{id}(id=${follower.id})}"><i class="fa fa-user"></i>View
+                                    Profile</a></td>
                             </tr>
 
                             </tbody>
@@ -211,7 +214,7 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
         </div>
 
     </div>
@@ -222,7 +225,8 @@
 <br/><br/><br/><br/><br/><br/>
 <div class="copy-right">
     <div class="container">
-        <p>&nbsp;&nbsp;&nbsp;Email: mumexpress@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: 641 451 85 69</p>
+        <p>&nbsp;&nbsp;&nbsp;Email: mumexpress@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Phone: 641 451 85 69</p>
         <p>Copyright ©2019 MUM Express. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All rights reserved.</p>
     </div>
 </div>

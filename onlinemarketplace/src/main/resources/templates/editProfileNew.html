@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <title>Mum Express</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -17,11 +18,11 @@
         }
     </script>
     <!--//tags -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
     <!--pop-up-box-->
-    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
@@ -161,7 +162,6 @@
 <!-- HEADER ENDS-->
 
 
-
 <div class="contact-w3l">
     <div class="container">
         <!-- tittle heading -->
@@ -205,11 +205,11 @@
                         </div>
                         <div class="">
                             <label>Billing ZipCode</label><br/>
-                            <input type="text" th:field="*{billingAddress.zipCode}" >
+                            <input type="text" th:field="*{billingAddress.zipCode}">
                         </div>
                         <div class="">
                             <label>Billing City</label><br/>
-                            <input type="text" th:field="*{billingAddress.city}"  placeholder="Shipping City">
+                            <input type="text" th:field="*{billingAddress.city}" placeholder="Shipping City">
                         </div>
                         <div class="">
                             <label>Billing Street</label><br/>
@@ -217,8 +217,8 @@
                                    placeholder="Shipping street">
                         </div>
 
-                            <input type="hidden" value="" th:field="*{email}" th:value="${user.email}" >
-                            <input type="hidden" value="" th:field="*{password}" th:value="${user.password}">
+                        <input type="hidden" value="" th:field="*{email}" th:value="${user.email}">
+                        <input type="hidden" value="" th:field="*{password}" th:value="${user.password}">
 
                         <input type="submit" value="Change Profile">
                     </form>
@@ -233,7 +233,8 @@
 <!-- FOOTER -->
 <div class="copy-right">
     <div class="container">
-        <p>&nbsp;&nbsp;&nbsp;Email: mumexpress@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: 641 451 85 69</p>
+        <p>&nbsp;&nbsp;&nbsp;Email: mumexpress@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Phone: 641 451 85 69</p>
         <p>Copyright ©2019 MUM Express. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All rights reserved.</p>
     </div>
 </div>

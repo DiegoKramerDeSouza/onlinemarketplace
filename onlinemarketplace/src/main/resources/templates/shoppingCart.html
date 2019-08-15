@@ -154,7 +154,7 @@
 </div>
 <hr/>
 
-<div style="text-align: center; color:black" th:if="${cart.productList.size()} > 0" >
+<div style="text-align: center; color:black" th:if="${cart.productList.size()} > 0">
     <h2>Please confirm your payment method and open your order</h2>
     <div th:each="product : ${cart.productList}">
         <p>
@@ -176,7 +176,8 @@
     </div>
     <br/>
     <form th:action="@{/buyer/cart/setorder/1}" method="post">
-        <input style="height: 40px; width: 160px;" type="submit" class="btn btn-primary--information-kit-submit" value="Confirm and pay!"/>
+        <input style="height: 40px; width: 160px;" type="submit" class="btn btn-primary--information-kit-submit"
+               value="Confirm and pay!"/>
         <br/><br/>
     </form>
 </div>
