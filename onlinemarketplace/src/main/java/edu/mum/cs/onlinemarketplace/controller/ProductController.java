@@ -136,31 +136,29 @@ public class ProductController {
         Long sellerId = product.getSeller().getId();
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 
-        User user1 = (User) session.getAttribute("user");
+        Long uid = ((User) session.getAttribute("user")).getId();
+        User user = userService.getUserById(uid);
 
-//        User user = userService.findUserById(2L);
-        System.out.println("Session inside product is ="+user1);
+        System.out.println("Session inside product is ="+user);
         //Set user data
-        if(user1 == null){
-            session.setAttribute("type", "OFF");
+        if(user == null){
 //            System.out.println(" inside if Session inside product is ="+user1.getType());
         }
         else {
-            User user = userService.findUserById(user1.getId());
 
             if (user.getType().getName().equalsIgnoreCase("BUYER")) {
                 System.out.println(" inside else Session inside product is ="+user.getUserList().toString());
 
                 List<User> follow = user.getUserList();
                 System.out.println("followers==="+follow);
-                List<User> followList = follow.stream().filter(u -> u.getId() == product.getSeller().getId()).collect(Collectors.toList());
-                if (followList.size() == 0) {
+//                List<User> followList = follow.stream().filter(u -> u.getId() == product.getSeller().getId()).collect(Collectors.toList());
+//                followList.contains(product.getSeller());
+                if (follow.contains(product.getSeller())) {
                     model.addAttribute("follow", 1);
                 } else {
                     model.addAttribute("follow", 0);
                 }
             }
-            session.setAttribute("type", user.getType().getName());
             session.setAttribute("user", user);
             model.addAttribute("product", product);
             model.addAttribute("reviews", reviewService.getReviewsByProduct(id));

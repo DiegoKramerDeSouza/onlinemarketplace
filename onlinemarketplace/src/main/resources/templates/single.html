@@ -327,14 +327,14 @@
                     </li>
                 </ul>
                 <div sec:authorize="hasAuthority('BUYER')">
-                    <form th:if="${follow}==1" th:action="@{/users/follow/{uid}(uid=${product.seller.id})}"
+                    <form th:if="${follow}==1" th:action="@{/users/unfollow/{uid}(uid=${product.seller.id})}"
                           method="post">
                         Sold and fulfilled by <span style="color:deepskyblue"
                                                     th:text="${product.getSeller().getName()}"></span> &nbsp;
                         <input type="submit" value="UnFollow" class="btn btn-danger"/>
                     </form>
 
-                    <form th:if="${follow}==0" th:action="@{/users/unfollow/{uid}(uid=${product.seller.id})}"
+                    <form th:if="${follow}==0" th:action="@{/users/follow/{uid}(uid=${product.seller.id})}"
                           method="post">
                         Sold and fulfilled by <span style="color:deepskyblue"
                                                     th:text="${product.getSeller().getName()}"></span> &nbsp;
