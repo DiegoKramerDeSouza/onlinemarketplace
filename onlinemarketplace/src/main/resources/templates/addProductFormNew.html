@@ -5,8 +5,8 @@
     <title>Mum Express</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -17,11 +17,11 @@
         }
     </script>
     <!--//tags -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
     <!--pop-up-box-->
-    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
@@ -68,7 +68,8 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1"
                                 aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
@@ -86,10 +87,12 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/login}"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Login</a>
+                                <a class="nav-stylehead" th:href="@{/login}"><span class="fa fa-unlock-alt"
+                                                                                   aria-hidden="true"></span> Login</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/register_input}"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign up</a>
+                                <a class="nav-stylehead" th:href="@{/register_input}"><span
+                                        class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign up</a>
                             </li>
 
                         </ul>
@@ -104,13 +107,16 @@
                                 <a class="nav-stylehead" th:href="@{/products}"><i class="fa fa-cubes"></i> Products</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/seller/orders}"><i class="fa fa-file-text-o"></i> Orders</a>
+                                <a class="nav-stylehead" th:href="@{/seller/orders}"><i class="fa fa-file-text-o"></i>
+                                    Orders</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/users/followerList}"><i class="fa fa-users"></i> Followers</a>
+                                <a class="nav-stylehead" th:href="@{/users/followerList}"><i class="fa fa-users"></i>
+                                    Followers</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/profile/{id} (id = ${session.user.id})}"><i class="fa fa-user-circle-o"></i> Profile</a>
+                                <a class="nav-stylehead" th:href="@{/profile/{id} (id = ${session.user.id})}"><i
+                                        class="fa fa-user-circle-o"></i> Profile</a>
                             </li>
                             <li class="">
                                 <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
@@ -125,14 +131,17 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/buyer/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <a class="nav-stylehead" th:href="@{/buyer/cart}"><i class="fa fa-shopping-cart"
+                                                                                     aria-hidden="true"></i>
                                     Cart</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/profile/{id} (id = ${session.user.id})}"><i class="fa fa-user-circle-o"></i> Profile</a>
+                                <a class="nav-stylehead" th:href="@{/profile/{id} (id = ${session.user.id})}"><i
+                                        class="fa fa-user-circle-o"></i> Profile</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/buyer/orders}"><i class="fa fa-file-text-o"></i> Orders</a>
+                                <a class="nav-stylehead" th:href="@{/buyer/orders}"><i class="fa fa-file-text-o"></i>
+                                    Orders</a>
                             </li>
                             <li class="">
                                 <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
@@ -165,28 +174,30 @@
         </h3>
         <!-- //tittle heading -->
 
-       <div class="contact agileits">
-				<div class="contact-agileinfo">
-					<div class="contact-form wthree">
-						<form th:action="@{/product/?uid=1L}" th:object="${newProduct}" method="post" enctype="multipart/form-data">
-							<div class="">
-								<input type="text" th:field="*{name}" placeholder="Product Name" required=""/>
-							</div>
-							<div class="">
-								<textarea class="text" th:field="*{description}" placeholder="Product description" required=""></textarea>
-							</div>
-							<div class="">
-								<input type="text" th:field="*{price}" placeholder="Product price" required=""/>
-							</div>
-							<div class="">
-								<input type="file" name="file" required="">
-							</div>
-							<input type="submit" value="Submit Product">
-						</form>
-					</div>
+        <div class="contact agileits">
+            <div class="contact-agileinfo">
+                <div class="contact-form wthree">
+                    <form th:action="@{/product/?uid=1L}" th:object="${newProduct}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="">
+                            <input type="text" th:field="*{name}" placeholder="Product Name" required=""/>
+                        </div>
+                        <div class="">
+                            <textarea class="text" th:field="*{description}" placeholder="Product description"
+                                      required=""></textarea>
+                        </div>
+                        <div class="">
+                            <input type="text" th:field="*{price}" placeholder="Product price" required=""/>
+                        </div>
+                        <div class="">
+                            <input type="file" name="file" required="">
+                        </div>
+                        <input type="submit" value="Submit Product">
+                    </form>
+                </div>
 
-				</div>
-			</div>
+            </div>
+        </div>
 
     </div>
 </div>

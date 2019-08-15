@@ -57,6 +57,7 @@ public class BuyerShoppingCartController {
         return "cartNew";
     }
 
+    @LogAnnotation
     @PostMapping("/cart/remove/{id}/{pid}")
     public String removeProduct(@PathVariable("id") Long id,
                                 @PathVariable("pid") Long pid, Model model, RedirectAttributes redirect){
@@ -66,7 +67,7 @@ public class BuyerShoppingCartController {
                                         .stream()
                                         .filter(pd -> pd.getId() != pid)
                                         .collect(Collectors.toList());
-        cart.setProductList(products);
+        cart.setProductList( products);
         cart.calculateTotalPrice();
         cartService.saveCart(cart);
         redirect.addFlashAttribute("resultRemove", true);

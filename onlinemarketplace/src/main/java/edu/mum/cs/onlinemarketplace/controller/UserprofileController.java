@@ -46,8 +46,11 @@ public class UserprofileController {
     }
 
     @PostMapping("/profile/{id}/update")
-    public String updateProfile(@Valid @ModelAttribute("user")User user, @PathVariable Long id, BindingResult result,
+    public String updateProfile(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable Long id,
                                 Model model, HttpSession session){
+        if (result.hasErrors()) {
+            return "editProfileNew";
+        }
         User u = (User)session.getAttribute("user");
         if(user == null) return "redirect:/";
         u.setName(user.getName());

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Aspect
 @Component
@@ -23,10 +24,11 @@ public class LogInterceptor {
 
     @Before("annotation()")
     public void log(JoinPoint joinPoint) {
-        System.out.println(LocalDateTime.now().toString() + "  :   " + joinPoint.getSignature().toShortString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = LocalDateTime.now().format(formatter);
         Log log = new Log();
-        log.setDateTime(joinPoint.getSignature().toShortString());
-        log.setAction(LocalDateTime.now().toString());
+        log.setDateTime(formattedDateTime);
+        log.setAction(joinPoint.getSignature().toShortString());
         logService.saveLog(log);
     }
 }

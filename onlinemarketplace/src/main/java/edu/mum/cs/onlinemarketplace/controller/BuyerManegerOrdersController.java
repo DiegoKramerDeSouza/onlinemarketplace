@@ -53,6 +53,7 @@ public class BuyerManegerOrdersController {
         return "buyerManageOrders";
     }
 
+    @LogAnnotation
     @PostMapping("/order/{id}/cancel")
     public String cancelOrder(@PathVariable("id") Long id, Model model, RedirectAttributes redirect) throws FileNotFoundException, DocumentException {
         UserOrder order = orderService.getOrderById(id);

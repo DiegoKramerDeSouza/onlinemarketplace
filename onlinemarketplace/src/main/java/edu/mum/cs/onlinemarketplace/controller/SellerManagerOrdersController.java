@@ -47,6 +47,7 @@ public class SellerManagerOrdersController {
         return "sellerManageOrders";
     }
 
+    @LogAnnotation
     @PostMapping("/order/change/{id}/{status}")
     public String cancelOrder(@PathVariable("id") Long id,
                               @PathVariable("status") String status, Model model, RedirectAttributes redirect) throws FileNotFoundException, DocumentException {

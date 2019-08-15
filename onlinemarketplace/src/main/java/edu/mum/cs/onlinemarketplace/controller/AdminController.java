@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -38,9 +39,12 @@ public class AdminController {
     }
 
     @GetMapping("/users/SellerList")
-    public String getAllSeller(Model model){
+    public String getAllSeller(Model model, HttpSession session){
         model.addAttribute("sellerList",sellerService.getAllSeller());
 //        System.out.println("Seller="+sellerService.getAllSeller());
+       User user= (User) session.getAttribute("user");
+       model.addAttribute("Adminuser",userService.findUserById(user.getId()));
+        System.out.println("session inside Admin==="+session.getAttribute("user"));
         return "adminHome";
     }
 
@@ -65,6 +69,7 @@ public class AdminController {
         return "redirect:/admin/users/manageSellers";
     }
 
+    @LogAnnotation
     @PostMapping("/users/removeSeller/{id}")
     public String removeSeller(@PathVariable("id")Long id){
         User newSeller = sellerService.findUserBySellerId(id);
@@ -91,7 +96,7 @@ public class AdminController {
         updateReview.setStatus("approved");
         reviewService.save(updateReview);
         User u = updateReview.getUser();
-//        reviewNotify(u);
+        reviewNotify(u);
         return "redirect:/admin/users/manageReviews";
     }
     @PostMapping("/users/manageReview/{rid}/delete")
@@ -102,9 +107,11 @@ public class AdminController {
 
     public void reviewNotify(User user){
 
-        String messageBody = "Hello" +user.getName()+ "You review Has been Approved.";
+        String messageBody = "Hello " +user.getName()+ " Your review Has been Approved.";
         String subject = "Mum Express, Review Approved";
         emailService.sendSimpleMessage(user.getEmail(),subject,messageBody);
+        System.out.println("Email::::"+user.getEmail());
+
 
 
     }

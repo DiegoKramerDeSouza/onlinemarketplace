@@ -52,6 +52,7 @@ public class AdminAdsController {
         return "redirect:/admin/manage/ads";
     }
 
+    @LogAnnotation
     @PostMapping("/ads/remove/{aid}")
     public String removeUserAds(Model model, @PathVariable("aid") Long aid, RedirectAttributes redirect){
         System.out.println("id=============="+aid);
