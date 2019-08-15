@@ -52,18 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/profile/**").authenticated()
                 .antMatchers(
-
                         "/",
-                        "/login",
-                        "/product/**",
-                        "/h2-console/**",
-
                         "/notification",
-
-                        "/register_input",
-
-                   "/resources/**",
-
+                        "/resources/**",
                         "/fonts/**",
                         "/js/**",
                         "/css/**",
@@ -72,15 +63,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/pdf/**",
                         "/admin/js/**",
                         "/admin/css/**",
-                        "/",
-                        "/product/**",
-                        "/addProduct",
                         "/login",
                         "/product/**",
                         "/h2-console/**",
                         "/register_input",
                         "/register_save",
-                        "/search/products/**"
+                        "/search/products/**",
+                        "**/src/main/resources/static/imgages/**",
+                        "/seller/**",
+                        "**/add/new/**",
+                        "/product/**",
+                        "/products/**",
+                        "/addProduct/**"
 
                 ).permitAll()
 
@@ -90,10 +84,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(
                         "/seller/**",
-                        "/product/update/**",
-                        "/product/delete/**",
-                        "/products"
-
+                        "**/add/new/**",
+                        "/product/**",
+                        "/products/**",
+                        "/addProduct/**"
 
                 ).hasAuthority("SELLER")
 
@@ -110,7 +104,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and().csrf()
-                .ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
+                .ignoringAntMatchers("/h2-console/**", "**/add/new/**", "/product/**") //don't apply CSRF protection to /h2-console
                 .and()
                 .exceptionHandling().accessDeniedPage("/error/access-denied")
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository())

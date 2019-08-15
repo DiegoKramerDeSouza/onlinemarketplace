@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -19,33 +20,34 @@ public class FollowerController {
     private UserService userService;
     @Autowired
     private SellerService sellerService;
+
     @GetMapping("/users/followerList")
     public String getFollowerList(Model model, HttpSession session){
+
         //Get seller id from session
-        User me1 = (User) session.getAttribute("user");
-        if(me1 == null) return "redirect:/";
-        User me = userService.findUserById(me1.getId());
-        model.addAttribute("followerList",me.getUserList());
+        Long id = ((User) session.getAttribute("user")).getId();
+        List<User> userList = userService.getUserById(id).getUserList();
+        model.addAttribute("followerList",userList);
+
         return "followerList";
     }
 
     @PostMapping("/users/follow/{uid}")
     public String addFollower(@PathVariable("uid")Long uid, HttpSession session){
 
-        User me1 = (User) session.getAttribute("user");
-        if(me1 == null) return "redirect:/";
-        User me = userService.findUserById(me1.getId());
 
+        Long id = ((User) session.getAttribute("user")).getId();
+        User me = userService.getUserById(id);
         User followerUser = userService.findUserById(uid);
 
         List<User> userlist = me.getUserList();
         userlist.add(followerUser);
 
-        List<User> followlist = followerUser.getUserList();
-        followlist.add(me);
+//        List<User> followlist = followerUser.getUserList();
+//        followlist.add(me);
 
         userService.saveUser(me);
-        userService.saveUser(followerUser);
+//        userService.saveUser(followerUser);
 
         return "redirect:/users/followerList";
     }
