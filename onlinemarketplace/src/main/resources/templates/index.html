@@ -1,13 +1,13 @@
-
 <!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <title>Mum Express</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -18,11 +18,11 @@
         }
     </script>
     <!--//tags -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
     <!--pop-up-box-->
-    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/css/popuo-box.css}" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui1.css}">
@@ -264,14 +264,15 @@
 
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        <a th:href="@{/product/{pid}(pid=${p.id})}" class="link-product-add-cart">Quick View</a>
+                                        <a th:href="@{/product/{pid}(pid=${p.id})}" class="link-product-add-cart">Quick
+                                            View</a>
                                     </div>
                                 </div>
                                 <span class="product-new-top">New</span>
                             </div>
                             <div class="item-info-product">
                                 <h4>
-                                    <a th:href="@{/product/{pid}(pid=${p.getId()})}" >
+                                    <a th:href="@{/product/{pid}(pid=${p.getId()})}">
                                         <span class="truncate-text" th:text="${p.getName()}"></span>
                                     </a>
                                 </h4>
@@ -283,7 +284,7 @@
                                      class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                     <form th:action="@{/product/{pid}/addToCart (pid = ${p.id})}" method="post">
                                         <fieldset>
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
+                                            <input type="submit" name="submit" value="Add to cart" class="button"/>
                                         </fieldset>
                                     </form>
                                 </div>
@@ -338,7 +339,7 @@
                                  class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form th:action="@{/product/{pid}/addToCart (pid = ${prod.id})}" method="post">
                                     <fieldset>
-                                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                                        <input type="submit" name="submit" value="Add to cart" class="button"/>
                                     </fieldset>
                                 </form>
                             </div>
@@ -356,7 +357,8 @@
 <!-- FOOTER -->
 <div class="copy-right">
     <div class="container">
-        <p>&nbsp;&nbsp;&nbsp;Email: mumexpress@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: 641 451 85 69</p>
+        <p>&nbsp;&nbsp;&nbsp;Email: mumexpress@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: 641 451
+            85 69</p>
         <p>Copyright ©2019 MUM Express. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All rights reserved.</p>
     </div>
 </div>
@@ -444,7 +446,6 @@
 <!-- //flexisel (for special offers) -->
 
 
-
 <!-- smoothscroll -->
 <script th:src="@{js/SmoothScroll.min.js}"></script>
 <!-- //smoothscroll -->
@@ -464,7 +465,6 @@
     });
 </script>
 <!-- //end-smooth-scrolling -->
-
 
 
 <!-- for bootstrap working -->
