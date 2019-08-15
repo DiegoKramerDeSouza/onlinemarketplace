@@ -110,7 +110,9 @@
                                         class="fa fa-user-circle-o"></i> Profile</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
                             </li>
                         </ul>
                         <ul sec:authorize="hasAuthority('BUYER')" class="nav navbar-nav menu__list">
@@ -133,7 +135,9 @@
                                     Orders</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
                             </li>
                         </ul>
                         <ul sec:authorize="hasAuthority('ADMIN')" class="nav navbar-nav menu__list">
@@ -147,7 +151,9 @@
                                         class="fa fa-user-circle-o"></i> Admin Page</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" th:href="@{/}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-danger btn-logoff" value="Logout" />
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -232,6 +238,30 @@
                             <input type="text" th:field="*{billingAddress.street}"
                                    placeholder="Shipping street">
                             <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{billingAddress.street}"
+                               th:errorclass="fieldError">Error</p>
+                        </div>
+
+                         <div class="">
+                            <label>Credit Number</label><br/>
+                            <input type="text" th:field="*{creditCard.number}"
+                                   placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{creditCard.number}"
+                               th:errorclass="fieldError">Error</p>
+                        </div>
+
+                        <div class="">
+                            <label>Credit Name</label><br/>
+                            <input type="text" th:field="*{creditCard.name}"
+                                   placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{creditCard.number}"
+                               th:errorclass="fieldError">Error</p>
+                        </div>
+
+                          <div class="">
+                            <label>Credit Card Validity</label><br/>
+                            <input type="text" th:field="*{creditCard.validDate}"
+                                   placeholder="Shipping street">
+                            <p th:if="${#fields.hasErrors('billingAddress.street')}" class="error" th:errors="*{creditCard.number}"
                                th:errorclass="fieldError">Error</p>
                         </div>
 

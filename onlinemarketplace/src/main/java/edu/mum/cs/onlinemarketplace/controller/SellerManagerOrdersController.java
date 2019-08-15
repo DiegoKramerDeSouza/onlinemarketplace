@@ -61,7 +61,7 @@ public class SellerManagerOrdersController {
                     .filter(prod -> prod.getSeller().getId() == userOrder.getSeller().getId())
                     .collect(Collectors.toList());
             pdfService.createPDFFile(userOrder, products);
-            notifyBuyer(userOrder.getBuyer());
+//            notifyBuyer(userOrder.getBuyer());
 
 
 

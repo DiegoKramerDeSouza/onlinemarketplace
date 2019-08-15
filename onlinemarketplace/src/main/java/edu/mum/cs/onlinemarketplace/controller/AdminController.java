@@ -31,11 +31,13 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
 
+
 //    @ModelAttribute("Adminuser")
 //    public User getUserInSession( HttpSession session){
 //        User user= (User) session.getAttribute("user");
 //        return userService.findUserById(user.getId());
 //    }
+
 
     @ModelAttribute("types")
     public List<Role> getRoles(Model model){
@@ -103,12 +105,25 @@ public class AdminController {
         Review updateReview = reviewService.findReviewById(rid);
         updateReview.setStatus("approved");
         reviewService.save(updateReview);
+        User u = updateReview.getUser();
+        reviewNotify(u);
         return "redirect:/admin/users/manageReviews";
     }
     @PostMapping("/users/manageReview/{rid}/delete")
     public String deleteReview(@PathVariable("rid") Long rid){
         reviewService.delete(rid);
         return "redirect:/admin/users/manageReviews";
+    }
+
+    public void reviewNotify(User user){
+
+        String messageBody = "Hello " +user.getName()+ " Your review Has been Approved.";
+        String subject = "Mum Express, Review Approved";
+        emailService.sendSimpleMessage(user.getEmail(),subject,messageBody);
+        System.out.println("Email::::"+user.getEmail());
+
+
+
     }
 
 

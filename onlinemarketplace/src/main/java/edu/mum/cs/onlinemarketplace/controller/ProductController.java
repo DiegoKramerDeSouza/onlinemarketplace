@@ -80,7 +80,7 @@ public class ProductController {
 
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
-            return "addProductForm";
+            return "addProductFormNew";
         }else {
             checkfile(file, newProduct);
             productService.save(newProduct);
@@ -104,7 +104,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/update/{pid}")
-    public String updateProduct( @ModelAttribute("updateProduct")Product product, @PathVariable Long pid,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
+
+    public String updateProduct(Product product, @PathVariable Long pid,@RequestParam(value = "file",required = false) MultipartFile file, HttpSession session) throws IOException {
         Product updateProduct = productService.findById(pid);
         updateProduct.setName(product.getName());
         updateProduct.setDescription(product.getDescription());
@@ -112,6 +113,15 @@ public class ProductController {
         checkfile(file, updateProduct);
        // updateProduct.setProductImage(product.getProductImage());
         productService.save(updateProduct);
+
+
+//        User sellerObject = updateProduct.getSeller();
+//        List<User> followersList = sellerObject.getUserList();
+//        session.setAttribute("notifyUsers", followersList);
+//        session.setAttribute("product", updateProduct);
+
+
+
         return "redirect:/products";
     }
 
@@ -202,6 +212,9 @@ public class ProductController {
             product.setProductImage(destination.getName());
         }
     }
+
+
+
 
 
 }

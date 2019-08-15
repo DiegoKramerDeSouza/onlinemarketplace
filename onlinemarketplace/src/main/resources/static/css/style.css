@@ -4944,7 +4944,7 @@ Profile CSS
             height: 150px !important;
         }
 
-        #btn-logoff{
+        .btn-logoff{
             margin-top:10px;
         }
 
