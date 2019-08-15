@@ -130,15 +130,16 @@ public class ProductController {
         model.addAttribute("productByseller",productService.getProductBySeller(sellerId));
 
         User user1 = (User) session.getAttribute("user");
-        User user = userService.findUserById(user1.getId());
+
 //        User user = userService.findUserById(2L);
-        System.out.println("Session inside product is ="+user);
+        System.out.println("Session inside product is ="+user1);
         //Set user data
-        if(user == null){
+        if(user1 == null){
             session.setAttribute("type", "OFF");
-            System.out.println(" inside if Session inside product is ="+user.getType());
+//            System.out.println(" inside if Session inside product is ="+user1.getType());
         }
         else {
+            User user = userService.findUserById(user1.getId());
 
             if (user.getType().getName().equalsIgnoreCase("BUYER")) {
                 System.out.println(" inside else Session inside product is ="+user.getUserList().toString());
