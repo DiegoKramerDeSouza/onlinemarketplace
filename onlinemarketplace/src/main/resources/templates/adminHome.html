@@ -73,7 +73,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<ul class="dropdown-menu drp-mnu">
 											<li> <a th:href="@{/profile/{id}(id=${Adminuser.id})}"><i class="fa fa-user"></i> Profile</a> </li>
-											<li> <a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+											<form th:action="@{/logout}" method="post">
+                                                <input type="submit" value="Logout" class="fa fa-sign-out">
+                                            </form>
+<!--                                            <li> <a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a> </li>-->
 										</ul>
 									</li>
 								</ul>
