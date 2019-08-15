@@ -30,6 +30,8 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
 
+
+
     @ModelAttribute("types")
     public List<Role> getRoles(Model model){
         return roleService.getAllRoles();
@@ -88,12 +90,23 @@ public class AdminController {
         Review updateReview = reviewService.findReviewById(rid);
         updateReview.setStatus("approved");
         reviewService.save(updateReview);
+        User u = updateReview.getUser();
+//        reviewNotify(u);
         return "redirect:/admin/users/manageReviews";
     }
     @PostMapping("/users/manageReview/{rid}/delete")
     public String deleteReview(@PathVariable("rid") Long rid){
         reviewService.delete(rid);
         return "redirect:/admin/users/manageReviews";
+    }
+
+    public void reviewNotify(User user){
+
+        String messageBody = "Hello" +user.getName()+ "You review Has been Approved.";
+        String subject = "Mum Express, Review Approved";
+        emailService.sendSimpleMessage(user.getEmail(),subject,messageBody);
+
+
     }
 
 

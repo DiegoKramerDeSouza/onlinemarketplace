@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/login",
                         "/product/**",
                         "/h2-console/**",
-
+                        "/notification",
                         "/fonts/**",
                         "/js/**",
                         "/css/**",
